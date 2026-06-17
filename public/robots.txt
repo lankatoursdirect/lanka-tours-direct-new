@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /src/
+
+User-agent: Googlebot-Image
+Allow: /
+
+Sitemap: https://lankatoursdirect.com/sitemap.xml
