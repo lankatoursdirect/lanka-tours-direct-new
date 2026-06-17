@@ -62,7 +62,7 @@ const islandSampler = {
   description:
     "From Kandy's ancient temples and misty tea plantations to Ella's iconic nine-arch bridge, Yala's leopard-stalked plains, and the deep-blue bays of Mirissa — this 5-day journey hits Sri Lanka's greatest hits in one seamless private trip. Perfect for first-time visitors who want culture, scenery, wildlife, and beach without compromise. Every element can be adapted to your pace, interests, and group size.",
   highlights: [
-    "Scenic Hill Country Train Journey (Nanu Oya → Ella)",
+    "Scenic Hill Country Train Journey (Ambewela → Ella)",
     "Ella Mountain Experience",
     "Yala Wildlife Safari",
     "Blue Whale Watching",
@@ -96,14 +96,14 @@ const islandSampler = {
       bestMoment:
         "A blue train rolling across the Nine Arch Bridge through jungle canopy — late afternoon light is ideal. Stand on the upper path above the bridge and wait for the 6:41 PM train. The sound of the whistle echoing through the valley just before it appears from the tunnel is something every visitor remembers long after they leave.",
       note:
-        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Kandy through Nuwara Eliya to Nanu Oya station, where you board the train for the most scenic 2.5-hour section into Ella. Train travel is subject to Sri Lanka Railways operational conditions and seat availability — we confirm and book all seats in advance.",
+        "The scenic hill-country train currently operates reliably on the Ambewela → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Kandy through Nuwara Eliya to Ambewela, where you board the train for the most scenic 2-hour section into Ella. Train travel is subject to Sri Lanka Railways operational conditions and seat availability — we confirm and book all seats in advance.",
       activities: [
         "Drive through emerald tea country — rolling hills and misty valleys",
         "Tea plantation & factory visit — see Ceylon tea from leaf to cup",
         "Ramboda View Point — panoramic view of three cascading waterfalls",
         "Nuwara Eliya — Gregory Lake & colonial-era town",
-        "Drive to Nanu Oya station for the scenic hill country train departure",
-        "Scenic train journey: Nanu Oya → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2.5 hrs)",
+        "Drive to Ambewela station for the scenic hill country train departure",
+        "Scenic train journey: Ambewela → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2 hrs)",
         "Nine Arch Bridge — Sri Lanka's most photographed landmark",
         "Evening: Little Adam's Peak hike for sunset panoramas",
       ],
@@ -159,7 +159,7 @@ const islandSampler = {
     "All fuel and road tolls",
     "Airport pickup on arrival",
     "Airport drop-off on departure",
-    "Train ticket arrangement — Nanu Oya → Ella (subject to Sri Lanka Railways availability)",
+    "Train ticket arrangement — Ambewela → Ella (subject to Sri Lanka Railways availability)",
   ],
   excludes: [
     "Hotel accommodation (we can recommend options)",
@@ -201,7 +201,7 @@ const discoverSriLanka7 = {
     "Dambulla Cave Temple",
     "Sigiriya Lion Rock",
     "Elephant Safari",
-    "Scenic Hill Country Train (Nanu Oya → Ella)",
+    "Scenic Hill Country Train (Ambewela → Ella)",
     "Nine Arches Bridge",
     "Ravana Falls",
     "Tangalle Beach",
@@ -283,17 +283,17 @@ const discoverSriLanka7 = {
     },
     {
       day: 5,
-      title: "Nuwara Eliya → Nanu Oya → Ella",
+      title: "Nuwara Eliya → Ambewela → Ella",
       overnight: "Ella",
-      driveTime: "~15 min drive Nuwara Eliya to Nanu Oya station; ~2.5 hr train to Ella",
+      driveTime: "~1 hr drive Nuwara Eliya to Ambewela station; ~2 hr train to Ella",
       note:
-        "The hill-country scenic train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Nuwara Eliya to Nanu Oya station and board the train there for the most spectacular section of the journey. Train travel is subject to Sri Lanka Railways operational conditions — we verify schedules and book all seats well in advance.",
+        "The hill-country scenic train currently operates reliably on the Ambewela → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Nuwara Eliya to Ambewela station and board the train there for the most spectacular section of the journey. Train travel is subject to Sri Lanka Railways operational conditions — we verify schedules and book all seats well in advance.",
       bestMoment:
-        "Hanging out of the open train door as the highland scenery scrolls past — one of the world's great short rail journeys. The stretch from Nanu Oya through Ohiya and down through the cloud forest to Ella takes you past waterfalls, over colonial-era viaducts, and through tea country so green it barely seems real. Keep your camera ready for the views from Idalgashinna as the train descends toward the southern plains.",
+        "Hanging out of the open train door as the highland scenery scrolls past — one of the world's great short rail journeys. The stretch from Ambewela through Ohiya and down through the cloud forest to Ella takes you past waterfalls, over colonial-era viaducts, and through tea country so green it barely seems real. Keep your camera ready for the views from Idalgashinna as the train descends toward the southern plains.",
       activities: [
         "Morning: explore Nuwara Eliya at your own pace",
-        "Drive to Nanu Oya station — boarding point for the scenic hill country train",
-        "Board the scenic hill country train: Nanu Oya → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2.5 hrs)",
+        "Drive to Ambewela station — the highest railway station in Sri Lanka at 1,898 m",
+        "Board the scenic hill country train: Ambewela → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2 hrs)",
         "Visit Nine Arches Bridge — the crown jewel of Sri Lanka's railway heritage",
         "Hike Little Adam's Peak — easy trail with spectacular valley views",
         "Relax and enjoy the laid-back atmosphere of Ella village",
@@ -338,7 +338,7 @@ const discoverSriLanka7 = {
     "All fuel and road tolls",
     "Airport pickup on arrival",
     "Airport drop-off on departure",
-    "Train ticket arrangement — Nanu Oya → Ella (subject to Sri Lanka Railways availability)",
+    "Train ticket arrangement — Ambewela → Ella (subject to Sri Lanka Railways availability)",
   ],
   excludes: [
     "Hotel accommodation (we can recommend options)",
@@ -380,7 +380,7 @@ const sriLanka10Days = {
     "Sigiriya Lion Rock",
     "Pidurangala Sunrise",
     "Ayurvedic Massage",
-    "Scenic Hill Country Train (Nanu Oya → Ella)",
+    "Scenic Hill Country Train (Ambewela → Ella)",
     "Ella Eco Trekking",
     "Nine Arches Bridge",
     "Night Turtle Watching (Rekawa)",
@@ -460,11 +460,11 @@ const sriLanka10Days = {
     },
     {
       day: 5,
-      title: "Kandy → Nuwara Eliya → Nanu Oya → Ella",
+      title: "Kandy → Nuwara Eliya → Ambewela → Ella",
       overnight: "Ella",
-      driveTime: "~3 hrs drive Kandy to Nanu Oya via Nuwara Eliya; ~2.5 hrs train Nanu Oya to Ella",
+      driveTime: "~3 hrs drive Kandy to Ambewela via Nuwara Eliya; ~2 hrs train Ambewela to Ella",
       note:
-        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive through Nuwara Eliya and continue to Nanu Oya station — the boarding point for the scenic hill country train — where you board the train for the most spectacular section into Ella. Train travel is subject to Sri Lanka Railways operational conditions. We verify schedules and book all seats well in advance of your tour date.",
+        "The scenic hill-country train currently operates reliably on the Ambewela → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive through Nuwara Eliya and continue to Ambewela — the highest railway station in Sri Lanka at 1,898 m — where you board the train for the most spectacular section into Ella. Train travel is subject to Sri Lanka Railways operational conditions. We verify schedules and book all seats well in advance of your tour date.",
       bestMoment:
         "Watching the blue locomotive emerge from mist-covered jungle as it crosses the Nine Arch Bridge. Position yourself on the upper viewing path about 20 minutes before the 6:41 PM crossing. The jungle is backlit by the fading sun, then the whistle sounds from inside the Demodara tunnel, and the train appears — a moment that defines the Sri Lanka everyone comes to find.",
       activities: [
@@ -472,8 +472,8 @@ const sriLanka10Days = {
         "Tea tasting and tea-plucking experience",
         "Ramboda View Point — three waterfalls visible in one panoramic sweep",
         "Visit Nuwara Eliya — Gregory Lake, colonial post office, colourful gardens",
-        "Drive to Nanu Oya station — boarding point for the scenic hill country train",
-        "Board scenic hill country train: Nanu Oya → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2.5 hrs)",
+        "Drive to Ambewela — the highest railway station in Sri Lanka",
+        "Board scenic hill country train: Ambewela → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2 hrs)",
         "Arrive Ella; check in and explore the village",
       ],
     },
@@ -557,7 +557,7 @@ const sriLanka10Days = {
     "All fuel and road tolls",
     "Airport pickup on arrival",
     "Airport drop-off on departure",
-    "Train ticket arrangement — Nanu Oya → Ella (subject to Sri Lanka Railways availability)",
+    "Train ticket arrangement — Ambewela → Ella (subject to Sri Lanka Railways availability)",
   ],
   excludes: [
     "Hotel accommodation (we can recommend options)",
@@ -743,7 +743,7 @@ const adventureTour11Days = {
       overnight: "Ella",
       driveTime: "Walking / tuk-tuk locally",
       note:
-        "The scenic hill-country train currently operates on the Nanu Oya → Ella segment. For a short local train experience within the Ella area, we can arrange a hop between Ella and Demodara stations to experience the famous loop tunnel. Subject to Sri Lanka Railways operational conditions.",
+        "The scenic hill-country train currently operates on the Ambewela → Ella segment. For a short local train experience within the Ella area, we can arrange a hop between Ella and Demodara stations to experience the famous loop tunnel. Subject to Sri Lanka Railways operational conditions.",
       bestMoment:
         "The Flying Ravana zipline — 1.2 km across a jungle valley at 80 km/h. You launch from a platform on one forested ridge and fly across a canopy of jungle to the opposite hillside. Halfway across, with the valley floor 150 metres below you and nothing but jungle in every direction, you experience a few seconds of absolute silence and complete exhilaration that is unlike anything else in Sri Lanka.",
       activities: [
@@ -1296,7 +1296,7 @@ const sriLanka20Days = {
       overnight: "Hatton",
       driveTime: "Scenic train journey Ella → Hatton (~3.5 hrs)",
       note:
-        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment. For this day we travel in the reverse direction from Ella toward the highlands. Train availability on this segment should be confirmed closer to your tour date — we handle all bookings and seat reservations and will advise the best available option.",
+        "The scenic hill-country train currently operates reliably on the Ambewela → Ella segment. For this day we travel in the reverse direction from Ella toward the highlands. Train availability on this segment should be confirmed closer to your tour date — we handle all bookings and seat reservations and will advise the best available option.",
       bestMoment:
         "The train crossing the Demodara Loop — a unique piece of railway engineering where the track spirals inside the mountain and emerges at a point 30 metres below where it entered. You can look out of the window and see the tunnel entrance above you that you passed through just minutes ago. It is the most extraordinary piece of railway engineering in Asia and it happens right in the middle of the most scenic stretch of the journey.",
       activities: [
@@ -1482,7 +1482,7 @@ const sriLanka22Days = {
     "Kandy Temple of the Tooth",
     "Nuwara Eliya Tea Country",
     "Horton Plains & World's End",
-    "Scenic Train Nanu Oya → Ella",
+    "Scenic Train Ambewela → Ella",
     "Nine Arches Bridge",
     "Lipton's Seat Haputale",
     "Diyaluma Falls Upper Pools",
@@ -1725,16 +1725,16 @@ const sriLanka22Days = {
     },
     {
       day: 16,
-      title: "Nuwara Eliya → Nanu Oya → Ella (Scenic Train)",
+      title: "Nuwara Eliya → Ambewela → Ella (Scenic Train)",
       overnight: "Ella",
-      driveTime: "~15 min drive Nuwara Eliya to Nanu Oya; ~2.5 hr train to Ella",
+      driveTime: "~45 mins drive Nuwara Eliya to Ambewela; ~2 hrs train to Ella",
       note:
-        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Nuwara Eliya to Nanu Oya station — the boarding point for the scenic hill country train — and board the train there. Train travel is subject to Sri Lanka Railways operational conditions. We book all seats well in advance.",
+        "The scenic hill-country train currently operates reliably on the Ambewela → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Nuwara Eliya to Ambewela station — the highest railway station in Sri Lanka at 1,898 m — and board the train there. Train travel is subject to Sri Lanka Railways operational conditions. We book all seats well in advance.",
       bestMoment:
         "The view from the open train door somewhere between Idalgashinna and Haputale — the train hugs the edge of the escarpment and below you the land drops away for hundreds of metres into a valley of jungle and tea estates. The breeze is cool, the sky is blue above the cloud line, and you are moving slowly enough to take it all in. This is the moment that everyone who takes this train tries to describe and never quite manages to.",
       activities: [
-        "Drive to Nanu Oya station — boarding point for the scenic hill country train",
-        "Board the scenic hill country train: Nanu Oya → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2.5 hrs)",
+        "Drive to Ambewela — the highest railway station in Sri Lanka at 1,898 m",
+        "Board the scenic hill country train: Ambewela → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2 hrs)",
         "Nine Arches Bridge visit on arrival — Sri Lanka's most iconic railway landmark",
         "Little Adam's Peak hike — 360° sunset views over the valley",
         "Explore Ella village and settle in",
@@ -1833,7 +1833,7 @@ const sriLanka22Days = {
     "All fuel and road tolls",
     "Airport pickup on arrival",
     "Airport drop-off on departure",
-    "Train ticket arrangement — Nanu Oya → Ella (subject to Sri Lanka Railways availability)",
+    "Train ticket arrangement — Ambewela → Ella (subject to Sri Lanka Railways availability)",
     "Experienced safari guides at all national parks",
   ],
   excludes: [

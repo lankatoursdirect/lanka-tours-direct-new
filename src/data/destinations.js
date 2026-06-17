@@ -1043,7 +1043,7 @@ const nuwaraEliyaDest = {
     { src: neTeaPlantationVisit, caption: "Tea estate visit in the highlands" },
     { src: nePostOffice, caption: "Colonial-era post office" },
     { src: neTeaPlant, caption: "Tea estate with rolling green hills" },
-    { src: neAmbewela, caption: "Pattipola — scenic highland railway at 1,898 m" },
+    { src: neAmbewela, caption: "Pattipola — the highest railway station in Sri Lanka (1,898 m)" },
     { src: neHaggala, caption: "Hakgala Botanical Garden — cool highland flora" },
     { src: neAmbewelaFarm, caption: "Ambewela Farm — green pastures and dairy country" },
   ],
@@ -1068,7 +1068,7 @@ const nuwaraEliyaDest = {
     "Heart of Ceylon tea country — world-famous high-grown tea",
     "British colonial heritage — racecourse, golf course, Hill Club",
     "Cool mountain climate even in Sri Lanka's hot season",
-    "Gateway to Horton Plains and the Nanu Oya railway station — boarding point for the scenic hill country train",
+    "Gateway to Horton Plains and the Pattipola train station — Sri Lanka's highest railway station",
   ],
   placesToVisit: [
     {
@@ -1122,9 +1122,9 @@ const nuwaraEliyaDest = {
         "A beautiful colonial-era public park in the heart of Nuwara Eliya — perfect for a quiet morning walk among flowering trees and well-kept lawns.",
     },
     {
-      name: "Nanu Oya Station",
+      name: "Pattipola Station",
       description:
-        "The closest railway station to Nuwara Eliya town — boarding point for the scenic hill country train journey to Ella. The surrounding highland landscape of misty plains and tea estates is extraordinarily picturesque.",
+        "The highest railway station in Sri Lanka at 1,898 metres — the boarding point for the scenic hill country train journey to Ella. The surrounding highland landscape of misty plains and tea estates is extraordinarily picturesque.",
     },
   ],
   activities: [
@@ -1135,7 +1135,7 @@ const nuwaraEliyaDest = {
     "Shanthipura village and Eagle View Point",
     "Victoria Park morning walk",
     "Nuwara Eliya city heritage walk",
-    "Drive to Nanu Oya station for train departure to Ella — board the scenic hill country train",
+    "Drive to Pattipola for train departure to Ella — board at Sri Lanka's highest station",
   ],
 };
 
@@ -1176,7 +1176,7 @@ const ellaDest = {
     "Nine Arch Bridge — most photographed landmark in Sri Lanka",
     "Ella Gap — a mountain viewpoint looking all the way to the southern coast",
     "Cool highland climate at 1,000 m — a natural escape from the coastal heat",
-    "Junction of the hill country train route from Nanu Oya",
+    "Junction of the hill country train route from Ambewela",
     "Demodara Loop — one of the greatest railway engineering feats in Asia",
     "Village cooking experience — hands-on traditional Sri Lankan home cooking",
   ],
@@ -1270,7 +1270,7 @@ const haputale = {
   ],
   highlights: [
     "Lipton's Seat — 1,970 m viewpoint, views to both coasts on clear days",
-    "On the scenic Nanu Oya–Ella hill country train route",
+    "On the scenic Ambewela–Ella hill country train route",
     "Some of the finest highland tea estates in Sri Lanka",
     "Adisham — one of the best-preserved British colonial mansions on the island",
     "Gateway to Horton Plains via Ohiya",
