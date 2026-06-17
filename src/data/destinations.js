@@ -1176,7 +1176,7 @@ const ellaDest = {
     "Nine Arch Bridge — most photographed landmark in Sri Lanka",
     "Ella Gap — a mountain viewpoint looking all the way to the southern coast",
     "Cool highland climate at 1,000 m — a natural escape from the coastal heat",
-    "Junction of the hill country train route from Ambewela",
+    "Junction of the hill country train route from Nanu Oya",
     "Demodara Loop — one of the greatest railway engineering feats in Asia",
     "Village cooking experience — hands-on traditional Sri Lankan home cooking",
   ],
@@ -1270,7 +1270,7 @@ const haputale = {
   ],
   highlights: [
     "Lipton's Seat — 1,970 m viewpoint, views to both coasts on clear days",
-    "On the scenic Ambewela–Ella hill country train route",
+    "On the scenic Nanu Oya–Ella hill country train route",
     "Some of the finest highland tea estates in Sri Lanka",
     "Adisham — one of the best-preserved British colonial mansions on the island",
     "Gateway to Horton Plains via Ohiya",
