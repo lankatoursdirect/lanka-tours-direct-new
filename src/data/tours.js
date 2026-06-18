@@ -292,7 +292,7 @@ const discoverSriLanka7 = {
         "Hanging out of the open train door as the highland scenery scrolls past — one of the world's great short rail journeys. The stretch from Nanu Oya through Ohiya and down through the cloud forest to Ella takes you past waterfalls, over colonial-era viaducts, and through tea country so green it barely seems real. Keep your camera ready for the views from Idalgashinna as the train descends toward the southern plains.",
       activities: [
         "Morning: explore Nuwara Eliya at your own pace",
-        "Drive to Nanu Oya station — the highest railway station in Sri Lanka at 1,898 m",
+        "Drive to Pattipola station — the highest railway station in Sri Lanka at 1,898 m",
         "Board the scenic hill country train: Nanu Oya → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2 hrs)",
         "Visit Nine Arches Bridge — the crown jewel of Sri Lanka's railway heritage",
         "Hike Little Adam's Peak — easy trail with spectacular valley views",
@@ -464,7 +464,7 @@ const sriLanka10Days = {
       overnight: "Ella",
       driveTime: "~3 hrs drive Kandy to Nanu Oya via Nuwara Eliya; ~2 hrs train Nanu Oya to Ella",
       note:
-        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive through Nuwara Eliya and continue to Nanu Oya — the highest railway station in Sri Lanka at 1,898 m — where you board the train for the most spectacular section into Ella. Train travel is subject to Sri Lanka Railways operational conditions. We verify schedules and book all seats well in advance of your tour date.",
+        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive through Nuwara Eliya and continue to Pattipola — the highest railway station in Sri Lanka at 1,898 m — where you board the train for the most spectacular section into Ella. Train travel is subject to Sri Lanka Railways operational conditions. We verify schedules and book all seats well in advance of your tour date.",
       bestMoment:
         "Watching the blue locomotive emerge from mist-covered jungle as it crosses the Nine Arch Bridge. Position yourself on the upper viewing path about 20 minutes before the 6:41 PM crossing. The jungle is backlit by the fading sun, then the whistle sounds from inside the Demodara tunnel, and the train appears — a moment that defines the Sri Lanka everyone comes to find.",
       activities: [
@@ -472,7 +472,7 @@ const sriLanka10Days = {
         "Tea tasting and tea-plucking experience",
         "Ramboda View Point — three waterfalls visible in one panoramic sweep",
         "Visit Nuwara Eliya — Gregory Lake, colonial post office, colourful gardens",
-        "Drive to Nanu Oya — the highest railway station in Sri Lanka",
+        "Drive to Pattipola — the highest railway station in Sri Lanka",
         "Board scenic hill country train: Nanu Oya → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2 hrs)",
         "Arrive Ella; check in and explore the village",
       ],
@@ -1729,11 +1729,11 @@ const sriLanka22Days = {
       overnight: "Ella",
       driveTime: "~45 mins drive Nuwara Eliya to Nanu Oya; ~2 hrs train to Ella",
       note:
-        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Nuwara Eliya to Nanu Oya station — the highest railway station in Sri Lanka at 1,898 m — and board the train there. Train travel is subject to Sri Lanka Railways operational conditions. We book all seats well in advance.",
+        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Nuwara Eliya to Pattipola station — the highest railway station in Sri Lanka at 1,898 m — and board the train there. Train travel is subject to Sri Lanka Railways operational conditions. We book all seats well in advance.",
       bestMoment:
         "The view from the open train door somewhere between Idalgashinna and Haputale — the train hugs the edge of the escarpment and below you the land drops away for hundreds of metres into a valley of jungle and tea estates. The breeze is cool, the sky is blue above the cloud line, and you are moving slowly enough to take it all in. This is the moment that everyone who takes this train tries to describe and never quite manages to.",
       activities: [
-        "Drive to Nanu Oya — the highest railway station in Sri Lanka at 1,898 m",
+        "Drive to Pattipola — the highest railway station in Sri Lanka at 1,898 m",
         "Board the scenic hill country train: Nanu Oya → Ohiya → Idalgashinna → Haputale → Bandarawela → Ella (~2 hrs)",
         "Nine Arches Bridge visit on arrival — Sri Lanka's most iconic railway landmark",
         "Little Adam's Peak hike — 360° sunset views over the valley",
