@@ -243,7 +243,10 @@ export default function TourDetail() {
         {/* Cover image */}
         <img
           src={tour.coverImage}
-          alt={tour.title}
+          alt={`${tour.title} — Private Sri Lanka Tour`}
+          fetchpriority="high"
+          width="1920"
+          height="680"
           className="absolute inset-0 h-full w-full object-cover scale-[1.01] transition-all duration-1000"
         />
 
@@ -761,9 +764,30 @@ export default function TourDetail() {
             </div>
             <div className="flex flex-wrap gap-3">
               {tour.route.map((stop) => {
+                const lower = stop.toLowerCase();
+                const routeSlugMap = {
+                  "airport": "negombo",
+                  "airport / negombo": "negombo",
+                  "yala": "kataragama",
+                  "mirissa": "mirissa",
+                  "mirissa / weligama": "mirissa",
+                  "galle": "galle",
+                  "tangalle": "tangalle-hiriketiya",
+                  "hikkaduwa": "hikkaduwa-bentota",
+                  "bentota": "hikkaduwa-bentota",
+                  "kataragama": "kataragama",
+                  "mannar": "mannar",
+                  "knuckles": "knuckles-riverston",
+                  "hiriketiya": "tangalle-hiriketiya",
+                  "rekawa": null,
+                  "wilpattu": null,
+                  "habarana": null,
+                };
                 const matched = destinations.find(
-                  (d) => d.name.toLowerCase() === stop.toLowerCase()
-                );
+                  (d) => d.name.toLowerCase() === lower
+                ) || (routeSlugMap[lower] ? destinations.find(
+                  (d) => d.slug === routeSlugMap[lower]
+                ) : null);
                 return matched ? (
                   <Link
                     key={stop}
@@ -774,7 +798,7 @@ export default function TourDetail() {
                       {stop}
                     </span>
                     <p className="mt-0.5 max-w-[200px] text-[10px] text-[#8a7455] line-clamp-1">
-                      {matched.description?.slice(0, 80)}...
+                      {truncate(matched.description, 80)}
                     </p>
                   </Link>
                 ) : (
@@ -851,9 +875,11 @@ export default function TourDetail() {
                     <div className="relative h-[200px] overflow-hidden">
                       <img
                         src={t.coverImage}
-                        alt={t.title}
+                        alt={`${t.title} — Sri Lanka tour`}
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"
+                        width="400"
+                        height="200"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a12]/55 via-transparent to-transparent" />
                       <div className="absolute top-3 right-3 bg-[var(--ceylon-gold)] rounded-full px-2.5 py-0.5 font-sans text-[9px] font-bold uppercase tracking-wider text-white shadow-lg">

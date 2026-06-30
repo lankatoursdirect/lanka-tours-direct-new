@@ -36,6 +36,7 @@ export default function Tours() {
       <section className="bg-[var(--cream-parchment)] pb-16 pt-10">
         <div className="mx-auto max-w-7xl px-6">
 
+          <h2 className="sr-only">All Sri Lanka Private Tour Packages</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {tours.map((t) => (
               <TourCard key={t.slug} tour={t} />

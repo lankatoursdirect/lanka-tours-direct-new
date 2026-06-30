@@ -25,7 +25,7 @@ export function Footer() {
 
       {/* ── Main Footer Body ─────────────────────────────────────────────── */}
       <div className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-5">
 
           {/* Col 1 · Brand & Socials */}
           <div className="flex flex-col gap-6">
@@ -126,26 +126,54 @@ export function Footer() {
             </h4>
             <ul className="flex flex-col gap-3 text-sm">
               {[
-                ["Sri Lanka in 5 Days", "/tours"],
-                ["Cultural Triangle", "/tours"],
-                ["Hill Country Scenic", "/tours"],
-                ["Wildlife Safaris", "/tours"],
-                ["Coastal Escape", "/tours"],
-                ["Adventure &amp; Hiking", "/tours"],
+                ["Sri Lanka in 5 Days", "/tours/island-sampler"],
+                ["Discover Sri Lanka", "/tours/discover-sri-lanka-7"],
+                ["Sri Lanka 10 Days", "/tours/sri-lanka-10-days"],
+                ["11-Day Adventure", "/tours/adventure-tour-11-days"],
+                ["Sri Lanka 14 Days", "/tours/sri-lanka-14-days"],
+                ["Sri Lanka 20 Days", "/tours/sri-lanka-20-days"],
                 ["Custom Itinerary", "/contact"],
               ].map(([label, href]) => (
-                <li key={label}>
+                <li key={href}>
                   <Link
                     to={href}
                     className="transition-colors duration-150 hover:text-white"
-                    dangerouslySetInnerHTML={{ __html: label }}
-                  />
+                  >
+                    {label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 4 · Contact & Trust */}
+          {/* Col 4 · Top Destinations */}
+          <div>
+            <h4 className="mb-6 font-accent text-[10px] font-bold uppercase tracking-[0.2em] text-white">
+              Destinations
+            </h4>
+            <ul className="flex flex-col gap-3 text-sm">
+              {[
+                ["Sigiriya", "/destinations/sigiriya"],
+                ["Kandy", "/destinations/kandy"],
+                ["Ella", "/destinations/ella"],
+                ["Yala Safari", "/destinations/yala"],
+                ["Mirissa", "/destinations/mirissa"],
+                ["Galle Fort", "/destinations/galle"],
+                ["Nuwara Eliya", "/destinations/nuwara-eliya"],
+              ].map(([label, href]) => (
+                <li key={href}>
+                  <Link
+                    to={href}
+                    className="transition-colors duration-150 hover:text-white"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 5 · Contact & Trust */}
           <div className="flex flex-col gap-8">
             {/* Contact details */}
             <div>

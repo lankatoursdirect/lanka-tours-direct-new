@@ -56,8 +56,11 @@ export default function Experiences() {
               <div className="overflow-hidden rounded-xl shadow-card reveal h-[420px] w-full border border-[var(--soft-sand)]">
                 <img
                   src={exp.image}
-                  alt={exp.title}
+                  alt={`${exp.title} — Sri Lanka experience`}
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  loading="lazy"
+                  width="600"
+                  height="420"
                 />
               </div>
               <div className="reveal">

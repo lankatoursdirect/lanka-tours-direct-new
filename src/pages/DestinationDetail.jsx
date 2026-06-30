@@ -197,7 +197,10 @@ function Hero({ d }) {
     >
       <img
         src={d.image}
-        alt={d.name}
+        alt={`${d.name} Sri Lanka — ${d.tagline || "destination travel guide"}`}
+        fetchpriority="high"
+        width="1920"
+        height="620"
         className="absolute inset-0 h-full w-full object-cover dd-hero-img"
         style={{ objectPosition: "center 30%", transformOrigin: "center center" }}
       />
@@ -863,8 +866,10 @@ function DestTourCard({ tour }) {
       <div className="relative h-44 flex-shrink-0 overflow-hidden">
         <img
           src={tour.coverImage}
-          alt={tour.title}
+          alt={`${tour.title} — Sri Lanka tour`}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          width="400"
+          height="176"
         />
         <div
           className="absolute inset-0"
@@ -1135,6 +1140,7 @@ export default function DestinationDetail() {
       "name": "Sri Lanka",
       "url": "https://en.wikipedia.org/wiki/Sri_Lanka",
     },
+    ...(d.unesco ? { "award": "UNESCO World Heritage Site" } : {}),
   };
 
   const destSchema = {

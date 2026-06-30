@@ -6,14 +6,16 @@ export function DestinationCard({ d, className = "" }) {
       to={`/destinations/${d.slug}`}
       className={`group relative block h-full overflow-hidden rounded-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 ${className}`}
     >
-      <img 
-        src={d.image} 
-        alt={d.name} 
-        className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110" 
-        style={{ 
+      <img
+        src={d.image}
+        alt={`${d.name} — Sri Lanka destination`}
+        className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110"
+        style={{
           objectPosition: "center",
         }}
-        loading="lazy" 
+        loading="lazy"
+        width="400"
+        height="260"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity group-hover:opacity-80" />
       

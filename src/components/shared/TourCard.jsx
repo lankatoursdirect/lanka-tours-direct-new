@@ -7,7 +7,7 @@ export function TourCard({ tour }) {
       className="group block overflow-hidden rounded-xl bg-card shadow-card transition-all hover:-translate-y-1"
     >
       <div className="relative h-[280px] image-zoom">
-        <img src={tour.coverImage} alt={tour.title} className="h-full w-full object-cover" loading="lazy" />
+        <img src={tour.coverImage} alt={`${tour.title} — Sri Lanka private tour`} className="h-full w-full object-cover" loading="lazy" width="600" height="400" />
         <div className="absolute right-4 top-4 rounded-full bg-[var(--ceylon-gold)] px-3 py-1 font-accent text-[11px] uppercase tracking-wider text-white shadow">
           <Clock size={12} className="mr-1 inline" />
           {tour.duration} Days

@@ -38,6 +38,7 @@ export default function Destinations() {
               </button>
             ))}
           </div>
+          <h2 className="sr-only">{region === "all" ? "All Sri Lanka Destinations" : `Sri Lanka ${region} Destinations`}</h2>
           <div className="grid auto-rows-[260px] gap-4 md:grid-cols-3 lg:grid-cols-4">
             {list.map((d) => (
               <DestinationCard key={d.slug} d={d} />
