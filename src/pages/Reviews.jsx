@@ -6,9 +6,17 @@ import { Star } from "lucide-react";
 
 const reviewsSchema = {
   "@context": "https://schema.org",
-  "@type": "TourOperator",
+  "@type": ["TourOperator", "LocalBusiness"],
   "name": "Lanka Tours Direct",
   "url": "https://lankatoursdirect.com",
+  "image": "https://lankatoursdirect.com/logo.png",
+  "telephone": "+94763300443",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "349/11 Nisal Uyana, S. Mahindahimi Road, Perera Road, Alubomulla",
+    "addressLocality": "Panadura",
+    "addressCountry": "LK"
+  },
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",

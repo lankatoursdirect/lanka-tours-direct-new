@@ -15,10 +15,11 @@ const homeSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "TourOperator",
+      "@type": ["TourOperator", "LocalBusiness"],
       "name": "Lanka Tours Direct",
       "description": "Premium private tours across Sri Lanka led by expert local guide Vishva. Custom itineraries covering Sigiriya, Ella, Yala, Mirissa, Galle and beyond.",
       "url": "https://lankatoursdirect.com",
+      "image": "https://lankatoursdirect.com/logo.png",
       "logo": "https://lankatoursdirect.com/logo.png",
       "telephone": "+94763300443",
       "email": "info@lankatoursdirect.com",
