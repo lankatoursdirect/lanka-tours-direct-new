@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import teaPlantation from "@/assets/images/features/tea-plntation.webp";
 import sigiriya from "@/assets/images/features/sigiriya.webp";
 import ellaTrain from "@/assets/images/features/ella-train.webp";
 import leopard from "@/assets/images/features/leopard.webp";
 import mirissa from "@/assets/images/features/mirissa.webp";
-import teaPlantation from "@/assets/images/features/tea-plntation.webp";
-import galleFort from "@/assets/images/features/galle-fort.webp";
-import trainRide from "@/assets/images/features/train-ride.webp";
 
-const slides = [sigiriya, ellaTrain, leopard, mirissa, teaPlantation, galleFort, trainRide];
+const slides = [teaPlantation, sigiriya, ellaTrain, leopard, mirissa];
 
 export function Hero() {
   const [i, setI] = useState(0);
@@ -31,13 +29,13 @@ export function Hero() {
             src={src}
             alt=""
             role="presentation"
+            width="1600"
+            height="900"
+            sizes="100vw"
+            decoding="async"
             className="h-full w-full object-cover object-center"
             loading={idx === 0 ? "eager" : "lazy"}
             fetchpriority={idx === 0 ? "high" : "low"}
-            style={{
-              filter: "brightness(1.05) contrast(1.05) saturate(1.1) hue-rotate(-5deg)",
-              transform: "scale(1.05)",
-            }}
           />
         </div>
       ))}
@@ -61,7 +59,7 @@ export function Hero() {
         <div className="flex flex-col items-center justify-center pt-10">
           <div className="animate-float-up">
             <div className="inline-flex items-center rounded-full border border-white/20 bg-black/30 px-6 py-2.5 backdrop-blur-xl">
-              <span 
+              <span
                 className="label-eyebrow text-[var(--ceylon-gold)]"
                 style={{ textShadow: "0 1px 4px rgba(0, 0, 0, 0.5)" }}
               >

@@ -34,16 +34,17 @@ import {
 const aboutSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Vishva",
-  "description": "Expert Sri Lanka chauffeur guide leading private tours across Sigiriya, Ella, Yala, Mirissa and beyond.",
-  "jobTitle": "Tour Guide",
-  "worksFor": {
+  name: "Vishva",
+  description:
+    "Expert Sri Lanka chauffeur guide leading private tours across Sigiriya, Ella, Yala, Mirissa and beyond.",
+  jobTitle: "Tour Guide",
+  worksFor: {
     "@type": "TourOperator",
-    "name": "Lanka Tours Direct",
-    "url": "https://lankatoursdirect.com"
+    name: "Lanka Tours Direct",
+    url: "https://lankatoursdirect.com",
   },
-  "url": "https://lankatoursdirect.com/about",
-  "sameAs": ["https://www.facebook.com/profile.php?id=61591028990530"],
+  url: "https://lankatoursdirect.com/about",
+  sameAs: ["https://www.facebook.com/profile.php?id=61591028990530"],
 };
 
 export default function About() {
@@ -60,9 +61,7 @@ export default function About() {
     { src: bootspaceImg, alt: "Toyota KDH van — boot space" },
   ];
 
-  const vanImages = [
-    { src: vanImg, alt: "Toyota HiAce High Roof Van — full view" },
-  ];
+  const vanImages = [{ src: vanImg, alt: "Toyota HiAce High Roof Van — full view" }];
 
   return (
     <>
@@ -83,7 +82,6 @@ export default function About() {
       {/* Guide Story Section */}
       <section className="bg-[var(--ivory-white)] py-20 overflow-hidden">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-5 items-center">
-
           {/* Interactive Image Container with Hover Scaling & Offset Shifts */}
           <div className="reveal lg:col-span-2 group">
             <div className="relative transform transition-transform duration-500 ease-out group-hover:-translate-y-2">
@@ -110,16 +108,26 @@ export default function About() {
             </div>
 
             <p className="leading-relaxed">
-              With over <strong>6 years of professional guiding experience</strong> across Sri Lanka, I specialize in crafting seamless, deeply enriching travel experiences. My approach blends absolute structural professionalism with a warm, friendly hospitality to ensure you feel secure, informed, and completely immersed in our island's rich heritage.
+              With over <strong>6 years of professional guiding experience</strong> across Sri
+              Lanka, I specialize in crafting seamless, deeply enriching travel experiences. My
+              approach blends absolute structural professionalism with a warm, friendly hospitality
+              to ensure you feel secure, informed, and completely immersed in our island's rich
+              heritage.
             </p>
             <p className="leading-relaxed">
-              Since establishing my career in hospitality and tourism, I have had the privilege of managing custom itineraries and transport operations for over 150 international travelers from all corners of the globe.
+              Since establishing my career in hospitality and tourism, I have had the privilege of
+              managing custom itineraries and transport operations for over 150 international
+              travelers from all corners of the globe.
             </p>
             <p className="leading-relaxed">
-              I know Sri Lanka's rhythms intimately — when the elephants gather at Minneriya, the exact morning light that hits Sigiriya rock fortress, and which authentic local kitchens serve the most refined traditional culinary plates.
+              I know Sri Lanka's rhythms intimately — when the elephants gather at Minneriya, the
+              exact morning light that hits Sigiriya rock fortress, and which authentic local
+              kitchens serve the most refined traditional culinary plates.
             </p>
             <p className="leading-relaxed">
-              Every journey is handled with meticulous care, focusing on flexible scheduling, premier safety standards, and providing you with an unforgettable insider perspective of the country.
+              Every journey is handled with meticulous care, focusing on flexible scheduling,
+              premier safety standards, and providing you with an unforgettable insider perspective
+              of the country.
             </p>
           </div>
         </div>
@@ -131,19 +139,25 @@ export default function About() {
           <div className="reveal grid gap-6 md:grid-cols-3">
             {[
               {
-                icon: <Compass className="h-7 w-7 text-[var(--ceylon-gold)] transition-transform duration-500 group-hover:rotate-45" />,
+                icon: (
+                  <Compass className="h-7 w-7 text-[var(--ceylon-gold)] transition-transform duration-500 group-hover:rotate-45" />
+                ),
                 title: "Authenticity",
-                body: "I show you the real Sri Lanka, not the tourist Sri Lanka"
+                body: "I show you the real Sri Lanka, not the tourist Sri Lanka",
               },
               {
-                icon: <Handshake className="h-7 w-7 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />,
+                icon: (
+                  <Handshake className="h-7 w-7 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />
+                ),
                 title: "Flexibility",
-                body: "Your itinerary bends to your energy and curiosity, always"
+                body: "Your itinerary bends to your energy and curiosity, always",
               },
               {
-                icon: <Heart className="h-7 w-7 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-120" />,
+                icon: (
+                  <Heart className="h-7 w-7 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-120" />
+                ),
                 title: "Genuine Care",
-                body: "Your safety, comfort, and joy are my responsibility"
+                body: "Your safety, comfort, and joy are my responsibility",
               },
             ].map((p) => (
               <div
@@ -153,7 +167,9 @@ export default function About() {
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--ceylon-gold)]/10 transition-colors duration-300 group-hover:bg-[var(--ceylon-gold)]/20">
                   {p.icon}
                 </div>
-                <h3 className="mt-5 text-xl font-semibold text-foreground tracking-tight">{p.title}</h3>
+                <h3 className="mt-5 text-xl font-semibold text-foreground tracking-tight">
+                  {p.title}
+                </h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.body}</p>
               </div>
             ))}
@@ -164,25 +180,18 @@ export default function About() {
       {/* The Vehicle & Languages Logistics Section */}
       <section className="bg-[var(--ivory-white)] py-20">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2">
-
           {/* Vehicle Image Carousel */}
           <div className="reveal overflow-hidden rounded-2xl shadow-lg border border-neutral-200/60">
             <Carousel
               className="w-full"
               opts={{ loop: true }}
-              plugins={[
-                Autoplay({ delay: 4000, stopOnInteraction: true }),
-              ]}
+              plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]}
             >
               <CarouselContent>
                 {vehicleImages.map((img, i) => (
                   <CarouselItem key={i}>
                     <div className="h-[420px] w-full overflow-hidden">
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        className="h-full w-full object-cover"
-                      />
+                      <img src={img.src} alt={img.alt} className="h-full w-full object-cover" />
                     </div>
                   </CarouselItem>
                 ))}
@@ -195,8 +204,12 @@ export default function About() {
           {/* Fleet Specifications & Language Capabilities */}
           <div className="reveal space-y-6">
             <div>
-              <span className="label-eyebrow text-xs font-bold uppercase tracking-widest text-[var(--ceylon-gold)]">Amenities & Fleet</span>
-              <h2 className="mt-2 text-4xl font-semibold text-foreground tracking-tight">Spotless, Comfortable, Always Ready</h2>
+              <span className="label-eyebrow text-xs font-bold uppercase tracking-widest text-[var(--ceylon-gold)]">
+                Amenities & Fleet
+              </span>
+              <h2 className="mt-2 text-4xl font-semibold text-foreground tracking-tight">
+                Spotless, Comfortable, Always Ready
+              </h2>
             </div>
 
             {/* Key Specs Cards */}
@@ -206,8 +219,12 @@ export default function About() {
                   <Users className="h-5 w-5 text-[var(--ceylon-gold)]" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Seating</p>
-                  <p className="text-sm font-semibold text-foreground leading-tight">2 Adults + Child under 12</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                    Seating
+                  </p>
+                  <p className="text-sm font-semibold text-foreground leading-tight">
+                    2 Adults + Child under 12
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-xl bg-card border border-neutral-200/60 px-4 py-3.5 shadow-sm">
@@ -215,8 +232,13 @@ export default function About() {
                   <Backpack className="h-5 w-5 text-[var(--ceylon-gold)]" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Boot Space</p>
-                  <p className="text-sm font-semibold text-foreground leading-tight">470–570L <span className="text-muted-foreground font-normal">/</span> 1,100L+ folded</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                    Boot Space
+                  </p>
+                  <p className="text-sm font-semibold text-foreground leading-tight">
+                    470–570L <span className="text-muted-foreground font-normal">/</span> 1,100L+
+                    folded
+                  </p>
                 </div>
               </div>
             </div>
@@ -237,14 +259,18 @@ export default function About() {
                   <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[var(--ceylon-gold)]/10 transition-transform duration-200 group-hover/item:scale-110">
                     <Check className="h-3.5 w-3.5 text-[var(--ceylon-gold)] stroke-[3.5]" />
                   </div>
-                  <span className="transition-colors duration-200 group-hover/item:text-foreground">{s}</span>
+                  <span className="transition-colors duration-200 group-hover/item:text-foreground">
+                    {s}
+                  </span>
                 </li>
               ))}
             </ul>
 
             {/* Premium Language Pill Badges with Clean Interaction States */}
             <div className="mt-8 pt-6 border-t border-neutral-200/60">
-              <h4 className="font-accent text-xs font-bold uppercase tracking-wider text-foreground">Languages Spoken</h4>
+              <h4 className="font-accent text-xs font-bold uppercase tracking-wider text-foreground">
+                Languages Spoken
+              </h4>
               <div className="mt-3 flex flex-wrap gap-3">
                 <div className="flex items-center gap-2.5 rounded-full bg-card border border-neutral-200/80 px-4 py-2 text-xs font-medium text-foreground shadow-sm transition-all duration-200 hover:border-[var(--ceylon-gold)] hover:shadow-md">
                   <img src={flagUK} alt="English" className="h-3.5 w-auto rounded-sm" />
@@ -257,21 +283,25 @@ export default function About() {
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
       {/* Optional Large Van — Ideal for Groups */}
       <section className="bg-[var(--cream-parchment)] py-20 border-t border-neutral-200/40">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 lg:grid-cols-2">
-
           {/* Van Specs */}
           <div className="reveal space-y-6">
             <div>
-              <span className="label-eyebrow text-xs font-bold uppercase tracking-widest text-[var(--ceylon-gold)]">Optional Upgrade</span>
-              <h2 className="mt-2 text-4xl font-semibold text-foreground tracking-tight">Toyota HiAce High Roof Van</h2>
+              <span className="label-eyebrow text-xs font-bold uppercase tracking-widest text-[var(--ceylon-gold)]">
+                Optional Upgrade
+              </span>
+              <h2 className="mt-2 text-4xl font-semibold text-foreground tracking-tight">
+                Toyota HiAce High Roof Van
+              </h2>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                Need more space for your group or extra luggage? Our HiAce High Roof Van seats <strong>8–10 passengers</strong> in comfort with generous headroom and a massive cargo bay.
+                Need more space for your group or extra luggage? Our HiAce High Roof Van seats{" "}
+                <strong>8–10 passengers</strong> in comfort with generous headroom and a massive
+                cargo bay.
               </p>
             </div>
 
@@ -281,8 +311,12 @@ export default function About() {
                   <Users className="h-5 w-5 text-[var(--ceylon-gold)]" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Seating</p>
-                  <p className="text-sm font-semibold text-foreground leading-tight">8–10 Passengers</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                    Seating
+                  </p>
+                  <p className="text-sm font-semibold text-foreground leading-tight">
+                    8–10 Passengers
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-xl bg-card border border-neutral-200/60 px-4 py-3.5 shadow-sm">
@@ -290,8 +324,12 @@ export default function About() {
                   <Backpack className="h-5 w-5 text-[var(--ceylon-gold)]" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Cargo Capacity</p>
-                  <p className="text-sm font-semibold text-foreground leading-tight">9.8 m³ <span className="text-muted-foreground font-normal">/</span> 1.6 m height</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                    Cargo Capacity
+                  </p>
+                  <p className="text-sm font-semibold text-foreground leading-tight">
+                    9.8 m³ <span className="text-muted-foreground font-normal">/</span> 1.6 m height
+                  </p>
                 </div>
               </div>
             </div>
@@ -311,7 +349,9 @@ export default function About() {
                   <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[var(--ceylon-gold)]/10 transition-transform duration-200 group-hover/item:scale-110">
                     <Check className="h-3.5 w-3.5 text-[var(--ceylon-gold)] stroke-[3.5]" />
                   </div>
-                  <span className="transition-colors duration-200 group-hover/item:text-foreground">{s}</span>
+                  <span className="transition-colors duration-200 group-hover/item:text-foreground">
+                    {s}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -327,7 +367,6 @@ export default function About() {
               />
             </div>
           </div>
-
         </div>
       </section>
 
@@ -335,31 +374,43 @@ export default function About() {
       <section className="bg-[var(--cream-parchment)] py-20 border-t border-neutral-200/40">
         <div className="mx-auto max-w-6xl px-6">
           <div className="reveal mb-12 text-center">
-            <span className="label-eyebrow text-xs font-bold uppercase tracking-widest text-[var(--ceylon-gold)]">Insider Guides</span>
-            <h2 className="mt-2 text-4xl font-semibold text-foreground tracking-tight">My Sri Lanka Favourites</h2>
+            <span className="label-eyebrow text-xs font-bold uppercase tracking-widest text-[var(--ceylon-gold)]">
+              Insider Guides
+            </span>
+            <h2 className="mt-2 text-4xl font-semibold text-foreground tracking-tight">
+              My Sri Lanka Favourites
+            </h2>
           </div>
 
           <div className="reveal grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                icon: <Sunrise className="h-6 w-6 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />,
+                icon: (
+                  <Sunrise className="h-6 w-6 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />
+                ),
                 title: "Favourite sunrise",
-                body: "Pidurangala Rock — the secret Sigiriya viewpoint"
+                body: "Pidurangala Rock — the secret Sigiriya viewpoint",
               },
               {
-                icon: <UtensilsCrossed className="h-6 w-6 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />,
+                icon: (
+                  <UtensilsCrossed className="h-6 w-6 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />
+                ),
                 title: "Best meal",
-                body: "A family rice and curry spot in Ella"
+                body: "A family rice and curry spot in Ella",
               },
               {
-                icon: <Trees className="h-6 w-6 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />,
+                icon: (
+                  <Trees className="h-6 w-6 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />
+                ),
                 title: "Most memorable moment",
-                body: "Watching a leopard cub at Yala"
+                body: "Watching a leopard cub at Yala",
               },
               {
-                icon: <Train className="h-6 w-6 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />,
+                icon: (
+                  <Train className="h-6 w-6 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />
+                ),
                 title: "Magical journey",
-                body: "The train through Ella Gap at dawn"
+                body: "The train through Ella Gap at dawn",
               },
             ].map((p) => (
               <div

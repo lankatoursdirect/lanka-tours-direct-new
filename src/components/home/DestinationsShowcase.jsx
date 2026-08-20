@@ -19,9 +19,9 @@ export function DestinationsShowcase() {
             const mobileFull = i === 0; // Sigiriya is full width on mobile
 
             return (
-              <DestinationCard 
-                key={d.slug} 
-                d={d} 
+              <DestinationCard
+                key={d.slug}
+                d={d}
                 className={`
                   ${mobileFull ? "col-span-2 h-[280px]" : "col-span-1 h-[200px]"}
                   ${isLarge ? "md:col-span-2 md:row-span-2 md:h-full" : "md:col-span-1 md:row-span-1 md:h-full"}

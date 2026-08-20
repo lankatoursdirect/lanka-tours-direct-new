@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { SiteLayout } from "./components/layout/SiteLayout";
-import { Preloader } from "./components/shared/Preloader";
+import { ErrorBoundary } from "./components/shared/ErrorBoundary";
 
-// Lazy load pages for better performance
 const Home = React.lazy(() => import("./pages/Home"));
 const About = React.lazy(() => import("./pages/About"));
 const Contact = React.lazy(() => import("./pages/Contact"));
@@ -18,7 +17,6 @@ const Faq = React.lazy(() => import("./pages/Faq"));
 const Reviews = React.lazy(() => import("./pages/Reviews"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
-// Resets scroll position to top on every route change (different from the shared ScrollToTop "back to top" button)
 function RouteScrollReset() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -28,11 +26,8 @@ function RouteScrollReset() {
 }
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
-    <>
-      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+    <ErrorBoundary>
       <React.Suspense
         fallback={
           <div className="flex h-[80vh] items-center justify-center bg-[var(--cream-parchment)]">
@@ -68,12 +63,8 @@ function App() {
           </Routes>
         </SiteLayout>
       </React.Suspense>
-    </>
+    </ErrorBoundary>
   );
 }
 
 export default App;
-
-
-
-

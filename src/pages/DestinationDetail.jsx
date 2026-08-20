@@ -5,10 +5,18 @@ import { tours } from "@/data/tours";
 import { SEO } from "@/components/shared/SEO";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { trackDestinationView, trackWhatsAppClick } from "@/lib/analytics";
+import { WA_NUMBER } from "@/lib/config";
 import {
-  Calendar, MapPin, Award, Compass, Star,
-  Sparkles, ChevronRight, Activity,
-  CheckCircle2, Binoculars,
+  Calendar,
+  MapPin,
+  Award,
+  Compass,
+  Star,
+  Sparkles,
+  ChevronRight,
+  Activity,
+  CheckCircle2,
+  Binoculars,
 } from "lucide-react";
 
 // ─── DESIGN TOKENS ────────────────────────────────────────────────────────────
@@ -25,117 +33,6 @@ const C = {
   goldBorder: "rgba(212,174,97,0.45)",
 };
 
-function GlobalAnimStyles() {
-  useEffect(() => {
-    const id = "dest-detail-anim";
-    if (document.getElementById(id)) return;
-    const el = document.createElement("style");
-    el.id = id;
-    el.textContent = `
-      @keyframes heroImgZoom {
-        from { transform: scale(1.06); }
-        to   { transform: scale(1); }
-      }
-      @keyframes goldLineDraw {
-        from { width: 0; }
-        to   { width: 3rem; }
-      }
-      @keyframes floatGlow {
-        0%, 100% { opacity: 0.06; transform: scale(1); }
-        50%       { opacity: 0.11; transform: scale(1.15); }
-      }
-      .dd-hero-img {
-        animation: heroImgZoom 1.8s cubic-bezier(0.22,1,0.36,1) both;
-      }
-      .dd-card-hover {
-        transition: transform 0.28s cubic-bezier(0.22,1,0.36,1),
-                    box-shadow 0.28s ease;
-      }
-      .dd-card-hover:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 28px rgba(15,30,20,0.12);
-      }
-      .dd-pill-hover {
-        transition: background 0.22s ease, color 0.22s ease,
-                    border-color 0.22s ease, transform 0.22s ease;
-      }
-      .dd-pill-hover:hover {
-        background: var(--ceylon-gold) !important;
-        color: #fff !important;
-        border-color: var(--ceylon-gold) !important;
-        transform: translateY(-2px);
-      }
-      .dd-btn-primary {
-        transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      }
-      .dd-btn-primary:hover {
-        opacity: 0.88;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(212,174,97,0.35);
-      }
-      .dd-btn-ghost {
-        transition: background 0.2s ease, transform 0.2s ease;
-      }
-      .dd-btn-ghost:hover {
-        background: rgba(255,255,255,0.12) !important;
-        transform: translateY(-2px);
-      }
-      .dd-place-card {
-        transition: transform 0.28s cubic-bezier(0.22,1,0.36,1),
-                    box-shadow 0.28s ease, border-color 0.2s ease;
-      }
-      .dd-place-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 24px rgba(15,30,20,0.10);
-        border-color: var(--ceylon-gold) !important;
-      }
-      .dd-reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
-                    transform 0.7s cubic-bezier(0.22,1,0.36,1);
-      }
-      .dd-reveal.dd-revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .dd-reveal-left {
-        opacity: 0;
-        transform: translateX(-30px);
-        transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
-                    transform 0.7s cubic-bezier(0.22,1,0.36,1);
-      }
-      .dd-reveal-left.dd-revealed {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      .dd-reveal-scale {
-        opacity: 0;
-        transform: scale(0.94);
-        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
-      }
-      .dd-reveal-scale.dd-revealed {
-        opacity: 1;
-        transform: scale(1);
-      }
-      .dd-gold-line {
-        display: block;
-        height: 2px;
-        background: var(--ceylon-gold);
-        width: 0;
-        transition: width 0.7s cubic-bezier(0.22,1,0.36,1);
-        margin-top: 10px;
-        border-radius: 1px;
-      }
-      .dd-gold-line.dd-revealed { width: 3rem; }
-      .stat-pill-border { border-right: 1px solid rgba(255,255,255,0.08); }
-    `;
-    document.head.appendChild(el);
-    return () => { }; // keep style for page lifetime
-  }, []);
-  return null;
-}
-
 // ─── SCROLL REVEAL HOOK ───────────────────────────────────────────────────────
 function useReveal(delay = 0, variant = "dd-reveal") {
   const ref = useRef(null);
@@ -150,7 +47,7 @@ function useReveal(delay = 0, variant = "dd-reveal") {
           obs.unobserve(el);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     el.classList.add(variant);
     obs.observe(el);
@@ -160,7 +57,14 @@ function useReveal(delay = 0, variant = "dd-reveal") {
 }
 
 // Reveal wrapper component — wraps any block
-function Reveal({ children, delay = 0, variant = "dd-reveal", as: Tag = "div", className = "", style = {} }) {
+function Reveal({
+  children,
+  delay = 0,
+  variant = "dd-reveal",
+  as: Tag = "div",
+  className = "",
+  style = {},
+}) {
   const ref = useReveal(delay, variant);
   return (
     <Tag ref={ref} className={className} style={style}>
@@ -186,7 +90,8 @@ function Hero({ d }) {
   const fadeUp = (active, extra = {}) => ({
     opacity: active ? 1 : 0,
     transform: active ? "translateY(0)" : "translateY(22px)",
-    transition: "opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1)",
+    transition:
+      "opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1)",
     ...extra,
   });
 
@@ -218,7 +123,6 @@ function Hero({ d }) {
       <div className="relative z-10 flex h-full flex-col items-center justify-end text-center">
         <div className="w-full px-4 pb-0 sm:px-6">
           <div className="mx-auto mb-6 flex max-w-3xl flex-col items-center gap-3 sm:mb-8">
-
             {d.unesco && (
               <span
                 style={{
@@ -293,8 +197,17 @@ function Hero({ d }) {
           <div className="mx-auto grid max-w-4xl grid-cols-2 sm:grid-cols-4">
             <StatPill icon={<MapPin size={15} />} label="Region" value={d.region} border />
             <StatPill icon={<Calendar size={15} />} label="Best Time" value={d.bestTime} border />
-            <StatPill icon={<Award size={15} />} label="UNESCO" value={d.unesco ? "Heritage Site" : "Not Listed"} border />
-            <StatPill icon={<Activity size={15} />} label="Activities" value={`${(d.activities || []).length} Experiences`} />
+            <StatPill
+              icon={<Award size={15} />}
+              label="UNESCO"
+              value={d.unesco ? "Heritage Site" : "Not Listed"}
+              border
+            />
+            <StatPill
+              icon={<Activity size={15} />}
+              label="Activities"
+              value={`${(d.activities || []).length} Experiences`}
+            />
           </div>
         </div>
       </div>
@@ -307,7 +220,10 @@ function StatPill({ icon, label, value, border }) {
     <div
       className={`flex flex-col items-center gap-1 px-3 py-4 text-center sm:px-4${border ? " stat-pill-border" : ""}`}
     >
-      <span className="flex items-center gap-1.5 font-accent text-[10px] uppercase tracking-widest" style={{ color: C.onDarkMuted }}>
+      <span
+        className="flex items-center gap-1.5 font-accent text-[10px] uppercase tracking-widest"
+        style={{ color: C.onDarkMuted }}
+      >
         <span style={{ color: C.gold }}>{icon}</span>
         {label}
       </span>
@@ -324,10 +240,12 @@ function Overview({ d }) {
     <section className="bg-[var(--ivory-white)] py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-[1fr_300px] lg:gap-14">
-
           <Reveal>
             <div>
-              <span className="mb-2 block font-accent text-xs uppercase tracking-widest" style={{ color: C.gold }}>
+              <span
+                className="mb-2 block font-accent text-xs uppercase tracking-widest"
+                style={{ color: C.gold }}
+              >
                 About {d.name}
               </span>
               <span className="dd-gold-line dd-revealed" style={{ width: "3rem" }} />
@@ -342,15 +260,28 @@ function Overview({ d }) {
 
           {d.highlights && d.highlights.length > 0 && (
             <Reveal delay={120} variant="dd-reveal-left">
-              <aside className="rounded-2xl p-5 sm:p-6" style={{ background: "#f0ebe2", border: "1px solid rgba(0,0,0,0.08)" }}>
-                <h3 className="mb-4 font-accent text-xs uppercase tracking-widest" style={{ color: C.gold }}>
+              <aside
+                className="rounded-2xl p-5 sm:p-6"
+                style={{ background: "#f0ebe2", border: "1px solid rgba(0,0,0,0.08)" }}
+              >
+                <h3
+                  className="mb-4 font-accent text-xs uppercase tracking-widest"
+                  style={{ color: C.gold }}
+                >
                   Key Highlights
                 </h3>
                 <ul className="space-y-3">
                   {d.highlights.map((h, i) => (
                     <Reveal key={i} delay={i * 80} as="li" className="flex items-start gap-3">
-                      <CheckCircle2 size={17} aria-hidden="true" className="mt-0.5 flex-shrink-0" style={{ color: C.gold }} />
-                      <span className="text-sm leading-snug" style={{ color: C.textDark }}>{h}</span>
+                      <CheckCircle2
+                        size={17}
+                        aria-hidden="true"
+                        className="mt-0.5 flex-shrink-0"
+                        style={{ color: C.gold }}
+                      />
+                      <span className="text-sm leading-snug" style={{ color: C.textDark }}>
+                        {h}
+                      </span>
                     </Reveal>
                   ))}
                 </ul>
@@ -390,13 +321,15 @@ function BestMoment({ d }) {
       <div style={glowStyle("85%", "20%", 3)} />
 
       <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
-
         {/* Label row */}
         <Reveal>
           <div className="mb-6 flex items-center justify-center gap-3">
             <div className="h-px flex-1" style={{ background: C.goldBorder }} />
             <Sparkles size={15} aria-hidden="true" style={{ color: C.gold }} />
-            <span className="font-accent text-[10px] uppercase tracking-[0.22em]" style={{ color: C.gold }}>
+            <span
+              className="font-accent text-[10px] uppercase tracking-[0.22em]"
+              style={{ color: C.gold }}
+            >
               The Unmissable Moment
             </span>
             <Sparkles size={15} aria-hidden="true" style={{ color: C.gold }} />
@@ -409,7 +342,11 @@ function BestMoment({ d }) {
           <div
             aria-hidden="true"
             className="font-display select-none leading-none"
-            style={{ fontSize: "clamp(5rem, 10vw, 8rem)", lineHeight: 0.65, color: "rgba(212,174,97,0.14)" }}
+            style={{
+              fontSize: "clamp(5rem, 10vw, 8rem)",
+              lineHeight: 0.65,
+              color: "rgba(212,174,97,0.14)",
+            }}
           >
             "
           </div>
@@ -432,19 +369,20 @@ function BestMoment({ d }) {
 // ─── DESTINATION GALLERY CAROUSEL ────────────────────────────────────────────
 function DestinationGallery({ d }) {
   const gallery = d.gallery;
-  if (!gallery || gallery.length === 0) return null;
 
   const trackRef = useRef(null);
   const timerRef = useRef(null);
   const posRef = useRef(0);
   const snapTimerRef = useRef(null);
   const touchRef = useRef({ startX: 0, deltaX: 0, dragging: false });
+  const goPrevRef = useRef(null);
+  const goNextRef = useRef(null);
   const [position, setPosition] = useState(0);
   const [perView, setPerView] = useState(3);
   const [swipeOff, setSwipeOff] = useState(0);
   const [noTrans, setNoTrans] = useState(false);
   const [cw, setCw] = useState(0);
-  const total = gallery.length;
+  const total = gallery ? gallery.length : 0;
   const gap = 12;
 
   useEffect(() => {
@@ -463,7 +401,9 @@ function DestinationGallery({ d }) {
     setCw(trackRef.current.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight));
   }, []);
 
-  useLayoutEffect(() => { measure(); }, [measure]);
+  useLayoutEffect(() => {
+    measure();
+  }, [measure]);
 
   useEffect(() => {
     if (!trackRef.current) return;
@@ -472,64 +412,67 @@ function DestinationGallery({ d }) {
     return () => ro.disconnect();
   }, [measure]);
 
-  const items = [...gallery.slice(-perView), ...gallery, ...gallery.slice(0, perView)];
-  const offset = perView;
-  const totalGap = (perView - 1) * gap;
-  const itemW = cw > 0 ? ((cw - totalGap) / perView) : 0;
-  const itemStep = cw > 0 ? ((cw + gap) / perView) : 0;
-
-  const go = (dir) => {
-    const next = posRef.current + dir;
-    posRef.current = next;
-    setPosition(next);
-  };
-
-  const goNext = () => go(1);
-  const goPrev = () => go(-1);
-
-  const goNextRef = useRef(goNext);
-  const goPrevRef = useRef(goPrev);
-  goNextRef.current = goNext;
-  goPrevRef.current = goPrev;
-
-  const doSnap = () => {
-    const p = posRef.current;
-    if (p >= total) {
-      posRef.current = p - total;
-      setNoTrans(true);
-      setPosition(p - total);
-    } else if (p < 0) {
-      posRef.current = p + total;
-      setNoTrans(true);
-      setPosition(p + total);
+  const pause = useCallback(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
-  };
+  }, []);
+
+  const go = useCallback((delta) => {
+    setPosition((p) => {
+      const next = p + delta;
+      posRef.current = next;
+      return next;
+    });
+  }, []);
+
+  const resume = useCallback(() => {
+    pause();
+    timerRef.current = setInterval(() => {
+      setPosition((p) => {
+        const next = p + 1;
+        posRef.current = next;
+        return next;
+      });
+    }, 3500);
+  }, [pause]);
+
+  const doSnap = useCallback(() => {
+    const raw = posRef.current;
+    const wrapped = ((raw % total) + total) % total;
+    if (raw !== wrapped) {
+      setNoTrans(true);
+      setPosition(wrapped);
+      posRef.current = wrapped;
+      requestAnimationFrame(() => setNoTrans(false));
+    }
+  }, [total]);
+
+  goPrevRef.current = () => go(-1);
+  goNextRef.current = () => go(1);
 
   useEffect(() => {
-    if (noTrans) {
-      requestAnimationFrame(() => requestAnimationFrame(() => setNoTrans(false)));
+    if (gallery && gallery.length > 0) {
+      snapTimerRef.current = setTimeout(doSnap, 500);
+      return () => {
+        if (snapTimerRef.current) clearTimeout(snapTimerRef.current);
+      };
     }
-  }, [noTrans]);
-
-  const pause = () => {
-    if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
-    if (snapTimerRef.current) { clearTimeout(snapTimerRef.current); snapTimerRef.current = null; }
-  };
-
-  const resume = () => {
-    if (timerRef.current) return;
-    timerRef.current = setInterval(() => { goNextRef.current(); }, 4000);
-  };
+  }, [position, gallery, doSnap]);
 
   useEffect(() => {
     resume();
-    return () => { pause(); };
-  }, [perView]);
+    return () => pause();
+  }, [resume, pause]);
 
-  useEffect(() => {
-    snapTimerRef.current = setTimeout(doSnap, 500);
-    return () => { if (snapTimerRef.current) clearTimeout(snapTimerRef.current); };
-  }, [position]);
+  if (!gallery || gallery.length === 0) return null;
+
+  const items = [...gallery.slice(-perView), ...gallery, ...gallery.slice(0, perView)];
+  const offset = perView;
+  const totalGap = (perView - 1) * gap;
+  const itemW = cw > 0 ? (cw - totalGap) / perView : 0;
+  const itemStep = cw > 0 ? (cw + gap) / perView : 0;
 
   const onTouchStart = (e) => {
     pause();
@@ -548,7 +491,8 @@ function DestinationGallery({ d }) {
     touchRef.current.dragging = false;
     setSwipeOff(0);
     if (Math.abs(d) > 50) {
-      d > 0 ? goPrevRef.current() : goNextRef.current();
+      if (d > 0) goPrevRef.current();
+      else goNextRef.current();
     }
     resume();
   };
@@ -558,12 +502,16 @@ function DestinationGallery({ d }) {
 
   return (
     <section style={{ background: "#fff", overflow: "hidden", paddingBottom: "3.5rem" }}>
-
       <Reveal>
         <div
           className="mx-auto max-w-5xl px-4 sm:px-6"
-          style={{ paddingTop: "3rem", paddingBottom: "1.25rem",
-                   display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
+          style={{
+            paddingTop: "3rem",
+            paddingBottom: "1.25rem",
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+          }}
         >
           <SectionHeader label="Photo Gallery" title={`${d.name} in`} accent="Pictures" />
         </div>
@@ -589,9 +537,8 @@ function DestinationGallery({ d }) {
             display: "flex",
             gap: 12,
             transform: `translateX(${txPx}px)`,
-            transition: noTrans || swipeOff
-              ? "none"
-              : "transform 0.45s cubic-bezier(0.22,1,0.36,1)",
+            transition:
+              noTrans || swipeOff ? "none" : "transform 0.45s cubic-bezier(0.22,1,0.36,1)",
             willChange: "transform",
           }}
         >
@@ -599,7 +546,7 @@ function DestinationGallery({ d }) {
             <div
               key={i}
               style={{
-                flex: cw ? `0 0 ${itemW}px` : `0 0 ${100/perView}%`,
+                flex: cw ? `0 0 ${itemW}px` : `0 0 ${100 / perView}%`,
                 borderRadius: 12,
                 overflow: "hidden",
                 position: "relative",
@@ -614,19 +561,23 @@ function DestinationGallery({ d }) {
                 loading="lazy"
                 draggable={false}
                 style={{
-                  width: "100%", height: "100%",
+                  width: "100%",
+                  height: "100%",
                   objectFit: "cover",
                   objectPosition: "center",
                   transition: "transform .5s cubic-bezier(0.22,1,0.36,1)",
                   display: "block",
                 }}
-                onMouseEnter={e => e.currentTarget.style.transform = "scale(1.04)"}
-                onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.04)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
               />
               {img.caption && (
                 <div
                   style={{
-                    position: "absolute", bottom: 0, left: 0, right: 0,
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
                     padding: "20px 14px 12px",
                     background: "linear-gradient(to top, rgba(10,22,14,0.78) 0%, transparent 100%)",
                     pointerEvents: "none",
@@ -648,7 +599,10 @@ function DestinationGallery({ d }) {
               )}
               <div
                 style={{
-                  position: "absolute", bottom: 0, left: 0, right: 0,
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
                   height: 2,
                   background: `linear-gradient(to right, ${C.gold}, transparent)`,
                   opacity: 0.7,
@@ -673,7 +627,7 @@ function DestinationGallery({ d }) {
             key={i}
             onClick={() => {
               pause();
-              const diff = i - ((posRef.current % total) + total) % total;
+              const diff = i - (((posRef.current % total) + total) % total);
               go(diff);
               setTimeout(resume, 500);
             }}
@@ -692,7 +646,6 @@ function DestinationGallery({ d }) {
           />
         ))}
       </div>
-
     </section>
   );
 }
@@ -711,7 +664,11 @@ function MustDo({ d }) {
             <Reveal key={i} delay={i * 70}>
               <div
                 className="dd-card-hover flex items-start gap-4 rounded-xl p-4 sm:p-5 h-full"
-                style={{ background: "white", border: "1px solid #ddd8ce", boxShadow: "0 1px 4px rgba(0,0,0,0.05)" }}
+                style={{
+                  background: "white",
+                  border: "1px solid #ddd8ce",
+                  boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
+                }}
               >
                 <span
                   className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full font-accent text-xs font-bold text-white"
@@ -719,7 +676,9 @@ function MustDo({ d }) {
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="text-sm leading-relaxed" style={{ color: C.textDark }}>{item}</p>
+                <p className="text-sm leading-relaxed" style={{ color: C.textDark }}>
+                  {item}
+                </p>
               </div>
             </Reveal>
           ))}
@@ -746,8 +705,14 @@ function PlacesToVisit({ d }) {
                 style={{ background: "white", border: "1px solid #ccc8bf" }}
               >
                 <div className="mb-3 flex items-start gap-2.5">
-                  <div className="mt-1 h-2 w-2 flex-shrink-0 rounded-full" style={{ background: C.gold }} />
-                  <h3 className="font-semibold leading-tight" style={{ color: C.textDark, fontSize: "0.95rem" }}>
+                  <div
+                    className="mt-1 h-2 w-2 flex-shrink-0 rounded-full"
+                    style={{ background: C.gold }}
+                  />
+                  <h3
+                    className="font-semibold leading-tight"
+                    style={{ color: C.textDark, fontSize: "0.95rem" }}
+                  >
                     {place.name}
                   </h3>
                 </div>
@@ -822,7 +787,10 @@ function LocalTip({ d }) {
               </div>
             </div>
             <div>
-              <span className="mb-2 block font-accent text-[10px] uppercase tracking-widest" style={{ color: C.gold }}>
+              <span
+                className="mb-2 block font-accent text-[10px] uppercase tracking-widest"
+                style={{ color: C.gold }}
+              >
                 Local Insider Tip
               </span>
               <p
@@ -853,11 +821,11 @@ function DestTourCard({ tour }) {
         boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
         transition: "transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease",
       }}
-      onMouseEnter={e => {
+      onMouseEnter={(e) => {
         e.currentTarget.style.transform = "translateY(-4px)";
         e.currentTarget.style.boxShadow = "0 12px 28px rgba(15,30,20,0.12)";
       }}
-      onMouseLeave={e => {
+      onMouseLeave={(e) => {
         e.currentTarget.style.transform = "translateY(0)";
         e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.05)";
       }}
@@ -899,7 +867,10 @@ function DestTourCard({ tour }) {
         >
           {tour.titleMain || tour.title}
           {tour.titleAccent && (
-            <em className="not-italic" style={{ color: C.gold }}> {tour.titleAccent}</em>
+            <em className="not-italic" style={{ color: C.gold }}>
+              {" "}
+              {tour.titleAccent}
+            </em>
           )}
         </h3>
 
@@ -927,7 +898,11 @@ function DestTourCard({ tour }) {
           style={{ borderColor: "#ede8df", color: C.gold }}
         >
           Explore This Tour
-          <ChevronRight size={13} aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1" />
+          <ChevronRight
+            size={13}
+            aria-hidden="true"
+            className="transition-transform duration-200 group-hover:translate-x-1"
+          />
         </div>
       </div>
     </Link>
@@ -947,8 +922,8 @@ function MatchingTours({ tours: matchingTours, destName }) {
               to="/tours"
               className="inline-flex items-center gap-1.5 self-start font-accent text-xs uppercase tracking-wider sm:self-auto"
               style={{ color: C.gold, transition: "opacity 0.2s ease" }}
-              onMouseEnter={e => (e.currentTarget.style.opacity = "0.65")}
-              onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.65")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
               View All Tours <ChevronRight size={14} aria-hidden="true" />
             </Link>
@@ -977,7 +952,6 @@ function CTABlock({ d }) {
   return (
     <section className="bg-[var(--ivory-white)] py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
-
         {/* CTA banner */}
         <Reveal variant="dd-reveal-scale">
           <div
@@ -995,11 +969,17 @@ function CTABlock({ d }) {
             {/* Subtle top border accent */}
             <div
               className="absolute inset-x-0 top-0 h-px"
-              style={{ background: "linear-gradient(to right, transparent, rgba(212,174,97,0.5), transparent)" }}
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, rgba(212,174,97,0.5), transparent)",
+              }}
             />
 
             <div className="relative z-10">
-              <span className="mb-3 block font-accent text-[10px] uppercase tracking-[0.22em]" style={{ color: C.gold }}>
+              <span
+                className="mb-3 block font-accent text-[10px] uppercase tracking-[0.22em]"
+                style={{ color: C.gold }}
+              >
                 Ready to go?
               </span>
               <h3
@@ -1012,7 +992,8 @@ function CTABlock({ d }) {
                 className="mx-auto mb-8 max-w-md text-sm leading-relaxed"
                 style={{ color: C.onDarkSub }}
               >
-                Our private guides craft every journey around your pace, interests, and travel style.
+                Our private guides craft every journey around your pace, interests, and travel
+                style.
               </p>
               <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <Link
@@ -1023,7 +1004,7 @@ function CTABlock({ d }) {
                   Plan My Trip →
                 </Link>
                 <a
-                  href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || "94763300443"}?text=${encodeURIComponent(`Hi Vishva! I'm interested in ${d.name} — can you tell me more about tours here?`)}`}
+                  href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi Vishva! I'm interested in ${d.name} — can you tell me more about tours here?`)}`}
                   target="_blank"
                   rel="noreferrer noopener"
                   onClick={() => trackWhatsAppClick(d.name, "destination_cta")}
@@ -1033,8 +1014,12 @@ function CTABlock({ d }) {
                     color: "#fff",
                     border: "none",
                   }}
-                  onMouseEnter={e => { e.currentTarget.style.background = "#20ba56"; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = "#25D366"; }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#20ba56";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "#25D366";
+                  }}
                 >
                   <span>WhatsApp Us</span>
                 </a>
@@ -1052,7 +1037,10 @@ function SectionHeader({ label, title, accent }) {
   return (
     <div>
       {label && (
-        <span className="mb-2 block font-accent text-xs uppercase tracking-widest" style={{ color: C.gold }}>
+        <span
+          className="mb-2 block font-accent text-xs uppercase tracking-widest"
+          style={{ color: C.gold }}
+        >
           {label}
         </span>
       )}
@@ -1062,7 +1050,10 @@ function SectionHeader({ label, title, accent }) {
       >
         {title}
         {accent && (
-          <em className="not-italic" style={{ color: C.gold }}> {accent}</em>
+          <em className="not-italic" style={{ color: C.gold }}>
+            {" "}
+            {accent}
+          </em>
         )}
       </h2>
     </div>
@@ -1074,7 +1065,10 @@ function NotFound() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center px-4 text-center">
       <div>
-        <h1 className="font-display font-light" style={{ color: C.textDark, fontSize: "clamp(2rem, 6vw, 3.5rem)" }}>
+        <h1
+          className="font-display font-light"
+          style={{ color: C.textDark, fontSize: "clamp(2rem, 6vw, 3.5rem)" }}
+        >
           Destination not found
         </h1>
         <p className="mt-3 text-sm" style={{ color: C.textMuted }}>
@@ -1097,20 +1091,21 @@ export default function DestinationDetail() {
   const { slug } = useParams();
   const d = destinations.find((x) => x.slug === slug);
 
+  useEffect(() => {
+    if (d) trackDestinationView(d.slug, d.name);
+  }, [d]);
+
   const matchingTours = d
     ? tours.filter((t) =>
-      t.route?.some((stop) => {
-        const sl = stop.toLowerCase(), nl = d.name.toLowerCase();
-        return sl.includes(nl) || nl.includes(sl);
-      })
-    )
+        t.route?.some((stop) => {
+          const sl = stop.toLowerCase(),
+            nl = d.name.toLowerCase();
+          return sl.includes(nl) || nl.includes(sl);
+        }),
+      )
     : [];
 
   if (!d) return <NotFound />;
-
-  useEffect(() => {
-    trackDestinationView(d.slug, d.name);
-  }, [d.slug, d.name]);
 
   const destDescription = d.intro || d.description || "";
   const truncDest = (text, maxLen) => {
@@ -1122,25 +1117,35 @@ export default function DestinationDetail() {
 
   const destBreadcrumb = {
     "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lankatoursdirect.com" },
-      { "@type": "ListItem", "position": 2, "name": "Destinations", "item": "https://lankatoursdirect.com/destinations" },
-      { "@type": "ListItem", "position": 3, "name": d.name, "item": `https://lankatoursdirect.com/destinations/${d.slug}` },
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://lankatoursdirect.com" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Destinations",
+        item: "https://lankatoursdirect.com/destinations",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: d.name,
+        item: `https://lankatoursdirect.com/destinations/${d.slug}`,
+      },
     ],
   };
 
   const touristDestSchema = {
     "@type": "TouristDestination",
-    "name": `${d.name}, Sri Lanka`,
-    "description": destDescription,
-    "url": `https://lankatoursdirect.com/destinations/${d.slug}`,
-    "touristType": ["leisure", "cultural", "adventure"],
-    "containedInPlace": {
+    name: `${d.name}, Sri Lanka`,
+    description: destDescription,
+    url: `https://lankatoursdirect.com/destinations/${d.slug}`,
+    touristType: ["leisure", "cultural", "adventure"],
+    containedInPlace: {
       "@type": "Country",
-      "name": "Sri Lanka",
-      "url": "https://en.wikipedia.org/wiki/Sri_Lanka",
+      name: "Sri Lanka",
+      url: "https://en.wikipedia.org/wiki/Sri_Lanka",
     },
-    ...(d.unesco ? { "award": "UNESCO World Heritage Site" } : {}),
+    ...(d.unesco ? { award: "UNESCO World Heritage Site" } : {}),
   };
 
   const destSchema = {
@@ -1159,7 +1164,6 @@ export default function DestinationDetail() {
         schema={destSchema}
         preloadImage={d.image}
       />
-      <GlobalAnimStyles />
       <Hero d={d} />
       <div className="mx-auto mt-4 max-w-5xl px-4 sm:px-6 md:px-8">
         <Breadcrumbs

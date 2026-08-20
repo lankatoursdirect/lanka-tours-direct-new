@@ -70,7 +70,7 @@ function FieldLabel({ children, required }) {
   return (
     <label className="block font-accent text-[11px] uppercase tracking-wider text-muted-foreground">
       {children}
-      {required && <span className="ml-1 text-red-500">*</span>}
+      {required && <span className="ml-1 text-red-600">*</span>}
     </label>
   );
 }
@@ -152,7 +152,7 @@ export function PhoneInput({
 
       {/* Error message — shown only after blur or forced by parent */}
       {(showError || (!!externalError && !result.valid)) && (
-        <p className="flex animate-fade-in items-center gap-1.5 text-[11px] font-medium text-red-500">
+        <p className="flex animate-fade-in items-center gap-1.5 text-[11px] font-medium text-red-600">
           <AlertCircle size={11} />
           {!value?.trim()
             ? "WhatsApp number is required."

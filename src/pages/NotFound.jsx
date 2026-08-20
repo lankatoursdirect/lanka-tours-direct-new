@@ -35,12 +35,39 @@ export default function NotFound() {
             </Link>
           </div>
           <div className="mt-12 flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
-            <Link to="/" className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]">Home</Link>
-            <Link to="/about" className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]">About</Link>
-            <Link to="/destinations" className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]">Destinations</Link>
-            <Link to="/experiences" className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]">Experiences</Link>
-            <Link to="/faq" className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]">FAQ</Link>
-            <Link to="/contact" className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]">Contact</Link>
+            <Link to="/" className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]">
+              Home
+            </Link>
+            <Link
+              to="/about"
+              className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]"
+            >
+              About
+            </Link>
+            <Link
+              to="/destinations"
+              className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]"
+            >
+              Destinations
+            </Link>
+            <Link
+              to="/experiences"
+              className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]"
+            >
+              Experiences
+            </Link>
+            <Link
+              to="/faq"
+              className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]"
+            >
+              FAQ
+            </Link>
+            <Link
+              to="/contact"
+              className="underline underline-offset-4 hover:text-[var(--ceylon-gold)]"
+            >
+              Contact
+            </Link>
           </div>
         </div>
       </section>

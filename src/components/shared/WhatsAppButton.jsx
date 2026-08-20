@@ -1,6 +1,6 @@
 import { MessageCircle } from "lucide-react";
+import { WA_NUMBER } from "@/lib/config";
 
-const WA_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || "94763300443";
 const WA_MSG = encodeURIComponent("Hi Vishva! I'd love to plan a Sri Lanka trip with you.");
 
 export function WhatsAppFloat() {

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const DOMAIN = "https://lankatoursdirect.com";
+const DOMAIN = "https://www.lankatoursdirect.com";
 
 const STATIC_ROUTES = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
@@ -40,11 +40,12 @@ export default function viteSitemapPlugin() {
       const today = new Date().toISOString().split("T")[0];
 
       let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-      xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+      xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n`;
 
       for (const route of STATIC_ROUTES) {
         xml += `  <url>\n`;
         xml += `    <loc>${DOMAIN}${route.path}</loc>\n`;
+        xml += `    <xhtml:link rel="alternate" hreflang="en" href="${DOMAIN}${route.path}" />\n`;
         xml += `    <priority>${route.priority}</priority>\n`;
         xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
         xml += `    <lastmod>${today}</lastmod>\n`;
@@ -73,7 +74,9 @@ export default function viteSitemapPlugin() {
 
       const outDir = path.resolve("public/sitemap.xml");
       fs.writeFileSync(outDir, xml, "utf-8");
-      console.log(`[vite-plugin-sitemap] Generated sitemap at ${outDir} (${tourSlugs.length} tours, ${destSlugs.length} destinations)`);
+      console.log(
+        `[vite-plugin-sitemap] Generated sitemap at ${outDir} (${tourSlugs.length} tours, ${destSlugs.length} destinations)`,
+      );
     },
   };
 }

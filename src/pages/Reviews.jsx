@@ -3,32 +3,33 @@ import { PageHero } from "@/components/shared/PageHero";
 import { ReviewCard } from "@/components/shared/ReviewCard";
 import { reviews } from "@/data/reviews";
 import { Star } from "lucide-react";
+import { PHONE_NUMBER } from "@/lib/config";
 
 const reviewsSchema = {
   "@context": "https://schema.org",
   "@type": ["TourOperator", "LocalBusiness"],
-  "name": "Lanka Tours Direct",
-  "url": "https://lankatoursdirect.com",
-  "image": "https://lankatoursdirect.com/logo.png",
-  "telephone": "+94763300443",
-  "address": {
+  name: "Lanka Tours Direct",
+  url: "https://lankatoursdirect.com",
+  image: "https://lankatoursdirect.com/logo.png",
+  telephone: PHONE_NUMBER,
+  address: {
     "@type": "PostalAddress",
-    "streetAddress": "349/11 Nisal Uyana, S. Mahindahimi Road, Perera Road, Alubomulla",
-    "addressLocality": "Panadura",
-    "addressCountry": "LK"
+    streetAddress: "349/11 Nisal Uyana, S. Mahindahimi Road, Perera Road, Alubomulla",
+    addressLocality: "Panadura",
+    addressCountry: "LK",
   },
-  "aggregateRating": {
+  aggregateRating: {
     "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": reviews.length,
-    "bestRating": "5",
-    "worstRating": "1",
+    ratingValue: "4.9",
+    reviewCount: reviews.length,
+    bestRating: "5",
+    worstRating: "1",
   },
-  "review": reviews.slice(0, 3).map((r) => ({
+  review: reviews.slice(0, 3).map((r) => ({
     "@type": "Review",
-    "author": { "@type": "Person", "name": r.name },
-    "reviewRating": { "@type": "Rating", "ratingValue": r.rating || "5" },
-    "reviewBody": r.body,
+    author: { "@type": "Person", name: r.name },
+    reviewRating: { "@type": "Rating", ratingValue: r.rating || "5" },
+    reviewBody: r.body,
   })),
 };
 
@@ -66,7 +67,3 @@ export default function Reviews() {
     </>
   );
 }
-
-
-
-

@@ -23,7 +23,7 @@ export function FinalCTA() {
           </a>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--ceylon-gold)] px-7 py-3.5 font-accent text-sm uppercase tracking-wider text-[var(--ceylon-gold)] transition-colors hover:bg-[var(--ceylon-gold)] hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-white/70 bg-black/25 backdrop-blur-md px-7 py-3.5 font-accent text-sm uppercase tracking-wider text-white transition-colors hover:bg-white/15"
           >
             <Mail size={18} /> Send an Enquiry
           </Link>
@@ -32,4 +32,3 @@ export function FinalCTA() {
     </section>
   );
 }
-

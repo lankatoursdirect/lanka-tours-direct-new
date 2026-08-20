@@ -9,7 +9,7 @@
  *  • All other fields and form logic unchanged
  */
 
-import { useState, useRef, useMemo, useEffect } from "react";
+import { useState, useRef, useMemo, useEffect, useCallback } from "react";
 import { SEO } from "@/components/shared/SEO";
 import {
   MessageCircle,
@@ -22,12 +22,11 @@ import {
   Loader2,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 import { whatsappLink } from "@/components/shared/WhatsAppButton";
 import { PhoneInput } from "@/components/shared/PhoneInput";
-import { COUNTRIES } from "@/data/countries";
 import { Button } from "@/components/ui/button";
+import { PHONE_NUMBER, PHONE_DISPLAY } from "@/lib/config";
 import {
   Command,
   CommandEmpty,
@@ -40,8 +39,13 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils";
 import guidePhoto from "@/assets/images/shared/guide-img.webp";
 
-// Pre-sort countries A-Z once at module level
-const SORTED_COUNTRIES = [...COUNTRIES].sort((a, b) => a.name.localeCompare(b.name));
+// Lazy-load countries data (1568 lines) only when Contact page mounts
+const SORTED_COUNTRIES_PROMISE = import("@/data/countries").then((m) =>
+  [...m.COUNTRIES].sort((a, b) => a.name.localeCompare(b.name)),
+);
+
+const EMAIL_REGEX =
+  /^(?:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*)@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[A-Za-z]{2,}$/;
 
 // ─────────────────────────────────────────────────────────────────────────────
 export default function Contact() {
@@ -51,6 +55,19 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [step, setStep] = useState(1);
+  const [sortedCountries, setSortedCountries] = useState([]);
+
+  // Lazy-load countries on mount
+  useEffect(() => {
+    SORTED_COUNTRIES_PROMISE.then(setSortedCountries);
+  }, []);
+
+  // Redirect after successful submission
+  useEffect(() => {
+    if (!submitted) return;
+    const timer = setTimeout(() => navigate("/"), 3000);
+    return () => clearTimeout(timer);
+  }, [submitted, navigate]);
 
   // Country selector state
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -85,9 +102,6 @@ export default function Contact() {
     children: "",
   });
 
-  const emailRegex =
-    /^(?:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*)@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[A-Za-z]{2,}$/;
-
   const todayString = useMemo(() => {
     const d = new Date();
     const year = d.getFullYear();
@@ -99,8 +113,8 @@ export default function Contact() {
   // Derived: full country data object for the selected country name
   const selectedCountryData = useMemo(() => {
     if (!selectedCountry) return null;
-    return SORTED_COUNTRIES.find((c) => c.name === selectedCountry) ?? null;
-  }, [selectedCountry]);
+    return sortedCountries.find((c) => c.name === selectedCountry) ?? null;
+  }, [selectedCountry, sortedCountries]);
 
   // Clear country error as soon as user picks one
   useEffect(() => {
@@ -118,114 +132,119 @@ export default function Contact() {
   }, [whatsappE164]);
 
   // ── Field validation ────────────────────────────────────────────────────────
-  const validateField = (name, value) => {
-    let msg = "";
-    switch (name) {
-      case "firstName":
-        if (!value.trim()) msg = "First name is required.";
-        else if (value.trim().length < 2) msg = "First name must be at least 2 characters.";
-        else if (!/^[a-zA-Z\s\-]+$/.test(value))
-          msg = "First name can only contain letters, spaces, or hyphens.";
-        break;
-      case "lastName":
-        if (!value.trim()) msg = "Last name is required.";
-        else if (value.trim().length < 2) msg = "Last name must be at least 2 characters.";
-        else if (!/^[a-zA-Z\s\-]+$/.test(value))
-          msg = "Last name can only contain letters, spaces, or hyphens.";
-        break;
-      case "email":
-        if (!value.trim()) msg = "Email address is required.";
-        else if (!emailRegex.test(value)) msg = "Please enter a valid email address.";
-        break;
-      case "arrival":
-        if (!value) {
-          msg = "Arrival date is required.";
-        } else {
-          const sel = new Date(value);
-          sel.setHours(0, 0, 0, 0);
-          const now = new Date();
-          now.setHours(0, 0, 0, 0);
-          if (sel < now) msg = "Arrival date cannot be in the past.";
-        }
-        break;
-      case "departure":
-        if (!value) {
-          msg = "Departure date is required.";
-        } else {
-          const sel = new Date(value);
-          sel.setHours(0, 0, 0, 0);
-          if (formValues.arrival) {
-            const arr = new Date(formValues.arrival);
-            arr.setHours(0, 0, 0, 0);
-            if (sel < arr) msg = "Departure date must be on or after the arrival date.";
+  const validateField = useCallback(
+    (name, value) => {
+      let msg = "";
+      switch (name) {
+        case "firstName":
+          if (!value.trim()) msg = "First name is required.";
+          else if (value.trim().length < 2) msg = "First name must be at least 2 characters.";
+          else if (!/^[a-zA-Z\s-]+$/.test(value))
+            msg = "First name can only contain letters, spaces, or hyphens.";
+          break;
+        case "lastName":
+          if (!value.trim()) msg = "Last name is required.";
+          else if (value.trim().length < 2) msg = "Last name must be at least 2 characters.";
+          else if (!/^[a-zA-Z\s-]+$/.test(value))
+            msg = "Last name can only contain letters, spaces, or hyphens.";
+          break;
+        case "email":
+          if (!value.trim()) msg = "Email address is required.";
+          else if (!EMAIL_REGEX.test(value)) msg = "Please enter a valid email address.";
+          break;
+        case "arrival":
+          if (!value) {
+            msg = "Arrival date is required.";
           } else {
+            const sel = new Date(value);
+            sel.setHours(0, 0, 0, 0);
             const now = new Date();
             now.setHours(0, 0, 0, 0);
-            if (sel < now) msg = "Departure date cannot be in the past.";
+            if (sel < now) msg = "Arrival date cannot be in the past.";
           }
-        }
-        break;
-      case "adults":
-        if (!value) msg = "Number of adults is required.";
-        else if (isNaN(parseInt(value, 10)) || parseInt(value, 10) < 1)
-          msg = "Must have at least 1 adult.";
-        break;
-      case "children":
-        if (value !== "" && (isNaN(parseInt(value, 10)) || parseInt(value, 10) < 0))
-          msg = "Children count cannot be negative.";
-        break;
-      default:
-        break;
-    }
-    setErrors((prev) => ({ ...prev, [name]: msg }));
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues((prev) => {
-      const next = { ...prev, [name]: value };
-      // When arrival changes, also re-validate departure against the new arrival
-      if (name === "arrival" && next.departure) {
-        const depDate = new Date(next.departure);
-        depDate.setHours(0, 0, 0, 0);
-        const arrDate = new Date(value);
-        arrDate.setHours(0, 0, 0, 0);
-        const depError = depDate < arrDate ? "Departure date must be on or after the arrival date." : "";
-        setErrors((prev) => ({ ...prev, [name]: "", departure: depError }));
-      } else {
-        validateField(name, value);
+          break;
+        case "departure":
+          if (!value) {
+            msg = "Departure date is required.";
+          } else {
+            const sel = new Date(value);
+            sel.setHours(0, 0, 0, 0);
+            if (formValues.arrival) {
+              const arr = new Date(formValues.arrival);
+              arr.setHours(0, 0, 0, 0);
+              if (sel < arr) msg = "Departure date must be on or after the arrival date.";
+            } else {
+              const now = new Date();
+              now.setHours(0, 0, 0, 0);
+              if (sel < now) msg = "Departure date cannot be in the past.";
+            }
+          }
+          break;
+        case "adults":
+          if (!value) msg = "Number of adults is required.";
+          else if (isNaN(parseInt(value, 10)) || parseInt(value, 10) < 1)
+            msg = "Must have at least 1 adult.";
+          break;
+        case "children":
+          if (value !== "" && (isNaN(parseInt(value, 10)) || parseInt(value, 10) < 0))
+            msg = "Children count cannot be negative.";
+          break;
+        default:
+          break;
       }
-      return next;
-    });
-  };
+      setErrors((prev) => ({ ...prev, [name]: msg }));
+    },
+    [formValues.arrival],
+  );
+
+  const handleChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setFormValues((prev) => {
+        const next = { ...prev, [name]: value };
+        if (name === "arrival" && next.departure) {
+          const depDate = new Date(next.departure);
+          depDate.setHours(0, 0, 0, 0);
+          const arrDate = new Date(value);
+          arrDate.setHours(0, 0, 0, 0);
+          const depError =
+            depDate < arrDate ? "Departure date must be on or after the arrival date." : "";
+          setErrors((prev) => ({ ...prev, [name]: "", departure: depError }));
+        } else {
+          validateField(name, value);
+        }
+        return next;
+      });
+    },
+    [validateField],
+  );
 
   const handleNumericKeyDown = (e) => {
     if (["e", "E", "+", "-", "."].includes(e.key)) e.preventDefault();
   };
 
   // ── Step 1 → Step 2 ────────────────────────────────────────────────────────
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     const newErrors = {};
 
     if (!formValues.firstName.trim()) newErrors.firstName = "First name is required.";
     else if (formValues.firstName.trim().length < 2)
       newErrors.firstName = "First name must be at least 2 characters.";
-    else if (!/^[a-zA-Z\s\-]+$/.test(formValues.firstName))
+    else if (!/^[a-zA-Z\s-]+$/.test(formValues.firstName))
       newErrors.firstName = "First name can only contain letters, spaces, or hyphens.";
 
     if (!formValues.lastName.trim()) newErrors.lastName = "Last name is required.";
     else if (formValues.lastName.trim().length < 2)
       newErrors.lastName = "Last name must be at least 2 characters.";
-    else if (!/^[a-zA-Z\s\-]+$/.test(formValues.lastName))
+    else if (!/^[a-zA-Z\s-]+$/.test(formValues.lastName))
       newErrors.lastName = "Last name can only contain letters, spaces, or hyphens.";
 
     if (!formValues.email.trim()) newErrors.email = "Email address is required.";
-    else if (!emailRegex.test(formValues.email))
+    else if (!EMAIL_REGEX.test(formValues.email))
       newErrors.email = "Please enter a valid email address.";
 
     if (!selectedCountry) newErrors.country = "Please select your country.";
 
-    // WhatsApp is NOW REQUIRED — must be a fully valid number
     if (!whatsappE164) {
       newErrors.whatsapp = "A valid WhatsApp number is required.";
       setWhatsappForceError(true);
@@ -238,70 +257,74 @@ export default function Contact() {
       setStep(2);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  };
+  }, [formValues, selectedCountry, whatsappE164]);
 
   // ── Final submit ────────────────────────────────────────────────────────────
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
 
-    const newErrors = {};
+      const newErrors = {};
 
-    if (!formValues.arrival) {
-      newErrors.arrival = "Arrival date is required.";
-    } else {
-      const sel = new Date(formValues.arrival);
-      sel.setHours(0, 0, 0, 0);
-      const now = new Date();
-      now.setHours(0, 0, 0, 0);
-      if (sel < now) newErrors.arrival = "Arrival date cannot be in the past.";
-    }
-
-    if (!formValues.departure) {
-      newErrors.departure = "Departure date is required.";
-    } else {
-      const sel = new Date(formValues.departure);
-      sel.setHours(0, 0, 0, 0);
-      if (formValues.arrival) {
-        const arr = new Date(formValues.arrival);
-        arr.setHours(0, 0, 0, 0);
-        if (sel < arr) newErrors.departure = "Departure date must be on or after the arrival date.";
+      if (!formValues.arrival) {
+        newErrors.arrival = "Arrival date is required.";
+      } else {
+        const sel = new Date(formValues.arrival);
+        sel.setHours(0, 0, 0, 0);
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
+        if (sel < now) newErrors.arrival = "Arrival date cannot be in the past.";
       }
-    }
 
-    if (!formValues.adults) {
-      newErrors.adults = "Number of adults is required.";
-    } else if (isNaN(parseInt(formValues.adults, 10)) || parseInt(formValues.adults, 10) < 1) {
-      newErrors.adults = "Must have at least 1 adult.";
-    }
+      if (!formValues.departure) {
+        newErrors.departure = "Departure date is required.";
+      } else {
+        const sel = new Date(formValues.departure);
+        sel.setHours(0, 0, 0, 0);
+        if (formValues.arrival) {
+          const arr = new Date(formValues.arrival);
+          arr.setHours(0, 0, 0, 0);
+          if (sel < arr)
+            newErrors.departure = "Departure date must be on or after the arrival date.";
+        }
+      }
 
-    if (formValues.children !== "") {
-      const p = parseInt(formValues.children, 10);
-      if (isNaN(p) || p < 0) newErrors.children = "Children count cannot be negative.";
-    }
+      if (!formValues.adults) {
+        newErrors.adults = "Number of adults is required.";
+      } else if (isNaN(parseInt(formValues.adults, 10)) || parseInt(formValues.adults, 10) < 1) {
+        newErrors.adults = "Must have at least 1 adult.";
+      }
 
-    setErrors((prev) => ({ ...prev, ...newErrors }));
+      if (formValues.children !== "") {
+        const p = parseInt(formValues.children, 10);
+        if (isNaN(p) || p < 0) newErrors.children = "Children count cannot be negative.";
+      }
 
-    const hasError = Object.values(newErrors).some((e) => e !== "");
-    if (hasError) return;
+      setErrors((prev) => ({ ...prev, ...newErrors }));
 
-    setIsSending(true);
-    try {
-      await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      );
-      setSubmitted(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      setTimeout(() => navigate("/"), 3000);
-    } catch (err) {
-      console.error("EmailJS Error:", err);
-      toast.error("Something went wrong. Please try again or contact us via WhatsApp.");
-    } finally {
-      setIsSending(false);
-    }
-  };
+      const hasError = Object.values(newErrors).some((e) => e !== "");
+      if (hasError) return;
+
+      setIsSending(true);
+      try {
+        const emailjs = await import("@emailjs/browser");
+        await emailjs.default.sendForm(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          formRef.current,
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        );
+        setSubmitted(true);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } catch (err) {
+        console.error("EmailJS Error:", err);
+        toast.error("Something went wrong. Please try again or contact us via WhatsApp.");
+      } finally {
+        setIsSending(false);
+      }
+    },
+    [formValues],
+  );
 
   // ── Render ──────────────────────────────────────────────────────────────────
   return (
@@ -309,16 +332,16 @@ export default function Contact() {
       <SEO
         title="Contact Lanka Tours Direct — Book Your Sri Lanka Tour"
         description="Get in touch with Lanka Tours Direct to plan your private Sri Lanka tour. Contact expert guide Vishva via WhatsApp, email or our inquiry form."
-        canonical="https://lankatoursdirect.com/contact"
-        preloadImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920"
+        canonical="https://www.lankatoursdirect.com/contact"
+        preloadImage="https://www.lankatoursdirect.com/tea-plantation.webp"
         schema={{
           "@context": "https://schema.org",
           "@type": "ContactPoint",
-          "telephone": "+94763300443",
-          "contactType": "customer service",
-          "email": "info@lankatoursdirect.com",
-          "availableLanguage": ["English"],
-          "areaServed": "LK",
+          telephone: PHONE_NUMBER,
+          contactType: "customer service",
+          email: "info@lankatoursdirect.com",
+          availableLanguage: ["English"],
+          areaServed: "LK",
         }}
       />
       <section className="grid lg:grid-cols-5 min-h-[100vh]">
@@ -363,7 +386,7 @@ export default function Contact() {
             href={whatsappLink}
             target="_blank"
             rel="noreferrer noopener"
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3 font-accent text-[10px] sm:text-xs uppercase tracking-wider text-white whitespace-nowrap transition-all hover:bg-[#1ebe5c] hover:shadow-[0_0_16px_rgba(37,211,102,0.4)]"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#15803d] px-4 py-3 font-accent text-[10px] sm:text-xs uppercase tracking-wider text-white whitespace-nowrap transition-all hover:bg-[#14703a] hover:shadow-[0_0_16px_rgba(37,211,102,0.4)]"
           >
             <MessageCircle size={14} /> WhatsApp · Reply in 1 hour
           </a>
@@ -373,10 +396,10 @@ export default function Contact() {
             <li className="flex items-center gap-3">
               <Phone size={16} className="shrink-0 text-[var(--ceylon-gold)]" />
               <a
-                href="tel:+94763300443"
+                href={`tel:${PHONE_NUMBER}`}
                 className="hover:text-[var(--ceylon-gold)] transition-colors"
               >
-                +94 76 330 0443
+                +{PHONE_DISPLAY}
               </a>
             </li>
             <li className="flex items-center gap-3">
@@ -396,6 +419,8 @@ export default function Contact() {
                   <img
                     src="https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LK.svg"
                     alt="Sri Lanka"
+                    width="20"
+                    height="14"
                     className="w-5 h-3.5 object-cover rounded-sm shadow-sm inline-block"
                   />
                 </span>
@@ -566,7 +591,7 @@ export default function Contact() {
                   {/* Country + WhatsApp side by side */}
                   <div className="grid gap-5 md:grid-cols-2">
                     <CountrySelect
-                      countries={SORTED_COUNTRIES}
+                      countries={sortedCountries}
                       value={selectedCountry}
                       selectedData={selectedCountryData}
                       onChange={setSelectedCountry}
@@ -703,7 +728,7 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={isSending}
-                      className="col-span-2 flex items-center justify-center gap-2 rounded-full bg-[var(--ceylon-gold)] py-4 font-accent text-xs uppercase tracking-widest text-white shadow-gold transition-all hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+                      className="col-span-2 flex items-center justify-center gap-2 rounded-full bg-[var(--ceylon-gold-deep)] py-4 font-accent text-xs uppercase tracking-widest text-white shadow-gold transition-all hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
                     >
                       {isSending ? (
                         <>
@@ -728,30 +753,42 @@ export default function Contact() {
 // LOCAL HELPER COMPONENTS  (same API as originals — zero JSX changes above)
 // ─────────────────────────────────────────────────────────────────────────────
 
-function FieldLabel({ children, required }) {
+function FieldLabel({ children, required, htmlFor }) {
   return (
-    <label className="block font-accent text-[11px] uppercase tracking-wider text-muted-foreground">
+    <label
+      htmlFor={htmlFor}
+      className="block font-accent text-[11px] uppercase tracking-wider text-muted-foreground"
+    >
       {children}
-      {required && <span className="ml-1 text-red-500">*</span>}
+      {required && <span className="ml-1 text-red-600">*</span>}
     </label>
   );
 }
 
-function FormInput({ label, error, ...props }) {
+function FormInput({ label, error, name, ...props }) {
+  const inputId = `field-${name}`;
+  const errorId = `${inputId}-error`;
   return (
     <div className="space-y-2">
-      <FieldLabel>{label}</FieldLabel>
+      <FieldLabel htmlFor={inputId}>{label}</FieldLabel>
       <input
+        id={inputId}
+        name={name}
+        aria-invalid={!!error}
+        aria-describedby={error ? errorId : undefined}
         {...props}
         className={cn(
           "flex h-[46px] w-full rounded-lg border bg-white px-4 text-sm focus:outline-none transition-all duration-300",
           error
-            ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500/20"
+            ? "border-red-600 focus:border-red-600 focus:ring-1 focus:ring-red-600/20"
             : "border-[var(--soft-sand)] focus:border-[var(--ceylon-gold)] focus:ring-1 focus:ring-[var(--ceylon-gold)]/20",
         )}
       />
       {error && (
-        <span className="mt-1.5 block text-[11px] font-medium text-red-500 animate-fade-in">
+        <span
+          id={errorId}
+          className="mt-1.5 block text-[11px] font-medium text-red-600 animate-fade-in"
+        >
           {error}
         </span>
       )}
@@ -774,7 +811,7 @@ function CountrySelect({ countries, value, selectedData, onChange, required, err
             className={cn(
               "flex h-[46px] w-full justify-between bg-white px-4 font-normal focus:ring-1 focus:ring-[var(--ceylon-gold)]/20 transition-all duration-300",
               error
-                ? "border-red-500 hover:border-red-500 focus:border-red-500"
+                ? "border-red-600 hover:border-red-600 focus:border-red-600"
                 : "border-[var(--soft-sand)] hover:bg-white hover:border-[var(--ceylon-gold)] focus:border-[var(--ceylon-gold)]",
             )}
           >
@@ -841,11 +878,10 @@ function CountrySelect({ countries, value, selectedData, onChange, required, err
       </Popover>
       <input type="hidden" name="country" value={value} required={required} />
       {error && (
-        <span className="mt-1.5 block text-[11px] font-medium text-red-500 animate-fade-in">
+        <span className="mt-1.5 block text-[11px] font-medium text-red-600 animate-fade-in">
           {error}
         </span>
       )}
     </div>
   );
 }
-

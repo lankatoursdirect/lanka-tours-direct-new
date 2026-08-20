@@ -1,13 +1,20 @@
-import { useMemo } from "react";
 import { SEO } from "@/components/shared/SEO";
 import { PageHero } from "@/components/shared/PageHero";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const sections = [
   {
     title: "About The Tours",
     qa: [
-      ["Can I fully customise my itinerary?", "Yes, everything is built around your interests, travel dates, and pace."],
+      [
+        "Can I fully customise my itinerary?",
+        "Yes, everything is built around your interests, travel dates, and pace.",
+      ],
       [
         "What is included in the tour price?",
         "Air-conditioned private vehicle, professional guide, all fuel and toll charges, airport transfers.",
@@ -16,8 +23,14 @@ const sections = [
         "What is NOT included?",
         "Hotel accommodation, restaurant meals, national park entry fees, train tickets, flight costs.",
       ],
-      ["How many people travel per tour?", "Completely private — just you and your group (1–7 people)."],
-      ["Can you accommodate children or elderly travellers?", "Absolutely. Child seats available, slow-paced options always available."],
+      [
+        "How many people travel per tour?",
+        "Completely private — just you and your group (1–7 people).",
+      ],
+      [
+        "Can you accommodate children or elderly travellers?",
+        "Absolutely. Child seats available, slow-paced options always available.",
+      ],
     ],
   },
   {
@@ -27,12 +40,18 @@ const sections = [
         "What is the best time to visit Sri Lanka?",
         "Sri Lanka has two monsoon systems — somewhere is always sunny. I'll design your itinerary around the best weather for your dates.",
       ],
-      ["Is Sri Lanka safe for tourists?", "Very safe. Sri Lanka is consistently ranked among Asia's safest destinations."],
+      [
+        "Is Sri Lanka safe for tourists?",
+        "Very safe. Sri Lanka is consistently ranked among Asia's safest destinations.",
+      ],
       [
         "Do I need a visa?",
         "Yes — an Electronic Travel Authorization (ETA) is required. $35 USD, 10 minutes online at eta.gov.lk",
       ],
-      ["What currency is used?", "Sri Lankan Rupee (LKR). ATMs widely available. Cards accepted at most hotels."],
+      [
+        "What currency is used?",
+        "Sri Lankan Rupee (LKR). ATMs widely available. Cards accepted at most hotels.",
+      ],
       [
         "What should I pack?",
         "Light cottons, sun protection, insect repellent, comfortable walking shoes, layers for hill country.",
@@ -46,7 +65,10 @@ const sections = [
         "How do I book a tour?",
         "Send an enquiry via the form or WhatsApp. I'll design a custom itinerary and quote within 24 hours.",
       ],
-      ["How far in advance should I book?", "4–8 weeks ideal. Peak season (Dec–Mar) — 3 months ahead recommended."],
+      [
+        "How far in advance should I book?",
+        "4–8 weeks ideal. Peak season (Dec–Mar) — 3 months ahead recommended.",
+      ],
       [
         "What payment methods do you accept?",
         "Bank transfer and cash on arrival currently. Secure online payment coming soon.",
@@ -69,8 +91,14 @@ const sections = [
         "What vehicle do you use?",
         "A well-maintained Toyota KDH van with full A/C, seating for up to 7, USB charging, and a cooler box.",
       ],
-      ["Can you pick me up from the airport?", "Yes — airport pickup is included in all tours. I'll be waiting with your name card."],
-      ["Do you provide hotel recommendations?", "Yes — trusted recommendations for every budget at every destination."],
+      [
+        "Can you pick me up from the airport?",
+        "Yes — airport pickup is included in all tours. I'll be waiting with your name card.",
+      ],
+      [
+        "Do you provide hotel recommendations?",
+        "Yes — trusted recommendations for every budget at every destination.",
+      ],
     ],
   },
   {
@@ -109,12 +137,12 @@ const faqItems = sections.flatMap((s) => s.qa).map(([q, a]) => ({ question: q, a
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqItems.map((item) => ({
+  mainEntity: faqItems.map((item) => ({
     "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": {
+    name: item.question,
+    acceptedAnswer: {
       "@type": "Answer",
-      "text": item.answer,
+      text: item.answer,
     },
   })),
 };
@@ -129,7 +157,12 @@ export default function Faq() {
         schema={faqSchema}
         preloadImage="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920"
       />
-      <PageHero eyebrow="FAQ" title="Frequently Asked Questions" image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920" height={340} />
+      <PageHero
+        eyebrow="FAQ"
+        title="Frequently Asked Questions"
+        image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920"
+        height={340}
+      />
       <section className="bg-[var(--cream-parchment)] py-16">
         <div className="mx-auto max-w-3xl space-y-12 px-6">
           {sections.map((s) => (
@@ -137,8 +170,14 @@ export default function Faq() {
               <h2 className="mb-4 text-2xl font-semibold">{s.title}</h2>
               <Accordion type="single" collapsible className="rounded-xl bg-card px-4 shadow-card">
                 {s.qa.map(([q, a]) => (
-                  <AccordionItem key={q} value={q} className="border-b border-[var(--soft-sand)] last:border-0">
-                    <AccordionTrigger className="text-left text-base font-semibold">{q}</AccordionTrigger>
+                  <AccordionItem
+                    key={q}
+                    value={q}
+                    className="border-b border-[var(--soft-sand)] last:border-0"
+                  >
+                    <AccordionTrigger className="text-left text-base font-semibold">
+                      {q}
+                    </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">{a}</AccordionContent>
                   </AccordionItem>
                 ))}
@@ -150,7 +189,3 @@ export default function Faq() {
     </>
   );
 }
-
-
-
-

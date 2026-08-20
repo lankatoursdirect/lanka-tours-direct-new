@@ -102,7 +102,7 @@ export function ReviewsCarousel() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="reveal relative">
           <SectionHeader eyebrow="Social Proof" title="What Travellers Say About Their Journey" />
-          
+
           <div className="mb-10 md:mb-12 -mt-4 md:-mt-6 flex justify-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 shadow-card border border-[var(--soft-sand)]">
               <Star className="fill-[var(--ceylon-gold)] text-[var(--ceylon-gold)]" size={18} />
@@ -114,34 +114,31 @@ export function ReviewsCarousel() {
 
       {/* Carousel Viewport Container */}
       <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-20 reveal">
-        <div 
-          ref={carouselRef}
-          className="relative mt-8 md:mt-12 overflow-hidden"
-        >
-          <div 
+        <div ref={carouselRef} className="relative mt-8 md:mt-12 overflow-hidden">
+          <div
             className={`flex ${isTransitioning ? "transition-transform duration-700 ease-in-out" : "transition-none"}`}
             onTransitionEnd={handleInfiniteReset}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             style={{
               gap: "24px",
-              transform: cardWidthPx > 0
-                ? `translateX(-${displayIndex * (cardWidthPx + 24)}px)`
-                : "none",
+              transform:
+                cardWidthPx > 0 ? `translateX(-${displayIndex * (cardWidthPx + 24)}px)` : "none",
             }}
           >
             {list.map((r, i) => (
-              <div 
-                key={`${r.name}-${i}`} 
+              <div
+                key={`${r.name}-${i}`}
                 className="shrink-0 flex-shrink-0"
                 style={{
-                  width: cardWidthPx > 0
-                    ? `${cardWidthPx}px`
-                    : slidesPerView === 4
-                    ? "calc(25% - 18px)"
-                    : slidesPerView === 2
-                    ? "calc(50% - 12px)"
-                    : "100%",
+                  width:
+                    cardWidthPx > 0
+                      ? `${cardWidthPx}px`
+                      : slidesPerView === 4
+                        ? "calc(25% - 18px)"
+                        : slidesPerView === 2
+                          ? "calc(50% - 12px)"
+                          : "100%",
                 }}
               >
                 <ReviewCard r={r} />
@@ -151,7 +148,11 @@ export function ReviewsCarousel() {
         </div>
 
         {/* Indicators */}
-        <div className="mt-10 md:mt-16 flex justify-center gap-3">
+        <div
+          className="mt-10 md:mt-16 flex justify-center gap-1"
+          role="tablist"
+          aria-label="Reviews carousel"
+        >
           {originalList.map((_, i) => {
             const active = (displayIndex - offset + total) % total === i;
             return (
@@ -162,7 +163,9 @@ export function ReviewsCarousel() {
                   setDisplayIndex(i + offset);
                 }}
                 aria-label={`Go to slide ${i + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                role="tab"
+                aria-selected={active}
+                className={`h-2 rounded-full p-2.5 transition-all duration-300 ${
                   active ? "w-10 bg-[var(--ceylon-gold)]" : "w-2 bg-gray-300 hover:bg-gray-400"
                 }`}
               />

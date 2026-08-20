@@ -7,13 +7,13 @@ import { tours } from "@/data/tours";
 const toursSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "url": "https://lankatoursdirect.com/tours",
-  "name": "Private Sri Lanka Tour Packages",
-  "itemListElement": tours.map((t, i) => ({
+  url: "https://lankatoursdirect.com/tours",
+  name: "Private Sri Lanka Tour Packages",
+  itemListElement: tours.map((t, i) => ({
     "@type": "ListItem",
-    "position": i + 1,
-    "url": `https://lankatoursdirect.com/tours/${t.slug}`,
-    "name": t.title,
+    position: i + 1,
+    url: `https://lankatoursdirect.com/tours/${t.slug}`,
+    name: t.title,
   })),
 };
 
@@ -35,7 +35,6 @@ export default function Tours() {
       />
       <section className="bg-[var(--cream-parchment)] pb-16 pt-10">
         <div className="mx-auto max-w-7xl px-6">
-
           <h2 className="sr-only">All Sri Lanka Private Tour Packages</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {tours.map((t) => (
@@ -47,7 +46,3 @@ export default function Tours() {
     </>
   );
 }
-
-
-
-

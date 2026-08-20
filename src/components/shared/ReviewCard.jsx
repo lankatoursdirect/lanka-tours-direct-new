@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { StarRating } from "./StarRating";
 
 function emojiToCountryCode(emoji) {
@@ -12,8 +13,12 @@ function emojiToCountryCode(emoji) {
   }
 }
 
-export function ReviewCard({ r }) {
-  const initials = r.name.split(" ").map((n) => n[0]).slice(0, 2).join("");
+export const ReviewCard = memo(function ReviewCard({ r }) {
+  const initials = r.name
+    .split(" ")
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join("");
   return (
     <article className="relative h-full overflow-hidden rounded-xl bg-card p-7 shadow-card">
       <span
@@ -37,6 +42,7 @@ export function ReviewCard({ r }) {
                 src={`https://flagcdn.com/w40/${emojiToCountryCode(r.flag)}.png`}
                 srcSet={`https://flagcdn.com/w80/${emojiToCountryCode(r.flag)}.png 2x`}
                 width="20"
+                height="14"
                 alt={r.country}
                 className="ml-2 inline-block rounded-[2px] border border-white/10 shadow-[0_1px_3px_rgba(0,0,0,0.15)] align-middle"
               />
@@ -49,10 +55,4 @@ export function ReviewCard({ r }) {
       </div>
     </article>
   );
-}
-
-
-
-
-
-
+});

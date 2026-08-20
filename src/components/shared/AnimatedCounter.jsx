@@ -11,4 +11,3 @@ export function AnimatedCounter({ value, suffix = "", prefix = "", decimals = 0 
     </span>
   );
 }
-

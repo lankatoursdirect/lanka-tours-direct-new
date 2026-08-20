@@ -8,8 +8,9 @@ export function SectionHeader({ eyebrow, title, subtitle, light = false, align =
       >
         {title}
       </h2>
-      {subtitle && <p className={`text-lg ${light ? "text-white/75" : "text-muted-foreground"}`}>{subtitle}</p>}
+      {subtitle && (
+        <p className={`text-lg ${light ? "text-white/75" : "text-muted-foreground"}`}>{subtitle}</p>
+      )}
     </div>
   );
 }
-

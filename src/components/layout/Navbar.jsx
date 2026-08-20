@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { whatsappLink } from "@/components/shared/WhatsAppButton";
@@ -20,6 +20,8 @@ export function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === "/";
+  const menuRef = useRef(null);
+  const toggleRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -39,6 +41,48 @@ export function Navbar() {
     };
   }, [open]);
 
+  const trapFocus = useCallback(
+    (e) => {
+      if (!open || !menuRef.current) return;
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const focusable = menuRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    },
+    [open],
+  );
+
+  useEffect(() => {
+    if (open) {
+      const timer = setTimeout(() => {
+        const first = menuRef.current?.querySelector(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        );
+        first?.focus();
+      }, 100);
+      document.addEventListener("keydown", trapFocus);
+      return () => {
+        clearTimeout(timer);
+        document.removeEventListener("keydown", trapFocus);
+      };
+    }
+  }, [open, trapFocus]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
@@ -51,7 +95,9 @@ export function Navbar() {
         <Link
           to="/"
           className={`relative flex items-center transition-all duration-500 ${
-            scrolled || open || !isHome ? "h-10 md:h-[88px] lg:h-14 w-32 md:w-[265px] lg:w-80" : "h-12 md:h-[112px] lg:h-20 w-40 md:w-[325px] lg:w-96"
+            scrolled || open || !isHome
+              ? "h-10 md:h-[88px] lg:h-14 w-32 md:w-[265px] lg:w-80"
+              : "h-12 md:h-[112px] lg:h-20 w-40 md:w-[325px] lg:w-96"
           }`}
           onClick={(e) => {
             e.preventDefault();
@@ -77,6 +123,7 @@ export function Navbar() {
               key={l.to}
               to={l.to}
               end={l.to === "/"}
+              aria-current={({ isActive }) => (isActive ? "page" : undefined)}
               className={({ isActive }) =>
                 `group relative font-accent text-[11px] font-medium uppercase tracking-[0.2em] transition-all duration-300 hover:text-[var(--ceylon-gold)] hover:font-semibold ${
                   isActive ? "text-[var(--ceylon-gold)] font-bold" : "text-white/80"
@@ -105,6 +152,7 @@ export function Navbar() {
 
         {/* Mobile Toggle */}
         <button
+          ref={toggleRef}
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
           className="relative z-50 p-2 text-white transition-colors hover:text-[var(--ceylon-gold)] lg:hidden"
@@ -115,8 +163,12 @@ export function Navbar() {
 
       {/* Full-Screen Mobile Sidebar Overlay */}
       <div
+        ref={menuRef}
+        role="dialog"
+        aria-modal={open ? "true" : undefined}
+        aria-label="Navigation menu"
         className={`fixed inset-0 z-40 flex h-screen w-full flex-col items-center justify-center bg-[var(--jungle-deep)] transition-all duration-700 ease-in-out lg:hidden ${
-          open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+          open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
         }`}
       >
         <div className="flex w-full flex-col items-center gap-8 px-10">

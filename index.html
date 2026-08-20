@@ -18,12 +18,15 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Lanka Tours Direct" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content="https://lankatoursdirect.com/logo.png" />
+    <meta property="og:image" content="https://www.lankatoursdirect.com/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lanka Tours Direct | Premium Private Sri Lanka Tours" />
+    <meta name="twitter:description" content="Experience Sri Lanka your way with Lanka Tours Direct. Private guided tours to Sigiriya, Ella, Yala, Mirissa & beyond. Bespoke itineraries crafted by expert local guide Vishva." />
+    <meta name="twitter:image" content="https://www.lankatoursdirect.com/og-image.jpg" />
 
     <!-- Global Structured Data: TravelAgency -->
     <script type="application/ld+json">
@@ -32,9 +35,9 @@
       "@type": "TravelAgency",
       "name": "Lanka Tours Direct",
       "description": "Premium private tours across Sri Lanka led by expert local guide Vishva.",
-      "url": "https://lankatoursdirect.com",
-      "logo": "https://lankatoursdirect.com/logo.png",
-      "image": "https://lankatoursdirect.com/og-image.jpg",
+      "url": "https://www.lankatoursdirect.com",
+      "logo": "https://www.lankatoursdirect.com/logo.png",
+      "image": "https://www.lankatoursdirect.com/og-image.jpg",
       "telephone": "+94763300443",
       "email": "info@lankatoursdirect.com",
       "address": {
@@ -63,16 +66,23 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@0,400;0,700&family=Montserrat:wght@0,400;0,600&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@0,400;0,700&family=Montserrat:wght@0,400;0,600&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@0,400;0,700&family=Montserrat:wght@0,400;0,600&display=swap"></noscript>
-    <!-- LCP hero image preload is handled per-page by the SEO component -->
+    <!-- LCP hero image preload -->
+    <link rel="preload" as="image" href="https://www.lankatoursdirect.com/tea-plantation.webp" fetchpriority="high" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KPYM9FS8Q"></script>
+    <!-- Google tag (gtag.js) — deferred to window.load -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-5KPYM9FS8Q');
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5KPYM9FS8Q';
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5KPYM9FS8Q');
+        }, 1500);
+      });
     </script>
   </head>
   <body>

@@ -43,7 +43,6 @@ import ellaRockDest from "@/assets/images/destinations/ella-rock.webp";
 //    note          string  (optional)
 //    activities    string[]
 
-
 // ─── 5 DAYS / 4 NIGHTS — THE ISLAND SAMPLER ─────────────────────────────────
 const islandSampler = {
   slug: "island-sampler",
@@ -95,8 +94,7 @@ const islandSampler = {
       driveTime: "~5 hrs total including stops through hill country",
       bestMoment:
         "A blue train rolling across the Nine Arch Bridge through jungle canopy — late afternoon light is ideal. Stand on the upper path above the bridge and wait for the 6:41 PM train. The sound of the whistle echoing through the valley just before it appears from the tunnel is something every visitor remembers long after they leave.",
-      note:
-        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Kandy through Nuwara Eliya to Nanu Oya, where you board the train for the most scenic 2-hour section into Ella. Train travel is subject to Sri Lanka Railways operational conditions and seat availability — we confirm and book all seats in advance.",
+      note: "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Kandy through Nuwara Eliya to Nanu Oya, where you board the train for the most scenic 2-hour section into Ella. Train travel is subject to Sri Lanka Railways operational conditions and seat availability — we confirm and book all seats in advance.",
       activities: [
         "Drive through emerald tea country — rolling hills and misty valleys",
         "Tea plantation & factory visit — see Ceylon tea from leaf to cup",
@@ -179,7 +177,6 @@ const islandSampler = {
   ],
   featured: true,
 };
-
 
 // ─── 7 DAYS / 6 NIGHTS — DISCOVER SRI LANKA ─────────────────────────────────
 const discoverSriLanka7 = {
@@ -286,8 +283,7 @@ const discoverSriLanka7 = {
       title: "Nuwara Eliya → Nanu Oya → Ella",
       overnight: "Ella",
       driveTime: "~1 hr drive Nuwara Eliya to Nanu Oya station; ~2 hr train to Ella",
-      note:
-        "The hill-country scenic train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Nuwara Eliya to Nanu Oya station and board the train there for the most spectacular section of the journey. Train travel is subject to Sri Lanka Railways operational conditions — we verify schedules and book all seats well in advance.",
+      note: "The hill-country scenic train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Nuwara Eliya to Nanu Oya station and board the train there for the most spectacular section of the journey. Train travel is subject to Sri Lanka Railways operational conditions — we verify schedules and book all seats well in advance.",
       bestMoment:
         "Hanging out of the open train door as the highland scenery scrolls past — one of the world's great short rail journeys. The stretch from Nanu Oya through Ohiya and down through the cloud forest to Ella takes you past waterfalls, over colonial-era viaducts, and through tea country so green it barely seems real. Keep your camera ready for the views from Idalgashinna as the train descends toward the southern plains.",
       activities: [
@@ -357,7 +353,6 @@ const discoverSriLanka7 = {
   ],
   featured: true,
 };
-
 
 // ─── 10 DAYS / 9 NIGHTS ──────────────────────────────────────────────────────
 const sriLanka10Days = {
@@ -463,8 +458,7 @@ const sriLanka10Days = {
       title: "Kandy → Nuwara Eliya → Nanu Oya → Ella",
       overnight: "Ella",
       driveTime: "~3 hrs drive Kandy to Nanu Oya via Nuwara Eliya; ~2 hrs train Nanu Oya to Ella",
-      note:
-        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive through Nuwara Eliya to Nanu Oya station where you board the scenic train. The route passes Pattipola — the highest railway station in Sri Lanka at 1,898 m — on the way to Ella. Train travel is subject to Sri Lanka Railways operational conditions. We verify schedules and book all seats well in advance of your tour date.",
+      note: "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive through Nuwara Eliya to Nanu Oya station where you board the scenic train. The route passes Pattipola — the highest railway station in Sri Lanka at 1,898 m — on the way to Ella. Train travel is subject to Sri Lanka Railways operational conditions. We verify schedules and book all seats well in advance of your tour date.",
       bestMoment:
         "Watching the blue locomotive emerge from mist-covered jungle as it crosses the Nine Arch Bridge. Position yourself on the upper viewing path about 20 minutes before the 6:41 PM crossing. The jungle is backlit by the fading sun, then the whistle sounds from inside the Demodara tunnel, and the train appears — a moment that defines the Sri Lanka everyone comes to find.",
       activities: [
@@ -578,7 +572,6 @@ const sriLanka10Days = {
   ],
   featured: true,
 };
-
 
 // ─── 11 DAYS / 10 NIGHTS — ADVENTURE TOUR ────────────────────────────────────
 const adventureTour11Days = {
@@ -742,8 +735,7 @@ const adventureTour11Days = {
       title: "Ella Sightseeing",
       overnight: "Ella",
       driveTime: "Walking / tuk-tuk locally",
-      note:
-        "The scenic hill-country train currently operates on the Nanu Oya → Ella segment. For a short local train experience within the Ella area, we can arrange a hop between Ella and Demodara stations to experience the famous loop tunnel. Subject to Sri Lanka Railways operational conditions.",
+      note: "The scenic hill-country train currently operates on the Nanu Oya → Ella segment. For a short local train experience within the Ella area, we can arrange a hop between Ella and Demodara stations to experience the famous loop tunnel. Subject to Sri Lanka Railways operational conditions.",
       bestMoment:
         "The Flying Ravana zipline — 1.2 km across a jungle valley at 80 km/h. You launch from a platform on one forested ridge and fly across a canopy of jungle to the opposite hillside. Halfway across, with the valley floor 150 metres below you and nothing but jungle in every direction, you experience a few seconds of absolute silence and complete exhilaration that is unlike anything else in Sri Lanka.",
       activities: [
@@ -814,14 +806,14 @@ const adventureTour11Days = {
   featured: true,
 };
 
-
 // ─── 14 DAYS / 13 NIGHTS ─────────────────────────────────────────────────────
 const sriLanka14Days = {
   slug: "sri-lanka-14-days",
   title: "Sri Lanka 14 Days / 13 Nights",
   titleMain: "Sri Lanka",
   titleAccent: "14 Days",
-  tagline: "The ultimate Sri Lanka — ancient cities, wild safaris, hill country, and golden coasts.",
+  tagline:
+    "The ultimate Sri Lanka — ancient cities, wild safaris, hill country, and golden coasts.",
   categoryDisplay: "Grand Island Circuit",
   category: "classic-circuit",
   duration: 14,
@@ -1092,7 +1084,6 @@ const sriLanka14Days = {
   featured: true,
 };
 
-
 // ─── 20 DAYS / 19 NIGHTS — RELAXATION & HIGHLANDS ───────────────────────────
 const sriLanka20Days = {
   slug: "sri-lanka-20-days",
@@ -1295,8 +1286,7 @@ const sriLanka20Days = {
       title: "Ella → Hatton (Scenic Train Journey)",
       overnight: "Hatton",
       driveTime: "Scenic train journey Ella → Hatton (~3.5 hrs)",
-      note:
-        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment. For this day we travel in the reverse direction from Ella toward the highlands. Train availability on this segment should be confirmed closer to your tour date — we handle all bookings and seat reservations and will advise the best available option.",
+      note: "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment. For this day we travel in the reverse direction from Ella toward the highlands. Train availability on this segment should be confirmed closer to your tour date — we handle all bookings and seat reservations and will advise the best available option.",
       bestMoment:
         "The train crossing the Demodara Loop — a unique piece of railway engineering where the track spirals inside the mountain and emerges at a point 30 metres below where it entered. You can look out of the window and see the tunnel entrance above you that you passed through just minutes ago. It is the most extraordinary piece of railway engineering in Asia and it happens right in the middle of the most scenic stretch of the journey.",
       activities: [
@@ -1449,7 +1439,6 @@ const sriLanka20Days = {
   ],
   featured: false,
 };
-
 
 // ─── 22 DAYS / 21 NIGHTS — THE GRAND ISLAND CIRCUIT ─────────────────────────
 const sriLanka22Days = {
@@ -1728,8 +1717,7 @@ const sriLanka22Days = {
       title: "Nuwara Eliya → Nanu Oya → Ella (Scenic Train)",
       overnight: "Ella",
       driveTime: "~45 mins drive Nuwara Eliya to Nanu Oya; ~2 hrs train to Ella",
-      note:
-        "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Nuwara Eliya to Nanu Oya station and board the scenic train. The route passes Pattipola — the highest railway station in Sri Lanka at 1,898 m — on the way to Ella. Train travel is subject to Sri Lanka Railways operational conditions. We book all seats well in advance.",
+      note: "The scenic hill-country train currently operates reliably on the Nanu Oya → Ella segment (via Ohiya, Idalgashinna, Haputale, Bandarawela). We drive you from Nuwara Eliya to Nanu Oya station and board the scenic train. The route passes Pattipola — the highest railway station in Sri Lanka at 1,898 m — on the way to Ella. Train travel is subject to Sri Lanka Railways operational conditions. We book all seats well in advance.",
       bestMoment:
         "The view from the open train door somewhere between Idalgashinna and Haputale — the train hugs the edge of the escarpment and below you the land drops away for hundreds of metres into a valley of jungle and tea estates. The breeze is cool, the sky is blue above the cloud line, and you are moving slowly enough to take it all in. This is the moment that everyone who takes this train tries to describe and never quite manages to.",
       activities: [
@@ -1857,17 +1845,16 @@ const sriLanka22Days = {
   featured: false,
 };
 
-
 // ─── EXPORTS ──────────────────────────────────────────────────────────────────
 
 export const tours = [
-  islandSampler,         //  5 days
-  discoverSriLanka7,     //  7 days
-  sriLanka10Days,        // 10 days
-  adventureTour11Days,   // 11 days
-  sriLanka14Days,        // 14 days
-  sriLanka20Days,        // 20 days
-  sriLanka22Days,        // 22 days
+  islandSampler, //  5 days
+  discoverSriLanka7, //  7 days
+  sriLanka10Days, // 10 days
+  adventureTour11Days, // 11 days
+  sriLanka14Days, // 14 days
+  sriLanka20Days, // 20 days
+  sriLanka22Days, // 22 days
 ];
 
 export const tourCategories = [

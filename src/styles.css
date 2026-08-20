@@ -49,8 +49,8 @@
 :root {
   --radius: 12px;
 
-  --ceylon-gold: hsl(35 65% 51%);
-  --ceylon-gold-deep: hsl(35 65% 40%);
+  --ceylon-gold: hsl(35 65% 44%);
+  --ceylon-gold-deep: hsl(35 65% 35%);
   --jungle-deep: hsl(150 36% 17%);
   --jungle-darker: hsl(150 40% 10%);
   --spice-terracotta: hsl(18 54% 46%);
@@ -106,7 +106,12 @@
     border-color: var(--color-border);
   }
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
   body {
     background-color: var(--color-background);
@@ -132,6 +137,10 @@
   }
   .font-display {
     font-family: var(--font-display);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ceylon-gold);
+    outline-offset: 2px;
   }
   .label-eyebrow {
     font-family: var(--font-accent);
@@ -222,10 +231,12 @@
 @keyframes pulse-glow {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+    transform: scale(1);
+    opacity: 1;
   }
   50% {
-    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+    transform: scale(1.08);
+    opacity: 0.85;
   }
 }
 @keyframes float-up {
@@ -276,3 +287,112 @@
 .delay-500 {
   animation-delay: 0.85s;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* DestinationDetail page styles */
+@keyframes heroImgZoom {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1); }
+}
+@keyframes goldLineDraw {
+  from { width: 0; }
+  to   { width: 3rem; }
+}
+@keyframes floatGlow {
+  0%, 100% { opacity: 0.06; transform: scale(1); }
+  50%       { opacity: 0.11; transform: scale(1.15); }
+}
+.dd-hero-img {
+  animation: heroImgZoom 1.8s cubic-bezier(0.22,1,0.36,1) both;
+}
+.dd-card-hover {
+  transition: transform 0.28s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.28s ease;
+}
+.dd-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(15,30,20,0.12);
+}
+.dd-pill-hover {
+  transition: background 0.22s ease, color 0.22s ease,
+              border-color 0.22s ease, transform 0.22s ease;
+}
+.dd-pill-hover:hover {
+  background: var(--ceylon-gold) !important;
+  color: #fff !important;
+  border-color: var(--ceylon-gold) !important;
+  transform: translateY(-2px);
+}
+.dd-btn-primary {
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.dd-btn-primary:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212,174,97,0.35);
+}
+.dd-btn-ghost {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.dd-btn-ghost:hover {
+  background: rgba(255,255,255,0.12) !important;
+  transform: translateY(-2px);
+}
+.dd-place-card {
+  transition: transform 0.28s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.28s ease, border-color 0.2s ease;
+}
+.dd-place-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(15,30,20,0.10);
+  border-color: var(--ceylon-gold) !important;
+}
+.dd-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+              transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.dd-reveal.dd-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.dd-reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+              transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.dd-reveal-left.dd-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.dd-reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+.dd-reveal-scale.dd-revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+.dd-gold-line {
+  display: block;
+  height: 2px;
+  background: var(--ceylon-gold);
+  width: 0;
+  transition: width 0.7s cubic-bezier(0.22,1,0.36,1);
+  margin-top: 10px;
+  border-radius: 1px;
+}
+.dd-gold-line.dd-revealed { width: 3rem; }
+.stat-pill-border { border-right: 1px solid rgba(255,255,255,0.08); }

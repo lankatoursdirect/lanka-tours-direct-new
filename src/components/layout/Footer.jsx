@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { whatsappLink } from "@/components/shared/WhatsAppButton";
+import { PHONE_NUMBER, PHONE_DISPLAY } from "@/lib/config";
 import { Facebook, Instagram, MessageCircle, Mail, MapPin, Phone, Star } from "lucide-react";
 
 // ─── Logo asset from /public ────────────────────────────────────────────────
@@ -8,7 +9,6 @@ const LOGO_SRC = "/logo.png";
 export function Footer() {
   return (
     <footer className="bg-[hsl(20_30%_8%)] text-white/60">
-
       {/* ── Mobile-only WhatsApp CTA Strip ──────────────────────────────── */}
       <div className="bg-[var(--ceylon-gold)] px-6 py-4 lg:hidden">
         <a
@@ -26,7 +26,6 @@ export function Footer() {
       {/* ── Main Footer Body ─────────────────────────────────────────────── */}
       <div className="mx-auto max-w-7xl px-6 py-16 lg:py-24">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-5">
-
           {/* Col 1 · Brand & Socials */}
           <div className="flex flex-col gap-6">
             <div>
@@ -35,13 +34,15 @@ export function Footer() {
                 <img
                   src={LOGO_SRC}
                   alt="Lanka Tours Direct"
+                  width="200"
+                  height="68"
                   className="h-14 w-auto object-contain"
                   loading="lazy"
                 />
               </Link>
               <p className="mt-4 max-w-xs text-sm leading-relaxed">
-                Premium private tours across Sri Lanka. Experience the island
-                exactly how you imagined it.
+                Premium private tours across Sri Lanka. Experience the island exactly how you
+                imagined it.
               </p>
             </div>
 
@@ -108,10 +109,7 @@ export function Footer() {
                 ["FAQ", "/faq"],
               ].map(([label, href]) => (
                 <li key={href}>
-                  <Link
-                    to={href}
-                    className="transition-colors duration-150 hover:text-white"
-                  >
+                  <Link to={href} className="transition-colors duration-150 hover:text-white">
                     {label}
                   </Link>
                 </li>
@@ -135,10 +133,7 @@ export function Footer() {
                 ["Custom Itinerary", "/contact"],
               ].map(([label, href]) => (
                 <li key={href}>
-                  <Link
-                    to={href}
-                    className="transition-colors duration-150 hover:text-white"
-                  >
+                  <Link to={href} className="transition-colors duration-150 hover:text-white">
                     {label}
                   </Link>
                 </li>
@@ -162,10 +157,7 @@ export function Footer() {
                 ["Nuwara Eliya", "/destinations/nuwara-eliya"],
               ].map(([label, href]) => (
                 <li key={href}>
-                  <Link
-                    to={href}
-                    className="transition-colors duration-150 hover:text-white"
-                  >
+                  <Link to={href} className="transition-colors duration-150 hover:text-white">
                     {label}
                   </Link>
                 </li>
@@ -183,11 +175,8 @@ export function Footer() {
               <ul className="flex flex-col gap-4 text-sm">
                 <li className="flex items-center gap-3">
                   <Phone size={15} className="shrink-0 text-[var(--ceylon-gold)]" />
-                  <a
-                    href="tel:+94763300443"
-                    className="transition-colors hover:text-white"
-                  >
-                    +94 76 330 0443
+                  <a href={`tel:${PHONE_NUMBER}`} className="transition-colors hover:text-white">
+                    +{PHONE_DISPLAY}
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
@@ -201,7 +190,14 @@ export function Footer() {
                 </li>
                 <li className="flex items-start gap-3">
                   <MapPin size={15} className="mt-0.5 shrink-0 text-[var(--ceylon-gold)]" />
-                  <a href="https://www.google.com/maps/place/Lanka+Tours+Direct.com/@6.7081178,79.9617389,17z/data=!4m6!3m5!1s0x3ae2495fddc92a29:0xf0801d880454465e!8m2!3d6.7081178!4d79.9617389!16s%2Fg%2F11zcjhck66?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer" className="hover:text-[var(--ceylon-gold)] transition-colors">Panadura, Sri Lanka</a>
+                  <a
+                    href="https://www.google.com/maps/place/Lanka+Tours+Direct.com/@6.7081178,79.9617389,17z/data=!4m6!3m5!1s0x3ae2495fddc92a29:0xf0801d880454465e!8m2!3d6.7081178!4d79.9617389!16s%2Fg%2F11zcjhck66?entry=ttu&g_ep=EgoyMDI2MDYwMS4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-[var(--ceylon-gold)] transition-colors"
+                  >
+                    Panadura, Sri Lanka
+                  </a>
                 </li>
               </ul>
             </div>
@@ -225,12 +221,12 @@ export function Footer() {
                     />
                   ))}
                 </div>
-                <div className="text-[9px] font-bold uppercase tracking-wider text-white/50">
+                <div className="text-[9px] font-bold uppercase tracking-wider text-white/60">
                   300+ Reviews
                 </div>
               </div>
               <div>
-                <div className="text-[9px] font-bold uppercase tracking-widest text-white/40">
+                <div className="text-[9px] font-bold uppercase tracking-widest text-white/50">
                   Review us on
                 </div>
                 <div className="font-display text-sm font-semibold text-white group-hover:text-[var(--ceylon-gold)] transition-colors">
@@ -255,9 +251,13 @@ export function Footer() {
             <p className="text-[10px] uppercase tracking-widest text-white/50">
               © {new Date().getFullYear()} Lanka Tours Direct · Expert Sri Lanka Private Tours
             </p>
-            <div className="flex gap-6 text-[10px] uppercase tracking-widest text-white/40">
-              <Link to="/faq" className="hover:text-white/70 transition-colors">FAQ</Link>
-              <Link to="/contact" className="hover:text-white/70 transition-colors">Contact</Link>
+            <div className="flex gap-6 text-[10px] uppercase tracking-widest text-white/50">
+              <Link to="/faq" className="hover:text-white/70 transition-colors">
+                FAQ
+              </Link>
+              <Link to="/contact" className="hover:text-white/70 transition-colors">
+                Contact
+              </Link>
             </div>
           </div>
         </div>

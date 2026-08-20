@@ -4,7 +4,7 @@ export function SEO({
   title,
   description,
   canonical,
-  ogImage = "https://lankatoursdirect.com/logo.png",
+  ogImage = "https://www.lankatoursdirect.com/og-image.jpg",
   ogImageWidth = 1200,
   ogImageHeight = 630,
   ogType = "website",
@@ -14,7 +14,9 @@ export function SEO({
 }) {
   const siteName = "Lanka Tours Direct";
   const fullTitle = title ? `${title} | ${siteName}` : siteName;
-  const ogImageUrl = ogImage?.startsWith("http") ? ogImage : `https://lankatoursdirect.com${ogImage}`;
+  const ogImageUrl = ogImage?.startsWith("http")
+    ? ogImage
+    : `https://www.lankatoursdirect.com${ogImage}`;
 
   return (
     <Helmet>
@@ -28,6 +30,7 @@ export function SEO({
       <meta property="og:image" content={ogImageUrl} />
       <meta property="og:image:width" content={String(ogImageWidth)} />
       <meta property="og:image:height" content={String(ogImageHeight)} />
+      <meta property="og:image:alt" content={fullTitle} />
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={siteName} />
 
@@ -38,15 +41,9 @@ export function SEO({
 
       {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-      {preloadImage && (
-        <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
-      )}
+      {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
 
-      {schema && (
-        <script type="application/ld+json">
-          {JSON.stringify(schema)}
-        </script>
-      )}
+      {schema && <script type="application/ld+json">{JSON.stringify(schema)}</script>}
     </Helmet>
   );
 }

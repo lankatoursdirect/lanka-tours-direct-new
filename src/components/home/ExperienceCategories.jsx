@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import { experienceCategories } from "@/data/experiences";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import * as Icons from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function ExperienceCategoriesSection() {
   const [displayIndex, setDisplayIndex] = useState(0);
@@ -107,13 +107,10 @@ export function ExperienceCategoriesSection() {
         <div className="reveal">
           <SectionHeader title="Not Just Tours. Experiences." />
         </div>
-        
+
         {/* Container: Carousel viewport on mobile/tablet, Grid layout on desktop */}
-        <div 
-          ref={carouselRef}
-          className="reveal relative mt-10 overflow-hidden"
-        >
-          <div 
+        <div ref={carouselRef} className="reveal relative mt-10 overflow-hidden">
+          <div
             className={
               isCarousel
                 ? `flex ${isTransitioning ? "transition-transform duration-700 ease-in-out" : "transition-none"}`
@@ -136,39 +133,39 @@ export function ExperienceCategoriesSection() {
                 key={`${c.title}-${i}`}
                 to="/experiences"
                 className="group relative h-[280px] shrink-0 overflow-hidden rounded-2xl transition-all duration-500 md:h-[320px] flex-shrink-0"
-                style={
-                  isCarousel && cardWidthPx > 0
-                    ? { width: `${cardWidthPx}px` }
-                    : {}
-                }
+                style={isCarousel && cardWidthPx > 0 ? { width: `${cardWidthPx}px` } : {}}
               >
                 {/* Background Image */}
                 <img
                   src={c.image}
                   alt={c.title}
+                  loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                
+
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-300 group-hover:opacity-90" />
-                
+
                 {/* Content */}
                 <div className="absolute inset-x-0 bottom-0 p-6 transition-all duration-500 group-hover:bg-black/20">
                   <div className="flex flex-col">
                     {/* Title always visible, moves up on hover */}
-                    <h4 className="font-display text-xl leading-tight text-white transition-transform duration-500 group-hover:-translate-y-4" style={{ color: "white" }}>
+                    <h3
+                      className="font-display text-xl leading-tight text-white transition-transform duration-500 group-hover:-translate-y-4"
+                      style={{ color: "white" }}
+                    >
                       {c.title}
-                    </h4>
-                    
+                    </h3>
+
                     {/* Revealable content */}
                     <div className="max-h-0 overflow-hidden transition-all duration-500 group-hover:max-h-32">
                       <div className="pt-2 opacity-0 transition-all duration-500 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
                         <p className="text-xs font-light tracking-wide text-white/90">
                           {c.tagline}
                         </p>
-                        
+
                         <div className="mt-4 flex items-center gap-2 text-[10px] font-accent uppercase tracking-widest text-[var(--ceylon-gold)]">
-                          Explore Experience <Icons.ArrowRight size={12} />
+                          Explore Experience <ArrowRight size={12} />
                         </div>
                       </div>
                     </div>
@@ -178,10 +175,10 @@ export function ExperienceCategoriesSection() {
             ))}
           </div>
         </div>
-        
+
         {/* Scroll Indicator (Dots) */}
         {isCarousel && (
-          <div className="mt-8 flex justify-center gap-2">
+          <div className="mt-8 flex justify-center gap-1">
             {originalList.map((_, i) => (
               <button
                 key={i}
@@ -189,8 +186,10 @@ export function ExperienceCategoriesSection() {
                   setIsTransitioning(true);
                   setDisplayIndex(i + offset);
                 }}
-                className={`h-1 rounded-full transition-all duration-300 ${
-                  ((displayIndex - offset + total) % total) === i ? "w-8 bg-[var(--ceylon-gold)]" : "w-2 bg-gray-300 hover:bg-gray-400"
+                className={`h-1 rounded-full p-2.5 transition-all duration-300 ${
+                  (displayIndex - offset + total) % total === i
+                    ? "w-8 bg-[var(--ceylon-gold)]"
+                    : "w-2 bg-gray-300 hover:bg-gray-400"
                 }`}
                 aria-label={`Go to slide ${i + 1}`}
               />

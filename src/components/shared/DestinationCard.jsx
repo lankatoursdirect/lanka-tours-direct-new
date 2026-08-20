@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
-export function DestinationCard({ d, className = "" }) {
+export const DestinationCard = memo(function DestinationCard({ d, className = "" }) {
   return (
     <Link
       to={`/destinations/${d.slug}`}
@@ -14,11 +15,11 @@ export function DestinationCard({ d, className = "" }) {
           objectPosition: "center",
         }}
         loading="lazy"
+        decoding="async"
         width="400"
         height="260"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity group-hover:opacity-80" />
-      
 
       <div className="absolute inset-x-0 bottom-0 z-10 p-5 transition-transform duration-500">
         <div className="mb-2 h-0.5 w-0 bg-[var(--ceylon-gold)] transition-all duration-500 group-hover:w-12" />
@@ -31,4 +32,4 @@ export function DestinationCard({ d, className = "" }) {
       </div>
     </Link>
   );
-}
+});

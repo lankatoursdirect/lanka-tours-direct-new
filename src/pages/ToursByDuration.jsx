@@ -6,11 +6,31 @@ import { tours } from "@/data/tours";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 
 const DURATION_MAP = {
-  3: { title: "3 Day Sri Lanka Tour Packages", description: "Perfect 3-day Sri Lanka tours for short breaks. Visit Sigiriya, Dambulla and Kandy with a private guide. Ideal for stopovers or add-ons to a longer journey." },
-  5: { title: "5 Day Sri Lanka Tour Packages", description: "5-day private Sri Lanka tours covering the cultural triangle and hill country. Sigiriya, Polonnaruwa, Kandy and Ella with expert guide Vishva." },
-  7: { title: "7 Day Sri Lanka Tour Packages", description: "The perfect 7-day Sri Lanka itinerary. Cover culture, wildlife and beach — Sigiriya, Yala safari, Mirissa whale watching and Galle Fort." },
-  10: { title: "10 Day Sri Lanka Itinerary — Private Tour Package", description: "Our 10-day Sri Lanka itineraries give you time to breathe. Cultural triangle, hill country train, southern safari and Indian Ocean beaches." },
-  14: { title: "14 Day Sri Lanka Tour — 2 Week Private Package", description: "The ultimate 14-day Sri Lanka tour. Two weeks to explore every region — north, south, east, hill country and coast — with a dedicated private guide." },
+  3: {
+    title: "3 Day Sri Lanka Tour Packages",
+    description:
+      "Perfect 3-day Sri Lanka tours for short breaks. Visit Sigiriya, Dambulla and Kandy with a private guide. Ideal for stopovers or add-ons to a longer journey.",
+  },
+  5: {
+    title: "5 Day Sri Lanka Tour Packages",
+    description:
+      "5-day private Sri Lanka tours covering the cultural triangle and hill country. Sigiriya, Polonnaruwa, Kandy and Ella with expert guide Vishva.",
+  },
+  7: {
+    title: "7 Day Sri Lanka Tour Packages",
+    description:
+      "The perfect 7-day Sri Lanka itinerary. Cover culture, wildlife and beach — Sigiriya, Yala safari, Mirissa whale watching and Galle Fort.",
+  },
+  10: {
+    title: "10 Day Sri Lanka Itinerary — Private Tour Package",
+    description:
+      "Our 10-day Sri Lanka itineraries give you time to breathe. Cultural triangle, hill country train, southern safari and Indian Ocean beaches.",
+  },
+  14: {
+    title: "14 Day Sri Lanka Tour — 2 Week Private Package",
+    description:
+      "The ultimate 14-day Sri Lanka tour. Two weeks to explore every region — north, south, east, hill country and coast — with a dedicated private guide.",
+  },
 };
 
 const DURATION_INTROS = {
@@ -32,7 +52,11 @@ export default function ToursByDuration() {
   if (!info) {
     return (
       <>
-        <SEO title="Sri Lanka Tour Packages" description="Browse our range of Sri Lanka tour packages." canonical={`https://lankatoursdirect.com/tours/${durationSlug}`} />
+        <SEO
+          title="Sri Lanka Tour Packages"
+          description="Browse our range of Sri Lanka tour packages."
+          canonical={`https://lankatoursdirect.com/tours/${durationSlug}`}
+        />
         <div className="flex min-h-[60vh] items-center justify-center bg-[var(--cream-parchment)]">
           <p className="text-lg text-muted-foreground">No tours found for this duration.</p>
         </div>
@@ -43,26 +67,36 @@ export default function ToursByDuration() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lankatoursdirect.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Tours", "item": "https://lankatoursdirect.com/tours" },
-      { "@type": "ListItem", "position": 3, "name": `${days}-Day Tours`, "item": `https://lankatoursdirect.com/tours/${durationSlug}` },
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://lankatoursdirect.com/" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tours",
+        item: "https://lankatoursdirect.com/tours",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: `${days}-Day Tours`,
+        item: `https://lankatoursdirect.com/tours/${durationSlug}`,
+      },
     ],
   };
 
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": info.title,
-    "description": info.description,
-    "url": `https://lankatoursdirect.com/tours/${durationSlug}`,
-    "mainEntity": {
+    name: info.title,
+    description: info.description,
+    url: `https://lankatoursdirect.com/tours/${durationSlug}`,
+    mainEntity: {
       "@type": "ItemList",
-      "itemListElement": filtered.map((t, i) => ({
+      itemListElement: filtered.map((t, i) => ({
         "@type": "ListItem",
-        "position": i + 1,
-        "url": `https://lankatoursdirect.com/tours/${t.slug}`,
-        "name": t.title,
+        position: i + 1,
+        url: `https://lankatoursdirect.com/tours/${t.slug}`,
+        name: t.title,
       })),
     },
   };
@@ -95,7 +129,10 @@ export default function ToursByDuration() {
         <div className="mx-auto max-w-7xl px-6">
           {filtered.length === 0 ? (
             <p className="text-center text-muted-foreground">
-              No tours match this duration. <a href="/tours" className="text-[var(--ceylon-gold)] underline">Browse all tours</a>
+              No tours match this duration.{" "}
+              <a href="/tours" className="text-[var(--ceylon-gold)] underline">
+                Browse all tours
+              </a>
             </p>
           ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

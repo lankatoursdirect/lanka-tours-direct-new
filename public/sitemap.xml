@@ -1,285 +1,294 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://lankatoursdirect.com/</loc>
+    <loc>https://www.lankatoursdirect.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lankatoursdirect.com/" />
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/tours</loc>
+    <loc>https://www.lankatoursdirect.com/tours</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lankatoursdirect.com/tours" />
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations</loc>
+    <loc>https://www.lankatoursdirect.com/destinations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lankatoursdirect.com/destinations" />
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/experiences</loc>
+    <loc>https://www.lankatoursdirect.com/experiences</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lankatoursdirect.com/experiences" />
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/about</loc>
+    <loc>https://www.lankatoursdirect.com/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lankatoursdirect.com/about" />
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/reviews</loc>
+    <loc>https://www.lankatoursdirect.com/reviews</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lankatoursdirect.com/reviews" />
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/faq</loc>
+    <loc>https://www.lankatoursdirect.com/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lankatoursdirect.com/faq" />
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/contact</loc>
+    <loc>https://www.lankatoursdirect.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lankatoursdirect.com/contact" />
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/gallery</loc>
+    <loc>https://www.lankatoursdirect.com/gallery</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lankatoursdirect.com/gallery" />
     <priority>0.6</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/tours/island-sampler</loc>
+    <loc>https://www.lankatoursdirect.com/tours/island-sampler</loc>
     <priority>0.85</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/tours/discover-sri-lanka-7</loc>
+    <loc>https://www.lankatoursdirect.com/tours/discover-sri-lanka-7</loc>
     <priority>0.85</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/tours/sri-lanka-10-days</loc>
+    <loc>https://www.lankatoursdirect.com/tours/sri-lanka-10-days</loc>
     <priority>0.85</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/tours/adventure-tour-11-days</loc>
+    <loc>https://www.lankatoursdirect.com/tours/adventure-tour-11-days</loc>
     <priority>0.85</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/tours/sri-lanka-14-days</loc>
+    <loc>https://www.lankatoursdirect.com/tours/sri-lanka-14-days</loc>
     <priority>0.85</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/tours/sri-lanka-20-days</loc>
+    <loc>https://www.lankatoursdirect.com/tours/sri-lanka-20-days</loc>
     <priority>0.85</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/tours/sri-lanka-22-days</loc>
+    <loc>https://www.lankatoursdirect.com/tours/sri-lanka-22-days</loc>
     <priority>0.85</priority>
     <changefreq>weekly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/negombo</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/negombo</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/anuradhapura</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/anuradhapura</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/sigiriya</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/sigiriya</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/polonnaruwa</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/polonnaruwa</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/kandy</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/kandy</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/nuwara-eliya</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/nuwara-eliya</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/ella</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/ella</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/haputale</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/haputale</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/wellawaya</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/wellawaya</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/udawalawe</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/udawalawe</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/mirissa</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/mirissa</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/galle</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/galle</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/kataragama</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/kataragama</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/arugam-bay</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/arugam-bay</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/pasikudah</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/pasikudah</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/trincomalee</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/trincomalee</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/ratnapura</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/ratnapura</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/jaffna</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/jaffna</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/mannar</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/mannar</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/kalpitiya</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/kalpitiya</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/colombo</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/colombo</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/kurunegala</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/kurunegala</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/tangalle-hiriketiya</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/tangalle-hiriketiya</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/sinharaja</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/sinharaja</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/knuckles-riverston</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/knuckles-riverston</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/mahiyanganaya</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/mahiyanganaya</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/wasgamuwa</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/wasgamuwa</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/meemure</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/meemure</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/ampara-gal-oya</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/ampara-gal-oya</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/hikkaduwa-bentota</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/hikkaduwa-bentota</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
-    <loc>https://lankatoursdirect.com/destinations/hatton</loc>
+    <loc>https://www.lankatoursdirect.com/destinations/hatton</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
-    <lastmod>2026-06-30</lastmod>
+    <lastmod>2026-08-20</lastmod>
   </url>
 </urlset>

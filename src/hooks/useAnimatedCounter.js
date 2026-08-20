@@ -8,12 +8,14 @@ export function useAnimatedCounter(target, duration = 1800) {
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+    let cancelled = false;
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !started.current) {
           started.current = true;
           const start = performance.now();
           const tick = (now) => {
+            if (cancelled) return;
             const p = Math.min(1, (now - start) / duration);
             const eased = 1 - Math.pow(1 - p, 3);
             setValue(Math.floor(eased * target));
@@ -26,7 +28,10 @@ export function useAnimatedCounter(target, duration = 1800) {
       { threshold: 0.4 },
     );
     io.observe(node);
-    return () => io.disconnect();
+    return () => {
+      cancelled = true;
+      io.disconnect();
+    };
   }, [target, duration]);
 
   return { ref, value };

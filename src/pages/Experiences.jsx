@@ -1,9 +1,19 @@
 import { SEO } from "@/components/shared/SEO";
 import { PageHero } from "@/components/shared/PageHero";
 import { experienceCategories, featuredExperiences } from "@/data/experiences";
-import { Clock, Sun } from "lucide-react";
-import * as Icons from "lucide-react";
-import experiencesHero from "@/assets/images/destinations/sigiriya-with-lake.webp";
+import {
+  Clock,
+  Sun,
+  Compass,
+  Binoculars,
+  Waves,
+  Landmark,
+  Utensils,
+  Mountain,
+  TrainFront,
+} from "lucide-react";
+
+const iconMap = { Binoculars, Waves, Landmark, Utensils, Mountain, TrainFront, Compass };
 
 export default function Experiences() {
   return (
@@ -31,7 +41,7 @@ export default function Experiences() {
               >
                 <div className="flex h-12 items-center justify-center">
                   {(() => {
-                    const IconComponent = Icons[c.icon] || Icons.Compass;
+                    const IconComponent = iconMap[c.icon] || Compass;
                     return (
                       <IconComponent className="h-8 w-8 text-[var(--ceylon-gold)] transition-transform duration-300 group-hover:scale-110" />
                     );
@@ -44,7 +54,6 @@ export default function Experiences() {
           </div>
         </div>
       </section>
-
 
       <section className="bg-[var(--cream-parchment)] py-16">
         <div className="mx-auto max-w-6xl space-y-20 px-6">
@@ -89,7 +98,3 @@ export default function Experiences() {
     </>
   );
 }
-
-
-
-

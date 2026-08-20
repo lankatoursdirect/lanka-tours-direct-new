@@ -5,6 +5,7 @@ import { destinations } from "@/data/destinations";
 import { SEO } from "@/components/shared/SEO";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { trackTourView, trackWhatsAppClick } from "@/lib/analytics";
+import { WA_NUMBER } from "@/lib/config";
 import {
   Check,
   X,
@@ -28,7 +29,11 @@ function Divider() {
   return (
     <div
       className="w-full my-6 opacity-40"
-      style={{ height: "1px", background: "linear-gradient(to right, transparent, var(--soft-sand) 15%, var(--soft-sand) 85%, transparent)" }}
+      style={{
+        height: "1px",
+        background:
+          "linear-gradient(to right, transparent, var(--soft-sand) 15%, var(--soft-sand) 85%, transparent)",
+      }}
     />
   );
 }
@@ -45,7 +50,6 @@ function Eyebrow({ children }) {
 
 export default function TourDetail() {
   const { slug } = useParams();
-  const tour = tours.find((t) => t.slug === slug);
   const [openDay, setOpenDay] = useState(1);
   const [carouselIdx, setCarouselIdx] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
@@ -54,9 +58,20 @@ export default function TourDetail() {
   const carouselRef = useRef(null);
   const touchStartX = useRef(null);
 
+  const tour = tours.find((t) => t.slug === slug);
+
+  useEffect(() => {
+    if (tour) trackTourView(tour.slug, tour.title, tour.duration);
+  }, [tour]);
+
   const relatedTours = useMemo(() => {
     const others = tours.filter((t) => t.slug !== slug);
-    return [...others].sort(() => Math.random() - 0.5).slice(0, 3);
+    const shuffled = [...others];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled.slice(0, 3);
   }, [slug]);
 
   const isCarousel = slidesPerView < 3;
@@ -144,7 +159,9 @@ export default function TourDetail() {
     return (
       <div className="flex min-h-[60vh] items-center justify-center px-4 bg-[#FAF9F5]">
         <div className="text-center">
-          <h1 className="font-display text-4xl md:text-5xl font-light text-[var(--jungle-deep)]">Tour not found</h1>
+          <h1 className="font-display text-4xl md:text-5xl font-light text-[var(--jungle-deep)]">
+            Tour not found
+          </h1>
           <Link
             to="/tours"
             className="mt-4 inline-block text-sm text-[var(--ceylon-gold)] transition-colors hover:text-[#b5832d]"
@@ -158,10 +175,6 @@ export default function TourDetail() {
 
   const nights = tour.nights ?? tour.duration - 1;
 
-  useEffect(() => {
-    trackTourView(tour.slug, tour.title, tour.duration);
-  }, [tour.slug, tour.title, tour.duration]);
-
   const truncate = (text, maxLen) => {
     if (!text || text.length <= maxLen) return text;
     const truncated = text.slice(0, maxLen);
@@ -171,28 +184,38 @@ export default function TourDetail() {
 
   const breadcrumbSchema = {
     "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://lankatoursdirect.com" },
-      { "@type": "ListItem", "position": 2, "name": "Tours", "item": "https://lankatoursdirect.com/tours" },
-      { "@type": "ListItem", "position": 3, "name": tour.title, "item": `https://lankatoursdirect.com/tours/${tour.slug}` },
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://lankatoursdirect.com" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Tours",
+        item: "https://lankatoursdirect.com/tours",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: tour.title,
+        item: `https://lankatoursdirect.com/tours/${tour.slug}`,
+      },
     ],
   };
 
   const touristTripSchema = {
     "@type": "TouristTrip",
-    "name": tour.title,
-    "description": tour.description,
-    "provider": {
+    name: tour.title,
+    description: tour.description,
+    provider: {
       "@type": "TourOperator",
-      "name": "Lanka Tours Direct",
-      "url": "https://lankatoursdirect.com",
+      name: "Lanka Tours Direct",
+      url: "https://lankatoursdirect.com",
     },
-    "touristType": ["leisure", "cultural"],
-    "duration": `P${tour.duration}D`,
-    "itinerary": (tour.route || []).map((stop, i) => ({
+    touristType: ["leisure", "cultural"],
+    duration: `P${tour.duration}D`,
+    itinerary: (tour.route || []).map((stop, i) => ({
       "@type": "TouristAttraction",
-      "name": stop,
-      "position": i + 1,
+      name: stop,
+      position: i + 1,
     })),
   };
 
@@ -261,7 +284,6 @@ export default function TourDetail() {
 
         {/* Hero content */}
         <div className="relative z-10 flex h-full flex-col justify-end w-full max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 pb-28 md:pb-32">
-
           {/* Eyebrow badge */}
           <div className="flex items-center gap-2.5 mb-4 animate-fade-in">
             <span className="px-3 py-1.5 rounded-full border border-[#c9973a]/65 bg-[#08160e]/80 backdrop-blur-2xl text-[9px] sm:text-[10px] font-semibold tracking-[0.18em] uppercase text-[#c9973a] shadow-lg">
@@ -325,7 +347,7 @@ export default function TourDetail() {
               <span>Send Enquiry</span>
             </Link>
             <a
-                    href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || "94763300443"}?text=${encodeURIComponent(`Hi Vishva! I'm interested in the ${tour.title} — could you share more details and pricing?`)}`}
+              href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi Vishva! I'm interested in the ${tour.title} — could you share more details and pricing?`)}`}
               target="_blank"
               rel="noreferrer noopener"
               onClick={() => trackWhatsAppClick(tour.title, "tour_hero")}
@@ -383,10 +405,11 @@ export default function TourDetail() {
             ].map(({ Icon, label, value, sub }, idx) => (
               <div
                 key={label}
-                className={`group flex items-start gap-4 p-5 md:p-7 transition-all duration-300 hover:bg-white/[0.03] ${idx % 2 === 0 ? "border-r border-white/10" : ""
-                  } ${idx < 2 ? "border-b border-white/10" : ""
-                  } md:border-b-0 md:border-r border-white/10 ${idx === 3 ? "md:border-r-0" : ""
-                  }`}
+                className={`group flex items-start gap-4 p-5 md:p-7 transition-all duration-300 hover:bg-white/[0.03] ${
+                  idx % 2 === 0 ? "border-r border-white/10" : ""
+                } ${
+                  idx < 2 ? "border-b border-white/10" : ""
+                } md:border-b-0 md:border-r border-white/10 ${idx === 3 ? "md:border-r-0" : ""}`}
               >
                 <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 rounded-full border border-[#c9973a]/40 bg-[#08160e] text-[#c9973a] shadow-inner transition-all duration-500 group-hover:scale-110 group-hover:border-[#c9973a] group-hover:shadow-[0_0_15px_rgba(201,151,58,0.3)]">
                   <Icon size={16} strokeWidth={1.8} />
@@ -414,7 +437,6 @@ export default function TourDetail() {
           MAIN CONTENT AREA
       ════════════════════════════════════════════════════════════════════ */}
       <div className="mx-auto max-w-6xl px-4 sm:px-8 md:px-12 lg:px-16 mt-10 md:mt-12 relative">
-
         {/* ── OVERVIEW — Editorial Asymmetrical Layout ──────────────────────── */}
         <section className="pb-10 md:pb-14 relative">
           {/* Faint Background Decorative Watermark to Break Monotony */}
@@ -450,7 +472,9 @@ export default function TourDetail() {
                     key={h}
                     className="flex items-start gap-3 text-sm text-[#2c3631] leading-relaxed font-light"
                   >
-                    <span className="text-[var(--ceylon-gold)] font-bold text-xs shrink-0 mt-0.5 select-none">✦</span>
+                    <span className="text-[var(--ceylon-gold)] font-bold text-xs shrink-0 mt-0.5 select-none">
+                      ✦
+                    </span>
                     <span className="tracking-wide">{h}</span>
                   </li>
                 ))}
@@ -474,7 +498,6 @@ export default function TourDetail() {
 
             {/* Visually Linked Active Map Timeline Track */}
             <div className="relative border-l-2 border-[#c9973a]/30 ml-5 md:ml-9 pb-4">
-
               <div className="flex flex-col gap-10">
                 {tour.itinerary.map((day) => {
                   const isOpen = openDay === day.day;
@@ -482,16 +505,28 @@ export default function TourDetail() {
 
                   return (
                     <div key={day.day} className="relative pl-8 md:pl-12 group/item">
-
                       {/* Timeline Node Node Node */}
                       <div
-                        className={`absolute -left-[21px] md:-left-[25px] top-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border shadow-sm transition-all duration-300 cursor-pointer select-none ${isOpen
-                          ? "bg-[var(--jungle-deep)] border-[var(--ceylon-gold)] scale-105 shadow-[0_0_15px_rgba(201,151,58,0.25)]"
-                          : "bg-[#FDFCFB] border-[#c9973a]/40 hover:border-[var(--jungle-deep)]"
-                          }`}
+                        role="button"
+                        tabIndex={0}
+                        aria-expanded={isOpen}
+                        aria-label={`Day ${day.day}: ${day.title}`}
+                        className={`absolute -left-[21px] md:-left-[25px] top-0 flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full border shadow-sm transition-all duration-300 cursor-pointer select-none ${
+                          isOpen
+                            ? "bg-[var(--jungle-deep)] border-[var(--ceylon-gold)] scale-105 shadow-[0_0_15px_rgba(201,151,58,0.25)]"
+                            : "bg-[#FDFCFB] border-[#c9973a]/40 hover:border-[var(--jungle-deep)]"
+                        }`}
                         onClick={() => setOpenDay(isOpen ? null : day.day)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setOpenDay(isOpen ? null : day.day);
+                          }
+                        }}
                       >
-                        <span className={`font-display text-base md:text-lg transition-colors duration-300 ${isOpen ? "text-[var(--ceylon-gold)] font-medium" : "text-[#c9973a]"}`}>
+                        <span
+                          className={`font-display text-base md:text-lg transition-colors duration-300 ${isOpen ? "text-[var(--ceylon-gold)] font-medium" : "text-[#c9973a]"}`}
+                        >
                           {String(day.day).padStart(2, "0")}
                         </span>
                       </div>
@@ -499,7 +534,7 @@ export default function TourDetail() {
                       {/* Container Card Frame */}
                       <div
                         className="bg-white border rounded-xl overflow-hidden transition-all duration-500 shadow-[0_4px_15px_rgba(0,0,0,0.01)] hover:shadow-[0_12px_25px_rgba(0,0,0,0.03)]"
-                        style={{ borderColor: isOpen ? 'var(--ceylon-gold)' : '#e8e4db' }}
+                        style={{ borderColor: isOpen ? "var(--ceylon-gold)" : "#e8e4db" }}
                       >
                         {/* ── Card Accordion Header ── */}
                         <div
@@ -519,7 +554,10 @@ export default function TourDetail() {
                                 <div className="flex items-center gap-1.5 opacity-90">
                                   <Bed size={12} className="text-[#c9973a]" />
                                   <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--shadow-brown)]/75">
-                                    Overnight · <strong className="font-semibold text-[var(--jungle-deep)]">{day.overnight}</strong>
+                                    Overnight ·{" "}
+                                    <strong className="font-semibold text-[var(--jungle-deep)]">
+                                      {day.overnight}
+                                    </strong>
                                   </span>
                                 </div>
                               ) : null}
@@ -527,16 +565,17 @@ export default function TourDetail() {
                           </div>
 
                           <button
+                            aria-expanded={isOpen}
                             className="flex items-center justify-center flex-shrink-0 w-9 h-9 rounded-full border transition-all duration-300 shadow-sm"
                             style={{
-                              borderColor: isOpen ? 'transparent' : '#e8e4db',
-                              background: isOpen ? 'var(--jungle-deep)' : '#fdfcfb',
+                              borderColor: isOpen ? "transparent" : "#e8e4db",
+                              background: isOpen ? "var(--jungle-deep)" : "#fdfcfb",
                             }}
                           >
                             <ChevronDown
                               size={16}
                               style={{
-                                color: isOpen ? 'var(--ceylon-gold)' : 'var(--jungle-deep)',
+                                color: isOpen ? "var(--ceylon-gold)" : "var(--jungle-deep)",
                                 transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
                                 transition: "transform .4s ease-in-out",
                               }}
@@ -549,18 +588,25 @@ export default function TourDetail() {
                           className="grid transition-all duration-500 ease-in-out border-t border-[#e8e4db]"
                           style={{
                             gridTemplateRows: isOpen ? "1fr" : "0fr",
-                            borderColor: isOpen ? "#e8e4db" : "transparent"
+                            borderColor: isOpen ? "#e8e4db" : "transparent",
                           }}
                         >
                           <div className="overflow-hidden">
-                            <div className={`flex flex-col md:grid md:grid-cols-[1fr_270px] bg-[#FAF9F5]/40 transition-all duration-500 ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-[0.99]"}`}>
-
+                            <div
+                              className={`flex flex-col md:grid md:grid-cols-[1fr_270px] bg-[#FAF9F5]/40 transition-all duration-500 ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-[0.99]"}`}
+                            >
                               {/* Left Content List */}
                               <div className="p-6 md:p-8">
                                 <ul className="flex flex-col gap-4.5">
                                   {dayItems.map((act, i) => (
-                                    <li key={i} className="flex items-start gap-3.5 text-[14px] text-[#0c1410] leading-relaxed font-normal tracking-wide">
-                                      <ArrowRight size={14} className="text-[#c9973a] shrink-0 mt-1 stroke-[2.5px]" />
+                                    <li
+                                      key={i}
+                                      className="flex items-start gap-3.5 text-[14px] text-[#0c1410] leading-relaxed font-normal tracking-wide"
+                                    >
+                                      <ArrowRight
+                                        size={14}
+                                        className="text-[#c9973a] shrink-0 mt-1 stroke-[2.5px]"
+                                      />
                                       <span>{act}</span>
                                     </li>
                                   ))}
@@ -615,11 +661,9 @@ export default function TourDetail() {
                                   </div>
                                 )}
                               </div>
-
                             </div>
                           </div>
                         </div>
-
                       </div>
                     </div>
                   );
@@ -640,7 +684,6 @@ export default function TourDetail() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-
               {/* Included Panel Card */}
               {tour.includes?.length > 0 && (
                 <div className="bg-[#FAF9F5] border-t-4 border-[var(--jungle-deep)] border-x border-b border-[#e1dcd0] hover:border-t-[#0f3a22] hover:border-x-[#c3d9cc] hover:border-b-[#c3d9cc] rounded-xl p-6 md:p-8 shadow-[0_12px_24px_rgba(8,22,14,0.02)] transition-all duration-300 hover:translate-y-[-2px]">
@@ -654,8 +697,14 @@ export default function TourDetail() {
                   </div>
                   <ul className="flex flex-col gap-4">
                     {tour.includes.map((item) => (
-                      <li key={item} className="flex items-start gap-3.5 text-sm font-normal text-[#0c1410] leading-relaxed tracking-wide">
-                        <Check size={16} className="text-[#c9973a] shrink-0 mt-0.5 stroke-[2.5px]" />
+                      <li
+                        key={item}
+                        className="flex items-start gap-3.5 text-sm font-normal text-[#0c1410] leading-relaxed tracking-wide"
+                      >
+                        <Check
+                          size={16}
+                          className="text-[#c9973a] shrink-0 mt-0.5 stroke-[2.5px]"
+                        />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -676,7 +725,10 @@ export default function TourDetail() {
                   </div>
                   <ul className="flex flex-col gap-4">
                     {tour.excludes.map((item) => (
-                      <li key={item} className="flex items-start gap-3.5 text-sm font-normal text-[#2a2424] leading-relaxed tracking-wide">
+                      <li
+                        key={item}
+                        className="flex items-start gap-3.5 text-sm font-normal text-[#2a2424] leading-relaxed tracking-wide"
+                      >
                         <X size={16} className="text-red-300 shrink-0 mt-1 stroke-[2px]" />
                         <span>{item}</span>
                       </li>
@@ -684,7 +736,6 @@ export default function TourDetail() {
                   </ul>
                 </div>
               )}
-
             </div>
           </section>
         )}
@@ -694,7 +745,6 @@ export default function TourDetail() {
         {/* ── CUSTOMISE CTA — Premium Boarding Pass Voucher ─────────────────────────────────────────────── */}
         <section className="py-10 md:py-14">
           <div className="relative bg-[var(--jungle-deep)] rounded-2xl shadow-[0_30px_60px_-15px_rgba(8,22,14,0.4)] p-1.5 md:p-2 overflow-hidden">
-
             {/* Frame Line Contour Layout */}
             <div className="relative border border-[#c9973a]/30 rounded-xl px-6 py-14 md:px-12 md:py-[74px] text-center z-10 overflow-hidden">
               <div className="absolute -top-[120px] -left-[120px] w-[320px] h-[320px] rounded-full bg-[#c9973a]/5 pointer-events-none blur-3xl" />
@@ -710,7 +760,8 @@ export default function TourDetail() {
                 </h2>
 
                 <p className="text-sm md:text-base font-light text-white/75 leading-relaxed mb-9 max-w-xl mx-auto tracking-wide">
-                  This blueprint is just a narrative foundation. Swap locations, expand pacing, or handpick luxury hotel changes — our experts sculpt it explicitly for you.
+                  This blueprint is just a narrative foundation. Swap locations, expand pacing, or
+                  handpick luxury hotel changes — our experts sculpt it explicitly for you.
                 </p>
 
                 {/* Tags Grid pills */}
@@ -735,7 +786,7 @@ export default function TourDetail() {
                     <span>→</span>
                   </Link>
                   <a
-              href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || "94763300443"}?text=${encodeURIComponent(`Hi Vishva! I'm interested in the ${tour.title} — could you share more details and pricing?`)}`}
+                    href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi Vishva! I'm interested in the ${tour.title} — could you share more details and pricing?`)}`}
                     target="_blank"
                     rel="noreferrer noopener"
                     onClick={() => trackWhatsAppClick(tour.title, "tour_customise")}
@@ -756,7 +807,9 @@ export default function TourDetail() {
         {tour.route && tour.route.length > 0 && (
           <section className="py-10 md:py-14">
             <div className="mb-6">
-              <p className="font-sans text-[10px] font-bold tracking-[.28em] uppercase text-[var(--ceylon-gold)] mb-4">✦ Destinations on This Tour</p>
+              <p className="font-sans text-[10px] font-bold tracking-[.28em] uppercase text-[var(--ceylon-gold)] mb-4">
+                ✦ Destinations on This Tour
+              </p>
               <h2 className="font-display font-light text-3xl md:text-[40px] tracking-wide text-[var(--jungle-deep)]">
                 Places You'll{" "}
                 <em className="italic text-[var(--ceylon-gold)] font-normal">Visit</em>
@@ -766,28 +819,28 @@ export default function TourDetail() {
               {tour.route.map((stop) => {
                 const lower = stop.toLowerCase();
                 const routeSlugMap = {
-                  "airport": "negombo",
+                  airport: "negombo",
                   "airport / negombo": "negombo",
-                  "yala": "kataragama",
-                  "mirissa": "mirissa",
+                  yala: "kataragama",
+                  mirissa: "mirissa",
                   "mirissa / weligama": "mirissa",
-                  "galle": "galle",
-                  "tangalle": "tangalle-hiriketiya",
-                  "hikkaduwa": "hikkaduwa-bentota",
-                  "bentota": "hikkaduwa-bentota",
-                  "kataragama": "kataragama",
-                  "mannar": "mannar",
-                  "knuckles": "knuckles-riverston",
-                  "hiriketiya": "tangalle-hiriketiya",
-                  "rekawa": null,
-                  "wilpattu": null,
-                  "habarana": null,
+                  galle: "galle",
+                  tangalle: "tangalle-hiriketiya",
+                  hikkaduwa: "hikkaduwa-bentota",
+                  bentota: "hikkaduwa-bentota",
+                  kataragama: "kataragama",
+                  mannar: "mannar",
+                  knuckles: "knuckles-riverston",
+                  hiriketiya: "tangalle-hiriketiya",
+                  rekawa: null,
+                  wilpattu: null,
+                  habarana: null,
                 };
-                const matched = destinations.find(
-                  (d) => d.name.toLowerCase() === lower
-                ) || (routeSlugMap[lower] ? destinations.find(
-                  (d) => d.slug === routeSlugMap[lower]
-                ) : null);
+                const matched =
+                  destinations.find((d) => d.name.toLowerCase() === lower) ||
+                  (routeSlugMap[lower]
+                    ? destinations.find((d) => d.slug === routeSlugMap[lower])
+                    : null);
                 return matched ? (
                   <Link
                     key={stop}
@@ -850,10 +903,11 @@ export default function TourDetail() {
                 onTransitionEnd={handleInfiniteReset}
                 style={{
                   gap: "24px",
-                  transform: cardWidthPx > 0
-                    ? `translateX(-${carouselIdx * (cardWidthPx + 24)}px)`
+                  transform:
+                    cardWidthPx > 0 ? `translateX(-${carouselIdx * (cardWidthPx + 24)}px)` : "none",
+                  transition: isTransitioning
+                    ? "transform 0.55s cubic-bezier(0.4,0,0.2,1)"
                     : "none",
-                  transition: isTransitioning ? "transform 0.55s cubic-bezier(0.4,0,0.2,1)" : "none",
                 }}
               >
                 {(isCarousel ? list : relatedTours).map((t, i) => (
@@ -862,13 +916,14 @@ export default function TourDetail() {
                     to={`/tours/${t.slug}`}
                     className="group block overflow-hidden rounded-xl bg-white border border-[#e8e4db] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 flex-shrink-0"
                     style={{
-                      width: cardWidthPx > 0
-                        ? `${cardWidthPx}px`
-                        : slidesPerView === 3
-                          ? "calc(33.333% - 16px)"
-                          : slidesPerView === 2
-                            ? "calc(50% - 12px)"
-                            : "100%",
+                      width:
+                        cardWidthPx > 0
+                          ? `${cardWidthPx}px`
+                          : slidesPerView === 3
+                            ? "calc(33.333% - 16px)"
+                            : slidesPerView === 2
+                              ? "calc(50% - 12px)"
+                              : "100%",
                     }}
                   >
                     {/* Image */}
@@ -897,7 +952,10 @@ export default function TourDetail() {
                       <h3 className="font-display text-xl font-normal text-[var(--jungle-deep)] leading-snug mb-0.5">
                         {t.titleMain || t.title}
                         {t.titleAccent && (
-                          <em className="italic text-[var(--ceylon-gold)] font-normal"> {t.titleAccent}</em>
+                          <em className="italic text-[var(--ceylon-gold)] font-normal">
+                            {" "}
+                            {t.titleAccent}
+                          </em>
                         )}
                       </h3>
                       {t.regions?.length > 0 && (
@@ -917,7 +975,10 @@ export default function TourDetail() {
                       </div>
                       <span className="inline-flex items-center gap-1.5 font-sans text-[9px] font-bold uppercase tracking-[0.18em] text-[var(--ceylon-gold)] group-hover:text-[#b5832d] transition-colors duration-300">
                         View Itinerary
-                        <ArrowRight size={11} className="transition-transform duration-300 group-hover:translate-x-1" />
+                        <ArrowRight
+                          size={11}
+                          className="transition-transform duration-300 group-hover:translate-x-1"
+                        />
                       </span>
                     </div>
                   </Link>
@@ -929,7 +990,7 @@ export default function TourDetail() {
             {isCarousel && (
               <div className="flex justify-center items-center gap-2 mt-6">
                 {relatedTours.map((_, i) => {
-                  const active = ((carouselIdx - offset + total) % total) === i;
+                  const active = (carouselIdx - offset + total) % total === i;
                   return (
                     <button
                       key={i}
@@ -938,10 +999,11 @@ export default function TourDetail() {
                         setCarouselIdx(i + offset);
                       }}
                       aria-label={`Go to slide ${i + 1}`}
-                      className={`rounded-full transition-all duration-300 ${active
-                        ? "w-6 h-2 bg-[var(--ceylon-gold)]"
-                        : "w-2 h-2 bg-[#c9973a]/30 hover:bg-[#c9973a]/60"
-                        }`}
+                      className={`rounded-full transition-all duration-300 ${
+                        active
+                          ? "w-6 h-2 bg-[var(--ceylon-gold)]"
+                          : "w-2 h-2 bg-[#c9973a]/30 hover:bg-[#c9973a]/60"
+                      }`}
                     />
                   );
                 })}
@@ -959,7 +1021,6 @@ export default function TourDetail() {
             </div>
           </section>
         )}
-
       </div>
     </>
   );
