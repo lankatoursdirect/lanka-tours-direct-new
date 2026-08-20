@@ -87,13 +87,13 @@ export function Hero() {
           <div className="mt-10 flex animate-float-up delay-300 flex-col gap-4 sm:flex-row">
             <a
               href="#contact-cta"
-              className="rounded-lg bg-[var(--ceylon-gold)] px-10 py-4 font-accent text-sm uppercase tracking-wider text-white shadow-gold transition-all hover:scale-105 hover:bg-[var(--ceylon-gold-deep)]"
+              className="rounded-lg bg-[var(--ceylon-gold)] px-10 py-4 font-accent text-sm uppercase tracking-wider text-white shadow-gold transition-transform transition-colors hover:scale-105 hover:bg-[var(--ceylon-gold-deep)]"
             >
               Plan My Journey
             </a>
             <Link
               to="/tours"
-              className="rounded-lg border-2 border-white/70 bg-black/25 backdrop-blur-md px-10 py-4 font-accent text-sm uppercase tracking-wider text-white transition-all hover:bg-white/15"
+              className="rounded-lg border-2 border-white/70 bg-black/25 backdrop-blur-md px-10 py-4 font-accent text-sm uppercase tracking-wider text-white transition-colors hover:bg-white/15"
             >
               See Tour Packages
             </Link>

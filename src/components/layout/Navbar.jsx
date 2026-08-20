@@ -144,7 +144,7 @@ export function Navbar() {
           ))}
           <Link
             to="/contact"
-            className="rounded-lg bg-[var(--ceylon-gold)] px-7 py-3 font-accent text-[11px] uppercase tracking-widest text-white shadow-gold transition-all duration-300 hover:scale-105 hover:bg-[var(--ceylon-gold-deep)] whitespace-nowrap"
+            className="rounded-lg bg-[var(--ceylon-gold)] px-7 py-3 font-accent text-[11px] uppercase tracking-widest text-white shadow-gold transition-transform transition-colors duration-300 hover:scale-105 hover:bg-[var(--ceylon-gold-deep)] whitespace-nowrap"
           >
             Plan Your Trip
           </Link>
@@ -167,7 +167,7 @@ export function Navbar() {
         role="dialog"
         aria-modal={open ? "true" : undefined}
         aria-label="Navigation menu"
-        className={`fixed inset-0 z-40 flex h-screen w-full flex-col items-center justify-center bg-[var(--jungle-deep)] transition-all duration-700 ease-in-out lg:hidden ${
+        className={`fixed inset-0 z-40 flex h-screen w-full flex-col items-center justify-center bg-[var(--jungle-deep)] transition-opacity transition-transform duration-700 lg:hidden ${
           open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
         }`}
       >
@@ -178,7 +178,7 @@ export function Navbar() {
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
-                className={`font-display text-4xl text-white transition-all duration-300 hover:text-[var(--ceylon-gold)] ${
+                className={`font-display text-4xl text-white transition-opacity transition-transform transition-colors duration-300 hover:text-[var(--ceylon-gold)] ${
                   open ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
                 }`}
                 style={{ transitionDelay: `${idx * 100}ms` }}
@@ -189,7 +189,7 @@ export function Navbar() {
           </nav>
 
           <div
-            className={`mt-10 flex w-full flex-col gap-4 transition-all duration-700 ${
+            className={`mt-10 flex w-full flex-col gap-4 transition-opacity transition-transform duration-700 ${
               open ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
             }`}
             style={{ transitionDelay: "600ms" }}

@@ -3,8 +3,56 @@ import { whatsappLink } from "@/components/shared/WhatsAppButton";
 import { PHONE_NUMBER, PHONE_DISPLAY } from "@/lib/config";
 import { Facebook, Instagram, MessageCircle, Mail, MapPin, Phone, Star } from "lucide-react";
 
-// ─── Logo asset from /public ────────────────────────────────────────────────
 const LOGO_SRC = "/logo.png";
+const CURRENT_YEAR = new Date().getFullYear();
+
+const SOCIAL_LINKS = [
+  {
+    href: "https://www.facebook.com/profile.php?id=61591028990530",
+    label: "Facebook",
+    icon: <Facebook size={17} />,
+  },
+  {
+    href: "https://www.instagram.com/lankatoursdirect/",
+    label: "Instagram",
+    icon: <Instagram size={17} />,
+  },
+  {
+    href: whatsappLink,
+    label: "WhatsApp",
+    icon: <MessageCircle size={17} />,
+  },
+];
+
+const EXPLORE_LINKS = [
+  ["Our Story", "/about"],
+  ["All Tours", "/tours"],
+  ["Destinations", "/destinations"],
+  ["Experiences", "/experiences"],
+  ["Gallery", "/gallery"],
+  ["Reviews", "/reviews"],
+  ["FAQ", "/faq"],
+];
+
+const TOP_TOURS = [
+  ["Sri Lanka in 5 Days", "/tours/island-sampler"],
+  ["Discover Sri Lanka", "/tours/discover-sri-lanka-7"],
+  ["Sri Lanka 10 Days", "/tours/sri-lanka-10-days"],
+  ["11-Day Adventure", "/tours/adventure-tour-11-days"],
+  ["Sri Lanka 14 Days", "/tours/sri-lanka-14-days"],
+  ["Sri Lanka 20 Days", "/tours/sri-lanka-20-days"],
+  ["Custom Itinerary", "/contact"],
+];
+
+const TOP_DESTINATIONS = [
+  ["Sigiriya", "/destinations/sigiriya"],
+  ["Kandy", "/destinations/kandy"],
+  ["Ella", "/destinations/ella"],
+  ["Yala Safari", "/destinations/yala"],
+  ["Mirissa", "/destinations/mirissa"],
+  ["Galle Fort", "/destinations/galle"],
+  ["Nuwara Eliya", "/destinations/nuwara-eliya"],
+];
 
 export function Footer() {
   return (
@@ -48,30 +96,14 @@ export function Footer() {
 
             {/* Social Icons */}
             <div className="flex gap-3">
-              {[
-                {
-                  href: "https://www.facebook.com/profile.php?id=61591028990530",
-                  label: "Facebook",
-                  icon: <Facebook size={17} />,
-                },
-                {
-                  href: "https://www.instagram.com/lankatoursdirect/",
-                  label: "Instagram",
-                  icon: <Instagram size={17} />,
-                },
-                {
-                  href: whatsappLink,
-                  label: "WhatsApp",
-                  icon: <MessageCircle size={17} />,
-                },
-              ].map(({ href, label, icon }) => (
+              {SOCIAL_LINKS.map(({ href, label, icon }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all duration-200 hover:border-[var(--ceylon-gold)] hover:bg-[var(--ceylon-gold)] hover:text-white"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-colors duration-200 hover:border-[var(--ceylon-gold)] hover:bg-[var(--ceylon-gold)] hover:text-white"
                 >
                   {icon}
                 </a>
@@ -99,15 +131,7 @@ export function Footer() {
               Explore
             </h4>
             <ul className="flex flex-col gap-3 text-sm">
-              {[
-                ["Our Story", "/about"],
-                ["All Tours", "/tours"],
-                ["Destinations", "/destinations"],
-                ["Experiences", "/experiences"],
-                ["Gallery", "/gallery"],
-                ["Reviews", "/reviews"],
-                ["FAQ", "/faq"],
-              ].map(([label, href]) => (
+              {EXPLORE_LINKS.map(([label, href]) => (
                 <li key={href}>
                   <Link to={href} className="transition-colors duration-150 hover:text-white">
                     {label}
@@ -123,15 +147,7 @@ export function Footer() {
               Top Tours
             </h4>
             <ul className="flex flex-col gap-3 text-sm">
-              {[
-                ["Sri Lanka in 5 Days", "/tours/island-sampler"],
-                ["Discover Sri Lanka", "/tours/discover-sri-lanka-7"],
-                ["Sri Lanka 10 Days", "/tours/sri-lanka-10-days"],
-                ["11-Day Adventure", "/tours/adventure-tour-11-days"],
-                ["Sri Lanka 14 Days", "/tours/sri-lanka-14-days"],
-                ["Sri Lanka 20 Days", "/tours/sri-lanka-20-days"],
-                ["Custom Itinerary", "/contact"],
-              ].map(([label, href]) => (
+              {TOP_TOURS.map(([label, href]) => (
                 <li key={href}>
                   <Link to={href} className="transition-colors duration-150 hover:text-white">
                     {label}
@@ -147,15 +163,7 @@ export function Footer() {
               Destinations
             </h4>
             <ul className="flex flex-col gap-3 text-sm">
-              {[
-                ["Sigiriya", "/destinations/sigiriya"],
-                ["Kandy", "/destinations/kandy"],
-                ["Ella", "/destinations/ella"],
-                ["Yala Safari", "/destinations/yala"],
-                ["Mirissa", "/destinations/mirissa"],
-                ["Galle Fort", "/destinations/galle"],
-                ["Nuwara Eliya", "/destinations/nuwara-eliya"],
-              ].map(([label, href]) => (
+              {TOP_DESTINATIONS.map(([label, href]) => (
                 <li key={href}>
                   <Link to={href} className="transition-colors duration-150 hover:text-white">
                     {label}
@@ -208,7 +216,7 @@ export function Footer() {
               target="_blank"
               rel="noreferrer noopener"
               aria-label="Review us on TripAdvisor"
-              className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-4 transition-all duration-200 hover:border-[var(--ceylon-gold)]/40 hover:bg-white/8"
+              className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-4 transition-colors duration-200 hover:border-[var(--ceylon-gold)]/40 hover:bg-white/8"
             >
               {/* TripAdvisor owl icon approximated with star cluster */}
               <div className="flex flex-col items-center gap-1">
@@ -249,7 +257,7 @@ export function Footer() {
         <div className="mt-16 border-t border-white/10 pt-10 lg:mt-24">
           <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between">
             <p className="text-[10px] uppercase tracking-widest text-white/50">
-              © {new Date().getFullYear()} Lanka Tours Direct · Expert Sri Lanka Private Tours
+              © {CURRENT_YEAR} Lanka Tours Direct · Expert Sri Lanka Private Tours
             </p>
             <div className="flex gap-6 text-[10px] uppercase tracking-widest text-white/50">
               <Link to="/faq" className="hover:text-white/70 transition-colors">

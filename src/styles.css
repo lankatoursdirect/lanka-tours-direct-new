@@ -265,6 +265,11 @@
 .animate-pulse-glow {
   animation: pulse-glow 2.4s ease-in-out infinite;
 }
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-glow {
+    animation: none;
+  }
+}
 .animate-float-up {
   animation: float-up 0.8s ease-out both;
 }

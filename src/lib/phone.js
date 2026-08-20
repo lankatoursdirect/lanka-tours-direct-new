@@ -8,7 +8,7 @@
  * Install once:  npm install libphonenumber-js
  */
 
-import { parsePhoneNumberFromString, AsYouType, getCountryCallingCode } from "libphonenumber-js";
+import { parsePhoneNumberFromString, AsYouType, getCountryCallingCode } from "libphonenumber-js/min";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ISO OVERRIDE MAP

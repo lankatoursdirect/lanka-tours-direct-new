@@ -6,7 +6,7 @@ export const TourCard = memo(function TourCard({ tour }) {
   return (
     <Link
       to={`/tours/${tour.slug}`}
-      className="group block overflow-hidden rounded-xl bg-card shadow-card transition-all hover:-translate-y-1"
+      className="group block overflow-hidden rounded-xl bg-card shadow-card transition-transform hover:-translate-y-1"
     >
       <div className="relative h-[280px] image-zoom">
         <img

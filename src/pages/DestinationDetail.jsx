@@ -1008,7 +1008,7 @@ function CTABlock({ d }) {
                   target="_blank"
                   rel="noreferrer noopener"
                   onClick={() => trackWhatsAppClick(d.name, "destination_cta")}
-                  className="w-full rounded-full px-8 py-3.5 font-accent text-xs uppercase tracking-wider sm:w-auto inline-flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                  className="w-full rounded-full px-8 py-3.5 font-accent text-xs uppercase tracking-wider sm:w-auto inline-flex items-center justify-center gap-2 transition-transform duration-300 hover:-translate-y-0.5"
                   style={{
                     background: "#25D366",
                     color: "#fff",

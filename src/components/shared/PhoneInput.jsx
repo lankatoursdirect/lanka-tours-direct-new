@@ -109,7 +109,7 @@ export function PhoneInput({
       {/* Input row */}
       <div
         className={cn(
-          "flex h-[46px] w-full overflow-hidden rounded-lg border bg-white transition-all duration-300",
+          "flex h-[46px] w-full overflow-hidden rounded-lg border bg-white transition-colors duration-300",
           showError
             ? "border-red-400 focus-within:ring-1 focus-within:ring-red-400/20"
             : showSuccess

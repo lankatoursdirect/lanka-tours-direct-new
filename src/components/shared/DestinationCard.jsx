@@ -10,7 +10,7 @@ export const DestinationCard = memo(function DestinationCard({ d, className = ""
       <img
         src={d.image}
         alt={`${d.name} — Sri Lanka destination`}
-        className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110"
+        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         style={{
           objectPosition: "center",
         }}
@@ -26,7 +26,7 @@ export const DestinationCard = memo(function DestinationCard({ d, className = ""
         <h3 className="font-display text-2xl text-white md:text-3xl" style={{ color: "white" }}>
           {d.name}
         </h3>
-        <p className="mt-1 text-xs text-white/70 uppercase tracking-widest opacity-0 transition-all duration-500 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
+        <p className="mt-1 text-xs text-white/70 uppercase tracking-widest opacity-0 transition-opacity transition-transform duration-500 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
           View Destination →
         </p>
       </div>

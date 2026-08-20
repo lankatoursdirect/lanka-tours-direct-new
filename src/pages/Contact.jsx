@@ -477,7 +477,7 @@ export default function Contact() {
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 transition-all hover:scale-110 hover:bg-white hover:border-white"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 transition-transform transition-colors hover:scale-110 hover:bg-white hover:border-white"
             >
               <img
                 src="https://cdn.simpleicons.org/facebook/1877F2"
@@ -490,7 +490,7 @@ export default function Contact() {
               target="_blank"
               rel="noreferrer"
               aria-label="TripAdvisor"
-              className="transition-all hover:opacity-90 hover:scale-105"
+              className="transition-opacity transition-transform hover:opacity-90 hover:scale-105"
             >
               <div className="flex items-center justify-center bg-white px-3 py-1.5 rounded-xl shadow-sm w-[160px] h-[44px]">
                 <img
@@ -624,7 +624,7 @@ export default function Contact() {
                       {["WhatsApp", "Email", "Either"].map((p) => (
                         <label
                           key={p}
-                          className="flex cursor-pointer items-center gap-3 rounded-full border border-[var(--soft-sand)] bg-white px-6 py-2.5 text-sm transition-all hover:border-[var(--ceylon-gold)] has-[input:checked]:border-[var(--ceylon-gold)] has-[input:checked]:bg-[var(--ceylon-gold)]/5 has-[input:checked]:ring-1 has-[input:checked]:ring-[var(--ceylon-gold)]"
+                          className="flex cursor-pointer items-center gap-3 rounded-full border border-[var(--soft-sand)] bg-white px-6 py-2.5 text-sm transition-colors hover:border-[var(--ceylon-gold)] has-[input:checked]:border-[var(--ceylon-gold)] has-[input:checked]:bg-[var(--ceylon-gold)]/5 has-[input:checked]:ring-1 has-[input:checked]:ring-[var(--ceylon-gold)]"
                         >
                           <input
                             type="radio"
@@ -710,7 +710,7 @@ export default function Contact() {
                       onChange={handleChange}
                       rows={4}
                       placeholder="Share any specific requirements or destinations you'd love to visit..."
-                      className="mt-2 w-full rounded-xl border border-[var(--soft-sand)] bg-white px-5 py-4 text-sm transition-all focus:border-[var(--ceylon-gold)] focus:outline-none focus:ring-1 focus:ring-[var(--ceylon-gold)]/20"
+                      className="mt-2 w-full rounded-xl border border-[var(--soft-sand)] bg-white px-5 py-4 text-sm transition-colors focus:border-[var(--ceylon-gold)] focus:outline-none focus:ring-1 focus:ring-[var(--ceylon-gold)]/20"
                     />
                   </div>
 
@@ -721,7 +721,7 @@ export default function Contact() {
                         setStep(1);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
-                      className="col-span-1 rounded-full border border-[var(--soft-sand)] py-4 font-accent text-xs uppercase tracking-widest text-muted-foreground transition-all hover:bg-white hover:text-foreground active:scale-[0.98]"
+                      className="col-span-1 rounded-full border border-[var(--soft-sand)] py-4 font-accent text-xs uppercase tracking-widest text-muted-foreground transition-colors transition-transform hover:bg-white hover:text-foreground active:scale-[0.98]"
                     >
                       Back
                     </button>
@@ -778,7 +778,7 @@ function FormInput({ label, error, name, ...props }) {
         aria-describedby={error ? errorId : undefined}
         {...props}
         className={cn(
-          "flex h-[46px] w-full rounded-lg border bg-white px-4 text-sm focus:outline-none transition-all duration-300",
+          "flex h-[46px] w-full rounded-lg border bg-white px-4 text-sm focus:outline-none transition-colors duration-300",
           error
             ? "border-red-600 focus:border-red-600 focus:ring-1 focus:ring-red-600/20"
             : "border-[var(--soft-sand)] focus:border-[var(--ceylon-gold)] focus:ring-1 focus:ring-[var(--ceylon-gold)]/20",
@@ -809,7 +809,7 @@ function CountrySelect({ countries, value, selectedData, onChange, required, err
             role="combobox"
             aria-expanded={open}
             className={cn(
-              "flex h-[46px] w-full justify-between bg-white px-4 font-normal focus:ring-1 focus:ring-[var(--ceylon-gold)]/20 transition-all duration-300",
+              "flex h-[46px] w-full justify-between bg-white px-4 font-normal focus:ring-1 focus:ring-[var(--ceylon-gold)]/20 transition-colors duration-300",
               error
                 ? "border-red-600 hover:border-red-600 focus:border-red-600"
                 : "border-[var(--soft-sand)] hover:bg-white hover:border-[var(--ceylon-gold)] focus:border-[var(--ceylon-gold)]",

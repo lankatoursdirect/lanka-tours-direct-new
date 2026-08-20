@@ -323,15 +323,15 @@ export default function TourDetail() {
 
           {/* Badge pills */}
           <div className="flex flex-wrap gap-2.5 mb-6 animate-fade-in">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#c9973a]/40 bg-white/5 backdrop-blur-md text-[#ddb36a] text-[9px] font-semibold uppercase tracking-widest transition-all hover:bg-white/10">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#c9973a]/40 bg-white/5 backdrop-blur-md text-[#ddb36a] text-[9px] font-semibold uppercase tracking-widest transition-colors hover:bg-white/10">
               <ShieldCheck size={12} className="stroke-[2.2px]" />
               <span>Private Tour</span>
             </div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#c9973a]/40 bg-white/5 backdrop-blur-md text-[#ddb36a] text-[9px] font-semibold uppercase tracking-widest transition-all hover:bg-white/10">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#c9973a]/40 bg-white/5 backdrop-blur-md text-[#ddb36a] text-[9px] font-semibold uppercase tracking-widest transition-colors hover:bg-white/10">
               <Plane size={12} className="stroke-[2.2px] rotate-[15deg]" />
               <span>Airport to Airport</span>
             </div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#c9973a]/40 bg-white/5 backdrop-blur-md text-[#ddb36a] text-[9px] font-semibold uppercase tracking-widest transition-all hover:bg-white/10">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#c9973a]/40 bg-white/5 backdrop-blur-md text-[#ddb36a] text-[9px] font-semibold uppercase tracking-widest transition-colors hover:bg-white/10">
               <SlidersHorizontal size={12} className="stroke-[2.2px]" />
               <span>Fully Customisable</span>
             </div>
@@ -341,7 +341,7 @@ export default function TourDetail() {
           <div className="flex flex-wrap gap-3 items-center animate-fade-in">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#c9973a] hover:bg-[#b5832d] text-[#1c1c16] font-accent text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#c9973a] hover:bg-[#b5832d] text-[#1c1c16] font-accent text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] shadow-xl hover:-translate-y-0.5 transition-transform transition-colors duration-300"
             >
               <Send size={13} className="stroke-[2.2px]" />
               <span>Send Enquiry</span>
@@ -351,7 +351,7 @@ export default function TourDetail() {
               target="_blank"
               rel="noreferrer noopener"
               onClick={() => trackWhatsAppClick(tour.title, "tour_hero")}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba56] text-white font-accent text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba56] text-white font-accent text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.15em] shadow-xl hover:-translate-y-0.5 transition-transform transition-colors duration-300"
             >
               <MessageCircle size={13} className="stroke-[2.2px]" />
               <span>WhatsApp Us</span>
@@ -405,7 +405,7 @@ export default function TourDetail() {
             ].map(({ Icon, label, value, sub }, idx) => (
               <div
                 key={label}
-                className={`group flex items-start gap-4 p-5 md:p-7 transition-all duration-300 hover:bg-white/[0.03] ${
+                className={`group flex items-start gap-4 p-5 md:p-7 transition-colors duration-300 hover:bg-white/[0.03] ${
                   idx % 2 === 0 ? "border-r border-white/10" : ""
                 } ${
                   idx < 2 ? "border-b border-white/10" : ""
@@ -566,7 +566,7 @@ export default function TourDetail() {
 
                           <button
                             aria-expanded={isOpen}
-                            className="flex items-center justify-center flex-shrink-0 w-9 h-9 rounded-full border transition-all duration-300 shadow-sm"
+                            className="flex items-center justify-center flex-shrink-0 w-9 h-9 rounded-full border transition-colors duration-300 shadow-sm"
                             style={{
                               borderColor: isOpen ? "transparent" : "#e8e4db",
                               background: isOpen ? "var(--jungle-deep)" : "#fdfcfb",
@@ -593,7 +593,7 @@ export default function TourDetail() {
                         >
                           <div className="overflow-hidden">
                             <div
-                              className={`flex flex-col md:grid md:grid-cols-[1fr_270px] bg-[#FAF9F5]/40 transition-all duration-500 ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-[0.99]"}`}
+                              className={`flex flex-col md:grid md:grid-cols-[1fr_270px] bg-[#FAF9F5]/40 transition-opacity transition-transform duration-500 ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-[0.99]"}`}
                             >
                               {/* Left Content List */}
                               <div className="p-6 md:p-8">
@@ -780,7 +780,7 @@ export default function TourDetail() {
                 <div className="flex flex-col sm:flex-row justify-center gap-4 items-center">
                   <Link
                     to="/contact"
-                    className="w-full sm:w-auto px-8 py-4 bg-[#c9973a] hover:bg-[#b5832d] text-[#1c1c16] text-[10px] sm:text-[11px] font-bold tracking-[0.18em] uppercase rounded-full shadow-2xl transition-all duration-300 hover:-translate-y-0.5 inline-flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto px-8 py-4 bg-[#c9973a] hover:bg-[#b5832d] text-[#1c1c16] text-[10px] sm:text-[11px] font-bold tracking-[0.18em] uppercase rounded-full shadow-2xl transition-transform transition-colors duration-300 hover:-translate-y-0.5 inline-flex items-center justify-center gap-2"
                   >
                     <span>Send Custom Request</span>
                     <span>→</span>
@@ -790,7 +790,7 @@ export default function TourDetail() {
                     target="_blank"
                     rel="noreferrer noopener"
                     onClick={() => trackWhatsAppClick(tour.title, "tour_customise")}
-                    className="w-full sm:w-auto px-8 py-4 bg-[#25D366] hover:bg-[#20ba56] text-white text-[10px] sm:text-[11px] font-bold tracking-[0.18em] uppercase rounded-full shadow-2xl transition-all duration-300 hover:-translate-y-0.5 animate-pulse-glow inline-flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto px-8 py-4 bg-[#25D366] hover:bg-[#20ba56] text-white text-[10px] sm:text-[11px] font-bold tracking-[0.18em] uppercase rounded-full shadow-2xl transition-transform transition-colors duration-300 hover:-translate-y-0.5 animate-pulse-glow inline-flex items-center justify-center gap-2"
                   >
                     <MessageCircle size={15} className="stroke-[2.2px]" />
                     <span>WhatsApp Tailoring</span>

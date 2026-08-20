@@ -147,7 +147,7 @@ export function ExperienceCategoriesSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-300 group-hover:opacity-90" />
 
                 {/* Content */}
-                <div className="absolute inset-x-0 bottom-0 p-6 transition-all duration-500 group-hover:bg-black/20">
+                <div className="absolute inset-x-0 bottom-0 p-6 transition-colors duration-500 group-hover:bg-black/20">
                   <div className="flex flex-col">
                     {/* Title always visible, moves up on hover */}
                     <h3
@@ -159,7 +159,7 @@ export function ExperienceCategoriesSection() {
 
                     {/* Revealable content */}
                     <div className="max-h-0 overflow-hidden transition-all duration-500 group-hover:max-h-32">
-                      <div className="pt-2 opacity-0 transition-all duration-500 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
+                      <div className="pt-2 opacity-0 transition-opacity transition-transform duration-500 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
                         <p className="text-xs font-light tracking-wide text-white/90">
                           {c.tagline}
                         </p>
